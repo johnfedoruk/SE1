@@ -10,4 +10,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/title" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open Bird 1"
+        android:id="@+id/button3"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:onClick="openViewBird" />
+
 </RelativeLayout>

@@ -7,4 +7,5 @@
     <string name="search_birds">Search Birds</string>
     <string name="title_activity_add_bird">AddBird</string>
     <string name="title_activity_search_bird">SearchBird</string>
+    <string name="title_activity_view_bird">ViewBird</string>
 </resources>

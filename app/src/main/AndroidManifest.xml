@@ -24,6 +24,10 @@
             android:name=".SearchBird"
             android:label="@string/title_activity_search_bird" >
         </activity>
+        <activity
+            android:name=".ViewBird"
+            android:label="@string/title_activity_view_bird" >
+        </activity>
     </application>
 
 </manifest>
