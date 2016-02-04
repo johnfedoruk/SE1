@@ -3,4 +3,8 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="add_bird">Add Bird</string>
+    <string name="search_birds">Search Birds</string>
+    <string name="title_activity_add_bird">AddBird</string>
+    <string name="title_activity_search_bird">SearchBird</string>
 </resources>

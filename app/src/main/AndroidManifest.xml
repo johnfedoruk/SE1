@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AddBird"
+            android:label="@string/title_activity_add_bird" >
+        </activity>
+        <activity
+            android:name=".SearchBird"
+            android:label="@string/title_activity_search_bird" >
+        </activity>
     </application>
 
 </manifest>
