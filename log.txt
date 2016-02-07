@@ -1,0 +1,26 @@
+2016/01/29
+-How does everyone feel about Android?
+-What are we working on this week?
+ -Install Android studio and install git
+-No iteration1 posted yet
+-What past experiences with git and android development do people have?
+
+
+2016/02/05
+-Where is everyone at with Android Development and Git?
+-Talking about the moving of the deadline.
+-Talking about required log file and the wiki.
+-What has everyone done on the repository?
+-We need to break up the project into the three layers. UI, Business Logic, Data Access
+-Need to put in the JAR files for SQLite, and JUnit
+-Any resource links that the prof gave?
+-Wiki Tab on Github. We will be doing it on there.
+-Reading week tuesday meeting set. All in favor. AYE
+-Android dev: What are we planning on for this week.
+ -ArrayList stub is needed. No need for SQLite for this iteration.
+ -Define Attributes of birds and what is needed.
+ -GUI
+  -Deciding what kind of GUI elements we need for the Architecture sketch.
+ -Architecture sketch (Most important)
+
+-For next time have a sketch of the UI that you think should be implemented.
