@@ -8,4 +8,7 @@
     <string name="title_activity_add_bird">AddBird</string>
     <string name="title_activity_search_bird">SearchBird</string>
     <string name="title_activity_view_bird">ViewBird</string>
+    <string name="title_activity_add_experiment">AddExperiment</string>
+    <string name="title_activity_exp_add_success">ExpAddSuccess</string>
+    <string name="title_activity_add_bird_success">AddBirdSuccess</string>
 </resources>

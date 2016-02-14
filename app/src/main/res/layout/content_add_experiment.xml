@@ -1,3 +1,4 @@
+<!--============================JOSE=====================================-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -9,21 +10,21 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:text="LegBandID"
+        android:text="Study Title"
         android:layout_height="wrap_content"
         />
     <EditText
-        android:id="@+id/txtLegBandID"
+        android:id="@+id/txtStudyTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:text="Name"
+        android:text="Study Type"
         android:layout_height="wrap_content"
         />
     <EditText
-        android:id="@+id/txtBirdName"
+        android:id="@+id/txtStudyType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -39,40 +40,50 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:text="Birthdate"
+        android:text="Start Date"
         android:layout_height="wrap_content"
         />
     <EditText
-        android:id="@+id/txtBirthDate"
+        android:id="@+id/txtStartDate"
         android:layout_width="match_parent"
         android:inputType="date"
         android:layout_height="wrap_content" />
     <TextView
         android:layout_width="wrap_content"
-        android:text="Death Date"
+        android:text="End Date"
         android:layout_height="wrap_content"
         />
     <EditText
-        android:id="@+id/txtDeathDate"
+        android:id="@+id/txtEndDate"
         android:layout_width="match_parent"
         android:inputType="date"
         android:layout_height="wrap_content" />
-
     <TextView
         android:layout_width="wrap_content"
-        android:text="Sex"
+        android:text="Experimenters"
         android:layout_height="wrap_content"
         />
 
     <EditText
-        android:id="@+id/txtSex"
+        android:id="@+id/txtExperimenters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Notes"
+        android:layout_height="wrap_content"
+        />
+    <EditText
+        android:id="@+id/txtNotes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/btAddBird"
-        android:text="Add Bird"
+        android:id="@+id/btCreateExperiment"
+        android:text="Create Experiment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 </LinearLayout>
+    <!--============================JOSE=====================================-->
+
