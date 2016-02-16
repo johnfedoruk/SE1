@@ -1,24 +1,28 @@
-package net.javacrypt.se1;
+package src.businessLogicLayer;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
+import android.view.View;
+
+import net.javacrypt.se1.R;
 
 
-public class AddBird extends ActionBarActivity {
+public class SearchBird extends ActionBarActivity {
+    public final static String EXTRA_MESSAGE = "net.javacrypt.se1.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_bird);
+        setContentView(R.layout.activity_search_bird);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_add_bird, menu);
+        getMenuInflater().inflate(R.menu.menu_search_bird, menu);
         return true;
     }
 
@@ -35,5 +39,16 @@ public class AddBird extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Allows the user to add a bird
+     * @param view
+     */
+    public void openViewBird(View view) {
+        Intent intent = new Intent(this,ViewBird.class);
+        String birdID = "Bird 1";
+        intent.putExtra(EXTRA_MESSAGE,birdID);
+        startActivity(intent);
     }
 }
