@@ -17,7 +17,6 @@ public class ViewExperiment extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_experiment);
 
-
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
