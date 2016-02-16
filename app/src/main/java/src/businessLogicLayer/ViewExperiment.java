@@ -1,4 +1,4 @@
-package net.javacrypt.se1;
+package src.businessLogicLayer;
 
 import android.app.ActionBar;
 import android.content.Intent;
@@ -7,6 +7,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import net.javacrypt.se1.R;
 
 /**
  * Created by Zili on 2016-02-15.
