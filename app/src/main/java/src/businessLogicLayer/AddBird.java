@@ -1,10 +1,11 @@
-package net.javacrypt.se1;
+package src.businessLogicLayer;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
+
+import net.javacrypt.se1.R;
 
 
 public class AddBird extends ActionBarActivity {

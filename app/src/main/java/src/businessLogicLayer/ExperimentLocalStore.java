@@ -1,4 +1,4 @@
-package net.javacrypt.se1;
+package src.businessLogicLayer;
 
 import android.content.Context;
 import android.content.SharedPreferences;

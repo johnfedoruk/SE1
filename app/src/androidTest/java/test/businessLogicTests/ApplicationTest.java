@@ -1,4 +1,4 @@
-package net.javacrypt.se1;
+package test.businessLogicTests;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
