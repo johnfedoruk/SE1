@@ -8,6 +8,7 @@ import android.view.Menu;
 
 /**
  * Created by Kevin on 15/02/2016.
+ * 
  */
 public class SplashScreen extends Activity{
     //Display Length for splash screen
@@ -21,7 +22,8 @@ public class SplashScreen extends Activity{
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(SplashScreen.this, MainActivity.class);
+                /* John: did not work without an absoloute path to MainActivity */
+                Intent i = new Intent(SplashScreen.this, src.businessLogicLayer.MainActivity.class);
                 startActivity(i);
 
                 finish();
