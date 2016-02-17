@@ -1,10 +1,11 @@
-package net.javacrypt.se1;
+package src.presentationLayer;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Menu;
+
+import net.javacrypt.se1.R;
 
 /**
  * Created by Kevin on 15/02/2016.
