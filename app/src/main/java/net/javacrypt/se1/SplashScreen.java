@@ -8,7 +8,7 @@ import android.view.Menu;
 
 /**
  * Created by Kevin on 15/02/2016.
- * 
+ *
  */
 public class SplashScreen extends Activity{
     //Display Length for splash screen
