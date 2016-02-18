@@ -7,30 +7,41 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".MainActivity"
+            android:name="src.presentationLayer.SplashScreen"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".AddBird"
+            android:name="src.businessLogicLayer.MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAINACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="src.businessLogicLayer.AddBird"
             android:label="@string/title_activity_add_bird" />
         <activity
-            android:name=".SearchBird"
+            android:name="src.businessLogicLayer.SearchBird"
             android:label="@string/title_activity_search_bird" />
         <activity
-            android:name=".ViewBird"
+            android:name="src.businessLogicLayer.ViewBird"
             android:label="@string/title_activity_view_bird" />
         <activity
-            android:name=".AddExperiment"
+            android:name="src.businessLogicLayer.AddExperiment"
             android:label="@string/title_activity_add_experiment"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ExpAddSuccess"
+            android:name="src.businessLogicLayer.ExpAddSuccess"
             android:label="@string/title_activity_exp_add_success"
             android:theme="@style/AppTheme.NoActionBar" />
         <!--
@@ -42,7 +53,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".AddBirdSuccess"
+            android:name="src.businessLogicLayer.AddBirdSuccess"
             android:label="@string/title_activity_add_bird_success"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
