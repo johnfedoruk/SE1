@@ -56,4 +56,24 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(this,SearchBird.class);
         startActivity(intent);
     }
+    public void openViewBird(View view) {
+        Intent intent = new Intent(this,ViewBird.class);
+        startActivity(intent);
+    }
+    public void openAddExperiment(View view) {
+        Intent intent = new Intent(this,AddExperiment.class);
+        startActivity(intent);
+    }
+    public void openViewExperiment(View view) {
+        Intent intent = new Intent(this,AddExperiment.class);
+        startActivity(intent);
+    }
+    public void openDelete(View view) {
+        Intent intent = new Intent(this,AddExperiment.class);
+        startActivity(intent);
+    }
+
+
+
+
 }
