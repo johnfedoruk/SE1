@@ -49,6 +49,7 @@ public class ViewExperiment extends ActionBarActivity{
         viewEndDate.setText(db.getExperiment().get(i).getEndDate().toString());
         viewExperimenters.setText(db.getExperiment().get(i).getExperimenters());
         viewNotes.setText(db.getExperiment().get(i).getNotes());
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

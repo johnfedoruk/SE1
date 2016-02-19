@@ -40,6 +40,7 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     /**
      * Allows the user to add a bird
      * @param view

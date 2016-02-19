@@ -41,6 +41,7 @@ public class DatabaseManager {
 
         return null;
     }
+
     public ArrayList<Experiment> getExperiment(){
         return experimentList;
     }
