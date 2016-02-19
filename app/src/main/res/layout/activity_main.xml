@@ -64,11 +64,11 @@
         android:layout_height="wrap_content"
         android:onClick="openAddExperiment"/>
     <Button
-        android:id="@+id/btViewExperiment"
-        android:text="View Experiment"
+        android:id="@+id/btSearchExperiment"
+        android:text="Search Experiment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="openViewExperiment"/>
+        android:onClick="openSearchExperiment"/>
 
     <Button
         android:id="@+id/btDelete"

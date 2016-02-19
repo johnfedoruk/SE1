@@ -1,23 +1,132 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="src.businessLogicLayer.SearchBird">
 
-    <TextView android:text="SEARCH" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/title" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Open Bird 1"
-        android:id="@+id/button3"
-        android:layout_below="@+id/title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
-        android:onClick="openViewBird" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/legbandID"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtLegBandID"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-</RelativeLayout>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/legBandId"
+                android:layout_below="@+id/txtLegBandID"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/name"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtBirdName"
+                android:layout_below="@+id/legBandId"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/birdName"
+                android:layout_below="@+id/txtBirdName"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/sex"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtSex"
+                android:layout_below="@+id/birdName"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sexMale"
+                android:id="@+id/sexMale"
+                android:layout_below="@+id/txtSex"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sexFemale"
+                android:id="@+id/sexFemale"
+                android:layout_alignTop="@+id/sexMale"
+                android:layout_toRightOf="@+id/sexMale"
+                android:layout_toEndOf="@+id/sexMale" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/birdthdate"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtBirthDate"
+                android:layout_below="@+id/sexMale"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <DatePicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/birthDatePicker"
+                android:layout_below="@+id/txtBirthDate"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:datePickerMode="spinner"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/deathdate"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtDeathDate"
+                android:layout_below="@+id/birthDatePicker"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <DatePicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/deathDatePicker"
+                android:layout_below="@+id/txtDeathDate"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:datePickerMode="spinner"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search"
+                android:id="@+id/button3"
+                android:onClick="openViewBird"
+                android:layout_below="@+id/deathDatePicker"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>
