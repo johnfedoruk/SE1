@@ -19,42 +19,31 @@
                 android:layout_height="wrap_content"
                 />
             <EditText
-                android:id="@+id/txtLegBandID"
+                android:id="@+id/txtLegBandId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
 
     <TextView
         android:layout_width="wrap_content"
-        android:text="LegBandId"
+        android:text="Name"
         android:layout_height="wrap_content"
         />
     <EditText
-        android:id="@+id/txtLegBandId"
+        android:id="@+id/txtBirdName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 
             <TextView
                 android:layout_width="wrap_content"
-                android:text="@string/groupWithExperiment"
+                android:text="Experiment"
                 android:layout_height="wrap_content"
                 />
             <EditText
-                android:id="@+id/txtGroupWithinExperiment"
+                android:id="@+id/txtExperiment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
-<<<<<<< HEAD
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="Experiment"
-        android:layout_height="wrap_content"
-        />
-    <EditText
-        android:id="@+id/txtExperiment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -79,35 +68,12 @@
         android:inputType="date"
         android:layout_height="wrap_content"
         android:hint ="Touch here to select date"/>
-=======
-            <TextView
-                android:layout_width="wrap_content"
-                android:text="@string/birdthdate"
-                android:layout_height="wrap_content"
-                />
-            <EditText
-                android:id="@+id/txtBirthDate"
-                android:layout_width="match_parent"
-                android:inputType="date"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:text="@string/deathdate"
-                android:layout_height="wrap_content"
-                />
-            <EditText
-                android:id="@+id/txtDeathDate"
-                android:layout_width="match_parent"
-                android:inputType="date"
-                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="wrap_content"
-                android:text="@string/sex"
+                android:text="Sex"
                 android:layout_height="wrap_content"
                 />
->>>>>>> a01733f2b8a708549166161b856a22a8871302eb
-
             <EditText
                 android:id="@+id/txtSex"
                 android:layout_width="match_parent"
