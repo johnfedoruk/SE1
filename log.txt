@@ -1,11 +1,9 @@
---Iteration 1--
 2016/01/29
 -How does everyone feel about Android?
 -What are we working on this week?
  -Install Android studio and install git
 -No iteration1 posted yet
 -What past experiences with git and android development do people have?
->Meeting Length: 2 Hours
 
 
 2016/02/05
@@ -26,7 +24,6 @@
  -Architecture sketch (Most important)
 
 -For next time have a sketch of the UI that you think should be implemented.
->Meeting Length: 2 Hours
 
 2016/02/12
 -Troubleshooting Github issues
@@ -47,17 +44,3 @@ Who wants to do what?
 -Searches Page, John
 -Add Experiments/Birds, Jose
 -View Experiments, Zili
->Meeting Length: 2 Hours
-
-2016/02/16
--Went over the architecture sketch and discussed what is needed on it.
- -Compared with the example sketch
--Build problems and troubleshooting the apk error message.
- -Checked stack overflow and used build apk to generate the missing manifest files.
--Which version of JUnit are we using? There are multiple versions, but which one are we supposed to use?
--Decided to use JUnit 4.12. Added to the github repo.
--Talking about the layers and what needs to be moved in order to satisfy the layout.
--Checked out feedback from i0, 15/15. We need to change the pdf to get rid of the blank pages for i1.
--Refactored code into layers based on what they do. Made sure everyone's code was commited so that there wouldn't be any issues with people trying to push files.
--Landon did JUnit testing as an example for the group and placed it in, made a bird class with a couple of methods in it to test.
->Meeting Length: 2 Hours
