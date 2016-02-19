@@ -5,6 +5,8 @@ import src.databaseLayer.Bird;
 import junit.framework.Test;
 import junit.framework.TestCase;
 
+import java.util.Date;
+
 /**
  * Created by pure__000 on 2016-02-16.
  */
@@ -17,7 +19,7 @@ public class DatabaseManagerTest extends TestCase{
     {
         myManager = new DatabaseManager();
 
-        Bird myBird = new Bird("0001", "bird1");
+        Bird myBird = new Bird("0001", "bird1","Experiment #1",new Date(2016,02,22),new Date(2016,02,23),"Female");
 
         assertEquals(myBird, myManager.findBird("0001", "bird1"));
         assertNotSame(myBird, myManager.findBird("0002", "bird1"));

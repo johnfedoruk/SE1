@@ -9,11 +9,11 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:text="LegBandID"
+        android:text="LegBandId"
         android:layout_height="wrap_content"
         />
     <EditText
-        android:id="@+id/txtLegBandID"
+        android:id="@+id/txtLegBandId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -29,11 +29,11 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:text="Group within Experiment"
+        android:text="Experiment"
         android:layout_height="wrap_content"
         />
     <EditText
-        android:id="@+id/txtGroupWithinExperiment"
+        android:id="@+id/txtExperiment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -46,17 +46,20 @@
         android:id="@+id/txtBirthDate"
         android:layout_width="match_parent"
         android:inputType="date"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:hint ="Touch here to select date"/>
+
     <TextView
         android:layout_width="wrap_content"
-        android:text="Death Date"
+        android:text="Death Date(if applicable)"
         android:layout_height="wrap_content"
         />
     <EditText
         android:id="@+id/txtDeathDate"
         android:layout_width="match_parent"
         android:inputType="date"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:hint ="Touch here to select date"/>
 
     <TextView
         android:layout_width="wrap_content"
