@@ -1,81 +1,62 @@
-<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context="src.businessLogicLayer.MainActivity">
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_bird"
-        android:id="@+id/button"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="131dp"
-        android:onClick="openAddBird" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/search_birds"
-        android:id="@+id/button2"
-        android:layout_alignTop="@+id/button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="72dp"
-        android:onClick="openSearchBird" />-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:padding="20dp"
     android:fitsSystemWindows="true"
     tools:context="net.javacrypt.se1.AddExperiment">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/minibirdopacity"
-        />
-    <Button
-        android:id="@+id/btAddBird"
-        android:text="Add Bird"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="openAddBird" />
-    <Button
-        android:id="@+id/btSearchBird"
-        android:text="Search Bird"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="openSearchBird" />
-    <Button
-        android:id="@+id/btViewBird"
-        android:text="View Bird"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="openViewBird"/>
-    <Button
-        android:id="@+id/btCreateExperiment"
-        android:text="Create Experiment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="openAddExperiment"/>
-    <Button
-        android:id="@+id/btSearchExperiment"
-        android:text="Search Experiment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="openSearchExperiment"/>
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/minibirdopacity"
+                />
+            <Button
+                android:id="@+id/btAddBird"
+                android:text="Add Bird"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="openAddBird" />
+            <Button
+                android:id="@+id/btSearchBird"
+                android:text="Search Bird"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="openSearchBird" />
+            <Button
+                android:id="@+id/btViewBird"
+                android:text="View Bird"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="openViewBird"/>
+            <Button
+                android:id="@+id/btCreateExperiment"
+                android:text="Create Experiment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="openAddExperiment"/>
+            <Button
+                android:id="@+id/btSearchExperiment"
+                android:text="Search Experiment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="openSearchExperiment"/>
 
-    <Button
-        android:id="@+id/btDelete"
-        android:text="Delete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="openDelete"/>
-    </LinearLayout>
-
-<!--</RelativeLayout>-->
+            <Button
+                android:id="@+id/btDelete"
+                android:text="Delete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="openDelete"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -6,73 +6,81 @@
     android:padding="20dp"
     android:fitsSystemWindows="true"
     tools:context="src.businessLogicLayer.AddExperiment">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/legbandID"
+                android:layout_height="wrap_content"
+                />
+            <EditText
+                android:id="@+id/txtLegBandID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="@string/legbandID"
-        android:layout_height="wrap_content"
-        />
-    <EditText
-        android:id="@+id/txtLegBandID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/name"
+                android:layout_height="wrap_content"
+                />
+            <EditText
+                android:id="@+id/txtBirdName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="@string/name"
-        android:layout_height="wrap_content"
-        />
-    <EditText
-        android:id="@+id/txtBirdName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/groupWithExperiment"
+                android:layout_height="wrap_content"
+                />
+            <EditText
+                android:id="@+id/txtGroupWithinExperiment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="@string/groupWithExperiment"
-        android:layout_height="wrap_content"
-        />
-    <EditText
-        android:id="@+id/txtGroupWithinExperiment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/birdthdate"
+                android:layout_height="wrap_content"
+                />
+            <EditText
+                android:id="@+id/txtBirthDate"
+                android:layout_width="match_parent"
+                android:inputType="date"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/deathdate"
+                android:layout_height="wrap_content"
+                />
+            <EditText
+                android:id="@+id/txtDeathDate"
+                android:layout_width="match_parent"
+                android:inputType="date"
+                android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="@string/birdthdate"
-        android:layout_height="wrap_content"
-        />
-    <EditText
-        android:id="@+id/txtBirthDate"
-        android:layout_width="match_parent"
-        android:inputType="date"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="@string/deathdate"
-        android:layout_height="wrap_content"
-        />
-    <EditText
-        android:id="@+id/txtDeathDate"
-        android:layout_width="match_parent"
-        android:inputType="date"
-        android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/sex"
+                android:layout_height="wrap_content"
+                />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="@string/sex"
-        android:layout_height="wrap_content"
-        />
+            <EditText
+                android:id="@+id/txtSex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/txtSex"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btAddBird"
+                android:text="Add Bird"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btAddBird"
-        android:text="Add Bird"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
