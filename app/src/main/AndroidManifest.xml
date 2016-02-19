@@ -40,6 +40,9 @@
             android:name="src.businessLogicLayer.ViewBird"
             android:label="@string/title_activity_view_bird" />
         <activity
+            android:name="src.businessLogicLayer.ViewBirds"
+            android:label="@string/title_activity_view_birds" />
+        <activity
             android:name="src.businessLogicLayer.ViewExperiment"
             android:label="@string/title_activity_view_experiment" />
         <activity

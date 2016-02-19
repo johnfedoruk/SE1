@@ -8,8 +8,8 @@ import java.util.Date;
  */
 public class DatabaseManager {
 
-    public static ArrayList<Bird> birdList;
-    public static ArrayList<Experiment> experimentList;
+    private static ArrayList<Bird> birdList;
+    private static ArrayList<Experiment> experimentList;
 
     public DatabaseManager()
     {
@@ -29,7 +29,10 @@ public class DatabaseManager {
     public void addExperiment(Experiment exp){
         this.experimentList.add(exp);
     }
-
+    public ArrayList<Bird> search() {
+        ArrayList<Bird> queryResults = this.birdList;
+        return queryResults;
+    }
     public Bird findBird(String id, String name)
     {
         for(int i = 0; i < birdList.size(); i++)

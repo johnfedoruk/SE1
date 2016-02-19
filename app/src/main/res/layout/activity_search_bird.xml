@@ -121,8 +121,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/search"
-                android:id="@+id/button3"
-                android:onClick="openViewBird"
+                android:id="@+id/search"
+                android:onClick="openViewBirds"
                 android:layout_below="@+id/deathDatePicker"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true" />

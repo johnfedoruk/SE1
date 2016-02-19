@@ -9,6 +9,7 @@
     <string name="title_activity_search_bird">SearchBird</string>
     <string name="title_activity_search_experiment">SearchExperiment</string>
     <string name="title_activity_view_bird">ViewBird</string>
+    <string name="title_activity_view_birds">ViewBirds</string>
     <string name="title_activity_view_experiment">ViewExperiment</string>
     <string name="title_activity_add_experiment">AddExperiment</string>
     <string name="title_activity_exp_add_success">ExpAddSuccess</string>

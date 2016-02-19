@@ -45,10 +45,10 @@ public class SearchBird extends ActionBarActivity {
      * Allows the user to add a bird
      * @param view
      */
-    public void openViewBird(View view) {
-        Intent intent = new Intent(this,ViewBird.class);
-        String birdID = "Bird 1";
-        intent.putExtra(EXTRA_MESSAGE,birdID);
+    public void openViewBirds(View view) {
+        Intent intent = new Intent(this,ViewBirds.class);
+        String[] searchParameters = {"birdID","birdName","birdSex","birdBirth","birdDeath"};
+        intent.putExtra(EXTRA_MESSAGE,searchParameters);
         startActivity(intent);
     }
 }

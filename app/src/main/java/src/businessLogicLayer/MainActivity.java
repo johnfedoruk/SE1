@@ -9,11 +9,14 @@ import android.view.View;
 
 import net.javacrypt.se1.R;
 
+import src.databaseLayer.DatabaseManager;
+
 
 public class MainActivity extends ActionBarActivity {
-
+    public DatabaseManager db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.db = new DatabaseManager();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }

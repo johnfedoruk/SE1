@@ -30,13 +30,20 @@ import src.databaseLayer.DatabaseManager;
 public class AddBird extends ActionBarActivity implements View.OnClickListener{
 
 
-    DatabaseManager db = new DatabaseManager();
+    DatabaseManager db;
     //EditText txtLegBandId,txtName,txtExperiment,txtBirthDate,txtDeathDate,txtSex;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        /**
+         *
+         * ALL CLASSES SHOULD USE THE DATABASE MANAGER THAT IS BUILT BY THE MAIN ACTIVITY
+         *
+         */
+        this.db = new DatabaseManager();
         setContentView(R.layout.activity_add_bird);
 
         Button btAddBird = (Button) findViewById(R.id.btAddBird);
