@@ -34,8 +34,14 @@
             android:name="src.businessLogicLayer.SearchBird"
             android:label="@string/title_activity_search_bird" />
         <activity
+            android:name="src.businessLogicLayer.SearchExperiment"
+            android:label="@string/title_activity_search_experiment" />
+        <activity
             android:name="src.businessLogicLayer.ViewBird"
             android:label="@string/title_activity_view_bird" />
+        <activity
+            android:name="src.businessLogicLayer.ViewExperiment"
+            android:label="@string/title_activity_view_experiment" />
         <activity
             android:name="src.businessLogicLayer.AddExperiment"
             android:label="@string/title_activity_add_experiment"
@@ -44,10 +50,7 @@
             android:name="src.businessLogicLayer.ExpAddSuccess"
             android:label="@string/title_activity_exp_add_success"
             android:theme="@style/AppTheme.NoActionBar" />
-        <!--
-             ATTENTION: This was auto-generated to add Google Play services to your project for
-             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
-        -->
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
