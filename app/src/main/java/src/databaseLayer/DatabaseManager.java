@@ -8,8 +8,8 @@ import java.util.Date;
  */
 public class DatabaseManager {
 
-    ArrayList<Bird> birdList;
-    ArrayList<Experiment> experimentList;
+    public static ArrayList<Bird> birdList;
+    public static ArrayList<Experiment> experimentList;
 
     public DatabaseManager()
     {
@@ -41,4 +41,8 @@ public class DatabaseManager {
 
         return null;
     }
+    public ArrayList<Experiment> getExperiment(){
+        return experimentList;
+    }
+
 }

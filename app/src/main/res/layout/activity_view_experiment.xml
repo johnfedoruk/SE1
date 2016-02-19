@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="40dp"
+    android:fitsSystemWindows="true"
+    tools:context="src.businessLogicLayer.AddExperiment">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
@@ -9,10 +13,100 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
+                android:text="Study Title"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/viewStudyTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Study Type"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView" />
+                />
+            <TextView
+                android:id="@+id/viewStudyType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Group within Experiment"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/viewGroupWithinExperiment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Start Date"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/viewStartDate"
+                android:layout_width="match_parent"
+                android:inputType="date"
+                android:layout_height="wrap_content"
+                android:hint="Touch here to add date"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="End Date"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/viewEndDate"
+                android:layout_width="match_parent"
+                android:inputType="date"
+                android:layout_height="wrap_content"
+                android:hint="Touch here to add date"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Experimenters"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/viewExperimenters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Notes"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/viewNotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btEditExperiment"
+                android:text="Edit Experiment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <Button
+                android:id="@+id/btPrevious"
+                android:text="Previous"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <Button
+                android:id="@+id/btNext"
+                android:text="Next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>
