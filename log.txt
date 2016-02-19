@@ -61,3 +61,14 @@ Who wants to do what?
 -Refactored code into layers based on what they do. Made sure everyone's code was commited so that there wouldn't be any issues with people trying to push files.
 -Landon did JUnit testing as an example for the group and placed it in, made a bird class with a couple of methods in it to test.
 >Meeting Length: 2 Hours
+
+2016/02/19
+-Changed the addBird interface and some database functionality - Jose
+-Modified UI for activity view bird and added loading of bird data to the ViewBird - Kaj
+-Did a stand up what everyone did.
+ -Database stub has yet to be implemented. Had Machine Learning assignment. -Landon
+ -BirdView layout is done, ViewBird.java is not - Kaj
+ -Layout SearchBird and SearchExperiment is done. -John
+ -Added Progress dialog and finished the AddBird. -Jose
+-Modified the unit testing to be compliant with the new database function.
+>Meeting Length: 2 Hours
