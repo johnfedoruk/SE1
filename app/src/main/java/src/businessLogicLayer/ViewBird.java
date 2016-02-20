@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 import net.javacrypt.se1.R;
 
@@ -26,10 +27,37 @@ public class ViewBird extends ActionBarActivity {
          */
         Intent intent = getIntent();
         String birdName = intent.getStringExtra(SearchBird.EXTRA_MESSAGE);
+        //TODO: Remove hardcoded line when SearchBird passes a bird
+        birdName = "bird1";
         Toast toast = Toast.makeText(getApplicationContext(), birdName, Toast.LENGTH_LONG);
         toast.show();
 
-        Bird currentBird = DatabaseManager.findBird(birdName);
+        /**
+         * Append Bird's Info to xml elements
+         */
+        if(birdName != null)
+        {
+            Bird currentBird = DatabaseManager.findBird(birdName);
+            if (currentBird != null)
+            {
+                TextView curr = (TextView) findViewById(R.id.birdName);
+                curr.append(currentBird.getName());
+
+                curr = (TextView) findViewById(R.id.birdID);
+                curr.append(currentBird.getId());
+
+                curr = (TextView) findViewById(R.id.birdBirthdate);
+                curr.append(currentBird.getBirthDate().toString());
+
+                curr = (TextView) findViewById(R.id.birdDeathdate);
+                curr.append(currentBird.getDeathDate().toString());
+
+                curr = (TextView) findViewById(R.id.birdSex);
+                curr.append(currentBird.getSex());
+            }
+        }
+
+
     }
 
     @Override

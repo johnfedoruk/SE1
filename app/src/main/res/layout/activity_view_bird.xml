@@ -50,26 +50,16 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Species:"
-        android:id="@+id/birdSpecies"
-        android:layout_below="@+id/birdSex"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="24dp" />
-
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/expList"
-        android:layout_below="@+id/birdSpecies"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="47dp"
         android:choiceMode="singleChoice"
-        android:smoothScrollbar="false" />
+        android:smoothScrollbar="false"
+        android:layout_below="@+id/birdSex" />
 
     <ListView
         android:layout_width="wrap_content"
