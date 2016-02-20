@@ -10,8 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.StackView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,18 +25,18 @@ import java.util.ArrayList;
 import src.databaseLayer.Bird;
 import src.databaseLayer.DatabaseManager;
 
-class StackItem {
+class ListItem {
     public String birdId;
     public String birdName;
-    public StackItem(String birdId,String birdName) {
+    public ListItem(String birdId,String birdName) {
         this.birdId = birdId;
         this.birdName = birdName;
     }
 }
-class StackAdapter extends ArrayAdapter<StackItem> {
-    private ArrayList<StackItem> items;
+class ListAdapter extends ArrayAdapter<ListItem> {
+    private ArrayList<ListItem> items;
     private Context ctx;
-    public StackAdapter(Context context, int textViewResourceId, ArrayList<StackItem> objects) {
+    public ListAdapter(Context context, int textViewResourceId, ArrayList<ListItem> objects) {
         super(context, textViewResourceId, objects);
         this.items = objects;
         this.ctx = context;
@@ -48,7 +49,7 @@ class StackAdapter extends ArrayAdapter<StackItem> {
                     ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             v = vi.inflate(R.layout.item, null);
         }
-        StackItem m = items.get(position);
+        ListItem m = items.get(position);
         if (m != null) {
             final TextView birdId = (TextView) v.findViewById(R.id.birdID);
             TextView birdName = (TextView) v.findViewById(R.id.birdName);
@@ -67,8 +68,8 @@ class StackAdapter extends ArrayAdapter<StackItem> {
                     toast.show();
                 }
             });
-            layout.setMinimumWidth(300);
-            layout.setMinimumHeight(400);
+            //layout.setMinimumWidth(300);
+            //layout.setMinimumHeight(400);
             //layout.setBackgroundColor(0xc1fff6);
             layout.setBackgroundColor(0x21000f);
         }
@@ -95,13 +96,13 @@ public class ViewBirds extends ActionBarActivity {
         TextView tv;
         Bird bird;
         ArrayList<Bird> query = db.search();
-        StackView stk = (StackView)this.findViewById(R.id.stackView);
-        ArrayList<StackItem> items = new ArrayList<StackItem>();
+        ListView stk = (ListView)this.findViewById(R.id.listView);
+        ArrayList<ListItem> items = new ArrayList<ListItem>();
         for(int i=0;i<query.size();i++) {
             bird = query.get(i);
-            items.add(new StackItem("ID: "+bird.getId(),"Name: "+bird.getName()));
+            items.add(new ListItem("ID: "+bird.getId(),"Name: "+bird.getName()));
         }
-        StackAdapter adapt = new StackAdapter(this, R.layout.item, items);
+        ListAdapter adapt = new ListAdapter(this, R.layout.item, items);
         stk.setAdapter(adapt);
     }
 
