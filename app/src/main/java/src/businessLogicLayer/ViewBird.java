@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import net.javacrypt.se1.R;
+
+import src.databaseLayer.DatabaseManager;
+import src.databaseLayer.Bird;
 
 
 public class ViewBird extends ActionBarActivity {
@@ -27,6 +29,7 @@ public class ViewBird extends ActionBarActivity {
         Toast toast = Toast.makeText(getApplicationContext(), birdName, Toast.LENGTH_LONG);
         toast.show();
 
+        Bird currentBird = DatabaseManager.findBird(birdName);
     }
 
     @Override

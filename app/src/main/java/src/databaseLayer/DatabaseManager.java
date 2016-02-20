@@ -33,11 +33,11 @@ public class DatabaseManager {
         ArrayList<Bird> queryResults = this.birdList;
         return queryResults;
     }
-    public Bird findBird(String id, String name)
+    public static Bird findBird(String name)
     {
         for(int i = 0; i < birdList.size(); i++)
         {
-            if(birdList.get(i).getId().equals(id) && birdList.get(i).getName().equals(name)) {
+            if(birdList.get(i).getName().equals(name)) {
                 return birdList.get(i);
             }
         }
