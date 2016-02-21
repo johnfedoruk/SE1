@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
@@ -36,6 +37,8 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
 
     //EditText txtLegBandId,txtName,txtExperiment,txtBirthDate,txtDeathDate,txtSex;
 
+    public static TextView txtAddMedicalHistory;
+    public static ImageView imgAddMedicalHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +51,20 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
          */
         setContentView(R.layout.activity_add_bird);
 
+        /*
+        *Listener for the AddBird button
+        *
+         */
+        txtAddMedicalHistory= (TextView) findViewById(R.id.txtAddMedicalHistory);
+        AddBird.imgAddMedicalHistory = (ImageView) findViewById(R.id.imgAddMedicalHistory);
         Button btAddBird = (Button) findViewById(R.id.btAddBird);
         btAddBird.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                /*
+                Retrieve all the info from the textfields
+                 */
 
                 EditText txtLegBandId = (EditText) findViewById(R.id.txtLegBandId),
                 txtName = (EditText) findViewById(R.id.txtBirdName),
@@ -82,6 +94,7 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
                 progressDialog.setMessage("Please wait...");
                 progressDialog.show();
 
+                /*Go to bird page*/
                 Intent myIntent = new Intent(AddBird.this,AddBirdSuccess.class);
                 startActivity(myIntent);
 
@@ -149,5 +162,10 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
 
+    }
+    public void openAddMedicalHistory(View view) {
+
+        Intent intent = new Intent(this,AddMedicalHistory.class);
+        startActivity(intent);
     }
 }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,13 +19,14 @@ import net.javacrypt.se1.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import src.databaseLayer.DatabaseManager;
 import src.databaseLayer.Experiment;
 
 /*============================JOSE============================*/
-public class AddExperiment extends ActionBarActivity implements View.OnClickListener {
+public class AddExperiment extends AppCompatActivity implements View.OnClickListener {
 
     DatabaseManager db = new DatabaseManager();
     Button btCreateExperiment;
@@ -73,13 +75,13 @@ public class AddExperiment extends ActionBarActivity implements View.OnClickList
                 String title = txtStudyTitle.getText().toString();
                 String type = txtStudyType.getText().toString();
                 String group = txtGroupWithinExperiment.getText().toString();
-                Date startdate = null;
-                Date enddate = null;
+                Calendar startdate = Calendar.getInstance();
+                Calendar enddate = Calendar.getInstance();
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                 try {
-                    startdate = ((Date)sdf.parse(txtStartDate.getText().toString()));
+                    startdate.setTime(sdf.parse(txtStartDate.getText().toString()));
 
-                    enddate = ((Date)(sdf.parse(txtEndDate.getText().toString())));
+                    enddate.setTime(sdf.parse(txtEndDate.getText().toString()));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }

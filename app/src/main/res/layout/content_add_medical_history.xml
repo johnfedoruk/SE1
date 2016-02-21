@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:fitsSystemWindows="true"
+    tools:context="src.businessLogicLayer.AddExperiment">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Date of Report"
+                android:layout_height="wrap_content"
+                />
+            <EditText
+                android:id="@+id/txtDateOfReport"
+                android:layout_width="match_parent"
+                android:inputType="date"
+                android:layout_height="wrap_content"
+                android:hint ="Touch here to select date"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Health Issue"
+                android:layout_height="wrap_content"
+                />
+            <EditText
+                android:id="@+id/txtHealthIssue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Treatment"
+                android:layout_height="wrap_content"
+                />
+            <EditText
+                android:id="@+id/txtTreatment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Notes"
+                android:layout_height="wrap_content"
+                />
+            <EditText
+                android:id="@+id/txtNotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <Button
+                android:id="@+id/btAddMedicalHistory"
+                android:text="Add Medical History"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="openAddBird"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

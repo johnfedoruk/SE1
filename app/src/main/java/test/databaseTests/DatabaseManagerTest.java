@@ -26,4 +26,5 @@ public class DatabaseManagerTest extends TestCase{
         assertNotSame(myBird, myManager.findBird("bird2"));
     }
 
+
 }

@@ -56,12 +56,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="openViewExperiment"/>
-            <Button
-                android:id="@+id/btDelete"
-                android:text="Delete"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="openDelete"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

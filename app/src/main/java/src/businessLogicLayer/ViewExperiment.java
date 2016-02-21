@@ -1,11 +1,14 @@
 package src.businessLogicLayer;
 
 import android.app.ActionBar;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,9 +22,8 @@ import src.databaseLayer.Experiment;
 /**
  * Created by Zili on 2016-02-15.
  */
-public class ViewExperiment extends ActionBarActivity{
+public class ViewExperiment extends AppCompatActivity implements View.OnClickListener {
 
-    DatabaseManager db = new DatabaseManager();
     TextView viewStudyTitle;
     TextView viewStudyType;
     TextView viewGroupWithinExperiment;
@@ -42,13 +44,56 @@ public class ViewExperiment extends ActionBarActivity{
         viewNotes = (TextView) findViewById(R.id.viewNotes);
 
 
-        viewStudyTitle.setText(db.getExperiment().get(i).getStudyTitle());
-        viewStudyType.setText(db.getExperiment().get(i).getStudyType());
-        viewGroupWithinExperiment.setText(db.getExperiment().get(i).getGroupWithinExperiment());
-        viewStartDate.setText(db.getExperiment().get(i).getStartDate().toString());
-        viewEndDate.setText(db.getExperiment().get(i).getEndDate().toString());
-        viewExperimenters.setText(db.getExperiment().get(i).getExperimenters());
-        viewNotes.setText(db.getExperiment().get(i).getNotes());
+        viewStudyTitle.setText(MainActivity.db.getExperiment().get(i).getStudyTitle());
+        viewStudyType.setText(MainActivity.db.getExperiment().get(i).getStudyType());
+        viewGroupWithinExperiment.setText(MainActivity.db.getExperiment().get(i).getGroupWithinExperiment());
+        viewStartDate.setText(MainActivity.db.getExperiment().get(i).getDateString(MainActivity.db.getExperiment().get(i).getStartDate()));
+        viewEndDate.setText(MainActivity.db.getExperiment().get(i).getDateString(MainActivity.db.getExperiment().get(i).getEndDate()));
+        viewExperimenters.setText(MainActivity.db.getExperiment().get(i).getExperimenters());
+        viewNotes.setText(MainActivity.db.getExperiment().get(i).getNotes());
+
+        Button btNext = (Button) findViewById(R.id.btNext);
+        btNext.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if((i>=0)&&(i<MainActivity.db.getExperiment().size()-1)) {
+                    i = i + 1;
+
+                    viewStudyTitle.setText(MainActivity.db.getExperiment().get(i).getStudyTitle());
+                    viewStudyType.setText(MainActivity.db.getExperiment().get(i).getStudyType());
+                    viewGroupWithinExperiment.setText(MainActivity.db.getExperiment().get(i).getGroupWithinExperiment());
+                    viewStartDate.setText(MainActivity.db.getExperiment().get(i).getDateString(MainActivity.db.getExperiment().get(i).getStartDate()));
+                    viewEndDate.setText(MainActivity.db.getExperiment().get(i).getDateString(MainActivity.db.getExperiment().get(i).getEndDate()));
+                    viewExperimenters.setText(MainActivity.db.getExperiment().get(i).getExperimenters());
+                    viewNotes.setText(MainActivity.db.getExperiment().get(i).getNotes());
+                }
+                else{}
+
+            }
+        });
+
+        Button btPrevious = (Button) findViewById(R.id.btPrevious);
+        btPrevious.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                if((i>0)&&(i<(MainActivity.db.getExperiment().size()))) {
+                    i=i-1;
+                    viewStudyTitle.setText(MainActivity.db.getExperiment().get(i).getStudyTitle());
+                    viewStudyType.setText(MainActivity.db.getExperiment().get(i).getStudyType());
+                    viewGroupWithinExperiment.setText(MainActivity.db.getExperiment().get(i).getGroupWithinExperiment());
+                    viewStartDate.setText(MainActivity.db.getExperiment().get(i).getDateString(MainActivity.db.getExperiment().get(i).getStartDate()));
+                    viewEndDate.setText(MainActivity.db.getExperiment().get(i).getDateString(MainActivity.db.getExperiment().get(i).getEndDate()));
+                    viewExperimenters.setText(MainActivity.db.getExperiment().get(i).getExperimenters());
+                    viewNotes.setText(MainActivity.db.getExperiment().get(i).getNotes());
+                }
+                else{}
+
+            }
+        });
+
 
     }
 
@@ -71,5 +116,10 @@ public class ViewExperiment extends ActionBarActivity{
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

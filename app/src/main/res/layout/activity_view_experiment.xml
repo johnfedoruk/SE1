@@ -16,6 +16,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
+                android:textStyle="bold"
                 android:text="Study Title"
                 android:layout_height="wrap_content" />
             <TextView
@@ -25,6 +26,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
+                android:textStyle="bold"
                 android:text="Study Type"
                 android:layout_height="wrap_content"
                 />
@@ -35,6 +37,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
+                android:textStyle="bold"
                 android:text="Group within Experiment"
                 android:layout_height="wrap_content"
                 />
@@ -46,28 +49,28 @@
 
             <TextView
                 android:layout_width="wrap_content"
+                android:textStyle="bold"
                 android:text="Start Date"
                 android:layout_height="wrap_content"
                 />
             <TextView
                 android:id="@+id/viewStartDate"
                 android:layout_width="match_parent"
-                android:inputType="date"
-                android:layout_height="wrap_content"
-                android:hint="Touch here to add date"/>
+                android:layout_height="wrap_content" />
             <TextView
                 android:layout_width="wrap_content"
+                android:textStyle="bold"
                 android:text="End Date"
                 android:layout_height="wrap_content"
                 />
             <TextView
                 android:id="@+id/viewEndDate"
                 android:layout_width="match_parent"
-                android:inputType="date"
                 android:layout_height="wrap_content"
-                android:hint="Touch here to add date"/>
+               />
             <TextView
                 android:layout_width="wrap_content"
+                android:textStyle="bold"
                 android:text="Experimenters"
                 android:layout_height="wrap_content"
                 />
@@ -78,6 +81,7 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:layout_width="wrap_content"
+                android:textStyle="bold"
                 android:text="Notes"
                 android:layout_height="wrap_content"
                 />
@@ -87,14 +91,8 @@
                 android:layout_height="wrap_content" />
 
             <Button
-                android:id="@+id/btEditExperiment"
-                android:text="Edit Experiment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-
-            <Button
                 android:id="@+id/btPrevious"
+                android:textStyle="bold"
                 android:text="Previous"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

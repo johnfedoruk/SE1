@@ -33,11 +33,10 @@ public class ViewBird extends AppCompatActivity {
          * Get the bird ID
          *
          */
-        birdBirthdate = (TextView) findViewById(R.id.birdBirthdate);
-        birdBirthdate.setText(MainActivity.db.getBird().get(0).getDateString(MainActivity.db.getBird().get(0).getBirthDate()));
+
         Intent intent = getIntent();
         String birdName = intent.getStringExtra(SearchBird.EXTRA_MESSAGE);
-        //TODO: Remove hardcoded line when SearchBird passes a bird
+
         birdName = "bird1";
         Toast toast = Toast.makeText(getApplicationContext(), birdName, Toast.LENGTH_LONG);
         toast.show();
@@ -57,10 +56,10 @@ public class ViewBird extends AppCompatActivity {
                 curr.append(currentBird.getId());
 
                 curr = (TextView) findViewById(R.id.birdBirthdate);
-                curr.append(currentBird.getBirthDate().toString());
+                curr.append(currentBird.getDateString(currentBird.getBirthDate()));
 
                 curr = (TextView) findViewById(R.id.birdDeathdate);
-                curr.append(currentBird.getDeathDate().toString());
+                curr.append(currentBird.getDateString(currentBird.getDeathDate()));
 
                 curr = (TextView) findViewById(R.id.birdSex);
                 curr.append(currentBird.getSex());

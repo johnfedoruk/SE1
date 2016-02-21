@@ -7,16 +7,15 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-
         <activity
             android:name="src.presentationLayer.SplashScreen"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="src.businessLogicLayer.MainActivity"
             android:label="@string/app_name"
@@ -27,7 +26,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="src.businessLogicLayer.AddBird"
             android:label="@string/title_activity_add_bird" />
@@ -62,6 +60,10 @@
         <activity
             android:name="src.businessLogicLayer.AddBirdSuccess"
             android:label="@string/title_activity_add_bird_success"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="src.businessLogicLayer.AddMedicalHistory"
+            android:label="@string/title_activity_add_medical_history"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

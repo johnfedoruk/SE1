@@ -90,8 +90,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,ViewExperiment.class);
         startActivity(intent);
     }
-    public void openDelete(View view) {
-        Intent intent = new Intent(this,AddExperiment.class);
-        startActivity(intent);
-    }
+   
 }
