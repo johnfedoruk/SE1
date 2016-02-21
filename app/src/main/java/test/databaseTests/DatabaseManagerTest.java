@@ -5,6 +5,7 @@ import src.databaseLayer.Bird;
 import junit.framework.Test;
 import junit.framework.TestCase;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -13,13 +14,13 @@ import java.util.Date;
 public class DatabaseManagerTest extends TestCase{
 
     DatabaseManager myManager;
-
+    Calendar date = Calendar.getInstance();
     //@Test
     public void testFindBird()
     {
         myManager = new DatabaseManager();
 
-        Bird myBird = new Bird("0001", "bird1","Experiment #1",new Date(2016,02,22),new Date(2016,02,23),"Female");
+        Bird myBird = new Bird("0001", "bird1","Experiment #1",myManager.getCalendar(2016, 02, 22),myManager.getCalendar(2016, 02, 22),"Female");
 
         assertEquals(myBird, myManager.findBird("bird1"));
         assertNotSame(myBird, myManager.findBird("bird2"));

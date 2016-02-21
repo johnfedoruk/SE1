@@ -17,8 +17,7 @@ public class ExpAddSuccess extends AppCompatActivity {
     }
 
     public void openBackToMenu(View view) {
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
+        finish();
     }
 }
 /*============================JOSE============================*/

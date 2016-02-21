@@ -7,11 +7,13 @@ import android.net.Uri;
 import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -21,16 +23,17 @@ import net.javacrypt.se1.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import src.databaseLayer.Bird;
 import src.databaseLayer.DatabaseManager;
 
 
-public class AddBird extends ActionBarActivity implements View.OnClickListener{
+public class AddBird extends AppCompatActivity implements View.OnClickListener{
 
 
-    DatabaseManager db;
+
     //EditText txtLegBandId,txtName,txtExperiment,txtBirthDate,txtDeathDate,txtSex;
 
 
@@ -43,36 +46,36 @@ public class AddBird extends ActionBarActivity implements View.OnClickListener{
          * ALL CLASSES SHOULD USE THE DATABASE MANAGER THAT IS BUILT BY THE MAIN ACTIVITY
          *
          */
-        this.db = new DatabaseManager();
         setContentView(R.layout.activity_add_bird);
 
         Button btAddBird = (Button) findViewById(R.id.btAddBird);
         btAddBird.setOnClickListener(new View.OnClickListener() {
-        //txtLegBandId = ((EditText) findViewById(R.id.txtLegBandId));
-
             @Override
             public void onClick(View v) {
 
+
                 EditText txtLegBandId = (EditText) findViewById(R.id.txtLegBandId),
-                        txtName = (EditText) findViewById(R.id.txtBirdName),
-                        txtExperiment = (EditText) findViewById(R.id.txtExperiment),
-                        txtBirthDate = (EditText) findViewById(R.id.txtBirthDate),
-                        txtDeathDate = (EditText) findViewById(R.id.txtDeathDate),
-                        txtSex = (EditText) findViewById(R.id.txtSex);
+                txtName = (EditText) findViewById(R.id.txtBirdName),
+                txtExperiment = (EditText) findViewById(R.id.txtExperiment),
+                txtBirthDate = (EditText) findViewById(R.id.txtBirthDate),
+                txtDeathDate = (EditText) findViewById(R.id.txtDeathDate),
+                txtSex = (EditText) findViewById(R.id.txtSex);
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
                 String id = txtLegBandId.getText().toString();
                 String name = txtName.getText().toString();
                 String exp = txtExperiment.getText().toString();
-                Date birthdate = null;
-                Date deathdate = null;
+                Calendar birthdate = Calendar.getInstance();
+                Calendar deathdate = Calendar.getInstance();
                 try {
-                    birthdate = ((Date)sdf.parse(txtBirthDate.getText().toString()));
-
-                 deathdate = ((Date)(sdf.parse(txtDeathDate.getText().toString())));
+                    birthdate.setTime(sdf.parse(txtBirthDate.getText().toString()));
+                    deathdate.setTime(sdf.parse(txtDeathDate.getText().toString()));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
                 String sex =  txtSex.getText().toString();
+                Bird b = new Bird(id,name,exp,birthdate,deathdate,sex);
+                MainActivity.db.addBird(b);
 
                 ProgressDialog progressDialog = new ProgressDialog(AddBird.this);
                 progressDialog.setTitle("Adding Bird");
@@ -80,8 +83,6 @@ public class AddBird extends ActionBarActivity implements View.OnClickListener{
                 progressDialog.show();
 
                 Intent myIntent = new Intent(AddBird.this,AddBirdSuccess.class);
-                Bird b = new Bird(id,name,exp,birthdate,deathdate,sex);
-                db.addBird(b);
                 startActivity(myIntent);
 
             }

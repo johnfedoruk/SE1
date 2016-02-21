@@ -77,7 +77,7 @@ class ListAdapter extends ArrayAdapter<ListItem> {
     }
 }
 
-public class ViewBirds extends ActionBarActivity {
+public class                             ViewBirds extends ActionBarActivity {
     private DatabaseManager db = new DatabaseManager();
     public Context context;
     @Override

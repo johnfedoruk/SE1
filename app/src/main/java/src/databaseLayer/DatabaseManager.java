@@ -1,6 +1,8 @@
 package src.databaseLayer;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -10,17 +12,19 @@ public class DatabaseManager {
 
     private static ArrayList<Bird> birdList;
     private static ArrayList<Experiment> experimentList;
+    private Calendar cal;
 
     public DatabaseManager()
     {
         birdList = new ArrayList<Bird>();
         experimentList = new ArrayList<Experiment>();
+        cal = Calendar.getInstance();
 
-        birdList.add(new Bird("0001", "bird1","Experiment #1",new Date(2016,02,22),new Date(2016,02,23),"Female"));
-        birdList.add(new Bird("0002", "bird2","Experiment #2",new Date(2016,02,23),new Date(2016,02,24),"Male"));
-        birdList.add(new Bird("0003", "bird3","Experiment #3",new Date(2016,02,25),new Date(2016,02,26),"Female"));
-        experimentList.add(new Experiment("Dying Bird","Psychological","Group 1",new Date(2016,02,22),new Date(2016,02,23),"John,Gimli","blahblah"));
-        experimentList.add(new Experiment("Living Bird","Suicidal","Group 2",new Date(2016,02,22),new Date(2016,02,23),"James,Angelo","blahblah"));
+        birdList.add(new Bird("0001", "bird1","Experiment #1",getCalendar(2016,2,22),getCalendar(2016,2,22),"Female"));
+        birdList.add(new Bird("0002", "bird2","Experiment #2",getCalendar(2016,2,23),getCalendar(2016,2,24),"Male"));
+        birdList.add(new Bird("0003", "bird3","Experiment #3",getCalendar(2016,2,24),getCalendar(2016,2,25),"Female"));
+        experimentList.add(new Experiment("Dying Bird","Psychological","Group 1",getCalendar(2016,2,22),getCalendar(2016,2,22),"John,Gimli","blahblah"));
+        experimentList.add(new Experiment("Living Bird","Suicidal","Group 2",getCalendar(2016,2,22),getCalendar(2016,2,22),"James,Angelo","blahblah"));
     }
 
     public void addBird(Bird bird){
@@ -46,7 +50,21 @@ public class DatabaseManager {
     }
 
     public ArrayList<Experiment> getExperiment(){
-        return experimentList;
+        return this.experimentList;
     }
+    public Calendar getCalendar(int yyyy,int m, int dd){
+        this.cal = Calendar.getInstance();
+        this.cal.set(yyyy,m,dd);
+        return this.cal;
+    }
+   /* public String getCalendarday(){
+        Calendar cal = Calendar.getInstance();
+        cal.set(1993,02,26);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
+        return sdf.format(cal.getTime());
+    }*/
+    public ArrayList<Bird> getBird(){
+        return this.birdList;
+    }
 }

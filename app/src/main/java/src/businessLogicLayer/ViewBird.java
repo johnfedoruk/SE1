@@ -3,18 +3,26 @@ package src.businessLogicLayer;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 import net.javacrypt.se1.R;
 
+
 import src.databaseLayer.DatabaseManager;
 import src.databaseLayer.Bird;
+import java.util.Calendar;
 
 
-public class ViewBird extends ActionBarActivity {
+import src.databaseLayer.Bird;
+import src.databaseLayer.DatabaseManager;
 
+
+public class ViewBird extends AppCompatActivity {
+
+    TextView birdBirthdate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +33,8 @@ public class ViewBird extends ActionBarActivity {
          * Get the bird ID
          *
          */
+        birdBirthdate = (TextView) findViewById(R.id.birdBirthdate);
+        birdBirthdate.setText(MainActivity.db.getBird().get(0).getDateString(MainActivity.db.getBird().get(0).getBirthDate()));
         Intent intent = getIntent();
         String birdName = intent.getStringExtra(SearchBird.EXTRA_MESSAGE);
         //TODO: Remove hardcoded line when SearchBird passes a bird

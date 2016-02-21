@@ -1,5 +1,7 @@
 package src.databaseLayer;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -9,9 +11,9 @@ public class Experiment {
 
 
     private String StudyTitle, StudyType, GroupWithinExperiment, Experimenters, Notes;
-    Date StartDate, EndDate;
+    Calendar StartDate = Calendar.getInstance(), EndDate=Calendar.getInstance();
 
-    public Experiment( String StudyTitle, String StudyType,String GroupWithinExperiment,Date StartDate, Date EndDate, String Experimenters,String Notes) {
+    public Experiment( String StudyTitle, String StudyType,String GroupWithinExperiment,Calendar StartDate, Calendar EndDate, String Experimenters,String Notes) {
         this.StudyTitle = StudyTitle;
         this.StudyType = StudyType;
         this.GroupWithinExperiment = GroupWithinExperiment;
@@ -31,11 +33,15 @@ public class Experiment {
     public String getGroupWithinExperiment() {
         return this.GroupWithinExperiment;
     }
-    public Date getStartDate() {
+    public Calendar getStartDate() {
         return this.StartDate;
     }
-    public Date getEndDate(){
+    public Calendar getEndDate(){
         return this.EndDate;
+    }
+    public String getDateString(Calendar cal){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(cal.getTime());
     }
     public String getExperimenters(){
         return this.Experimenters;
@@ -54,10 +60,10 @@ public class Experiment {
     public void setGroupWithinExperiment(String GroupWithinExperiment) {
         this.GroupWithinExperiment = GroupWithinExperiment;
     }
-    public void setStartDate(Date StartDate){
+    public void setStartDate(Calendar StartDate){
         this.StartDate = StartDate;
     }
-    public void setEndDate(Date EndDate){
+    public void setEndDate(Calendar EndDate){
         this.EndDate = EndDate;
     }
     public void setExperimenters(String Experimenters){

@@ -1,5 +1,7 @@
 package src.databaseLayer;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -8,9 +10,8 @@ import java.util.Date;
 public class Bird {
 
     String id,name,experiment,sex;
-    Date birthDate,deathDate;
-
-    public Bird(String id, String name,String experiment,Date birthDate,Date deathDate,String sex)
+    Calendar birthDate,deathDate;
+    public Bird(String id, String name,String experiment,Calendar birthDate,Calendar deathDate,String sex)
     {
         this.id = id;
         this.name = name;
@@ -30,8 +31,12 @@ public class Bird {
         return this.id;
     }
     public String getExperiment(){return this.experiment;}
-    public Date getBirthDate(){return this.birthDate;}
-    public Date getDeathDate(){return this.deathDate;}
+    public Calendar getBirthDate(){return this.birthDate;}
+    public Calendar getDeathDate(){return this.deathDate;}
+    public String getDateString(Calendar cal){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(cal.getTime());
+    }
     public String getSex(){return this.sex;}
 
     public void setId(String id){
@@ -43,10 +48,8 @@ public class Bird {
     public void setExperiment(String experiment){
         this.experiment= experiment;
     }
-    public void setBirthDate(Date birthDate){
-        this.birthDate = birthDate;
-    }
-    public void setDeathDate(Date deathDate){
+    public void setBirthDate(Calendar birthDate){this.birthDate = birthDate;}
+    public void setDeathDate(Calendar deathDate){
         this.deathDate= deathDate;
     }
     public void setSex(String sex){

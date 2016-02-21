@@ -3,22 +3,33 @@ package src.businessLogicLayer;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import net.javacrypt.se1.R;
 
+import java.util.Calendar;
+
+import src.databaseLayer.Bird;
 import src.databaseLayer.DatabaseManager;
 
 
-public class MainActivity extends ActionBarActivity {
-    public DatabaseManager db;
+public class MainActivity extends AppCompatActivity {
+    public static DatabaseManager db;
+    //Calendar birthDate = Calendar.getInstance();
+    //Calendar deathDate = Calendar.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        this.db = new DatabaseManager();
+       this.db = new DatabaseManager();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+       // this.db.addBird(new Bird("0004", "bird1", "Experiment #1", MainActivity.db.getCalendar(birthDate, 2016, 2, 22), MainActivity.db.getCalendar(deathDate, 2016, 2, 22), "Female"));
+       // this.db.addBird(new Bird("0005", "bird1", "Experiment #1", MainActivity.db.getCalendar(birthDate, 2016, 2, 22), MainActivity.db.getCalendar(deathDate, 2016, 2, 22), "Female"));
+
     }
 
     @Override
@@ -62,6 +73,7 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
     public void openViewBird(View view) {
+        //this.db.addBird(new Bird("0004", "bird1", "Experiment #1", MainActivity.db.getCalendar(birthDate, 2016, 2, 22), MainActivity.db.getCalendar(deathDate, 2016, 2, 22), "Female"));
         Intent intent = new Intent(this,ViewBird.class);
         startActivity(intent);
     }
@@ -74,6 +86,7 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
     public void openViewExperiment(View view) {
+
         Intent intent = new Intent(this,ViewExperiment.class);
         startActivity(intent);
     }

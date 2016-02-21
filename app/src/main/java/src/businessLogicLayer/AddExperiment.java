@@ -31,11 +31,6 @@ public class AddExperiment extends ActionBarActivity implements View.OnClickList
 
     EditText txtStudyTitle, txtStudyType, txtGroupWithinExperiment, txtStartDate, txtEndDate, txtExperimenters, txtNotes;
     src.databaseLayer.ExperimentLocalStore ExperimentLocalStore;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +62,7 @@ public class AddExperiment extends ActionBarActivity implements View.OnClickList
         btCreateExperiment = (Button) findViewById(R.id.btCreateExperiment);
 
         btCreateExperiment.setOnClickListener(this);
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
     }
 
     @Override
@@ -104,20 +97,6 @@ public class AddExperiment extends ActionBarActivity implements View.OnClickList
     public void onStart() {
         super.onStart();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "AddExperiment Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://net.javacrypt.se1/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
 
         EditText txtStartDate = (EditText) findViewById(R.id.txtStartDate);
         EditText txtEndDate = (EditText) findViewById(R.id.txtEndDate);
@@ -143,25 +122,7 @@ public class AddExperiment extends ActionBarActivity implements View.OnClickList
         });
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "AddExperiment Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://net.javacrypt.se1/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
-    }
 
 }
 /*============================JOSE============================*/
