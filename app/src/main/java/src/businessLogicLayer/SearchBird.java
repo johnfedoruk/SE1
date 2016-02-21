@@ -69,13 +69,13 @@ public class SearchBird extends ActionBarActivity {
         if(((CheckBox)findViewById(R.id.searchBirth)).isChecked()==true) {
             DatePicker dp = (DatePicker)findViewById(R.id.birthDatePicker);
             birdBirth =
-                    dateFormat.format(new Date(dp.getYear()-1900,dp.getMonth(),dp.getDayOfMonth()));
+                    dateFormat.format(new Date(dp.getYear(),dp.getMonth(),dp.getDayOfMonth()));
         }
         String birdDeath = "";
         if(((CheckBox)findViewById(R.id.searchDeath)).isChecked()==true) {
             DatePicker dp = (DatePicker)findViewById(R.id.deathDatePicker);
             birdDeath =
-                    dateFormat.format(new Date(dp.getYear()-1900,dp.getMonth(),dp.getDayOfMonth()));
+                    dateFormat.format(new Date(dp.getYear(),dp.getMonth(),dp.getDayOfMonth()));
         }
         String[] searchParameters = {birdId,birdName,birdSex,birdBirth,birdDeath};
         intent.putExtra(EXTRA_MESSAGE,searchParameters);
