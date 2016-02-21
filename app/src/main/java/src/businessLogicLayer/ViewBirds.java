@@ -21,15 +21,16 @@ public class ViewBirds extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_birds);
-
-        /**
-         *
-         * Get the search info
-         * has the form: {"birdID","birdName","birdSex","birdBirth","birdDeath"}
-         */
         this.context = getApplicationContext();
         Bird bird;
-        ArrayList<Bird> query = db.search();
+        Intent intent = getIntent();
+        String[] searchInfo = intent.getStringArrayExtra(SearchBird.EXTRA_MESSAGE);
+        String id = searchInfo[0];
+        String name = searchInfo[1];
+        String sex = searchInfo[2];
+        String birdDate = searchInfo[3];
+        String deathDate = searchInfo[4];
+        ArrayList<Bird> query = db.searchBirds(id,name,sex,birdDate,deathDate);
         ListView listView = (ListView)this.findViewById(R.id.listView);
         ArrayList<ListItem> items = new ArrayList<ListItem>();
         for(int i=0;i<query.size();i++) {
@@ -37,8 +38,7 @@ public class ViewBirds extends ActionBarActivity {
             items.add(new ListItem("ID: ",bird.getId(),"Name: ",bird.getName()));
         }
         ListAdapter adapt = new ListAdapter(this, R.layout.item, items);
-        Intent intent = new Intent(this,ViewBird.class);
-        adapt.setIntent(intent);
+        adapt.setIntent(new Intent(this,ViewBird.class));
         listView.setAdapter(adapt);
     }
     @Override

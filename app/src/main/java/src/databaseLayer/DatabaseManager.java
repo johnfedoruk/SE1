@@ -49,6 +49,28 @@ public class DatabaseManager {
         return null;
     }
 
+    /**
+     * searchBirds Queries the birdList and returns all birds that match the definitions
+     * @param id The id of the bird. If not defined, has length of zero.
+     * @param name The name of the bird. If not defined, has length of zero.
+     * @param sex The sex of the bird. If male, will be "male", if female, will be "female"
+     *            if both will be "both", if undefined will have length of zero
+     * @param birdDate The birth date in string format. Has the format "dd mm yyyy". If not defined
+     *                 it will have a length of zero.
+     * @param deathDate The death date in string format. Has the format "dd mm yyyy". If not defined
+     *                  it will have a length of zero.
+     * @return The query results
+     */
+    public static ArrayList<Bird> searchBirds(String id,String name,String sex,String birdDate,
+                                              String deathDate) {
+        ArrayList<Bird> queryResult = new ArrayList<Bird>();
+        /** TODO
+         *  SOME SEARCH ALGORITHM. MUST BE IMPLEMENTED!!!!!!
+         *  CHANGE THE RETURN VALUE
+         */
+        return birdList;
+    }
+
     public ArrayList<Experiment> getExperiment(){
         return this.experimentList;
     }

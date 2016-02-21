@@ -6,8 +6,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import net.javacrypt.se1.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class SearchBird extends ActionBarActivity {
@@ -47,7 +54,30 @@ public class SearchBird extends ActionBarActivity {
      */
     public void openViewBirds(View view) {
         Intent intent = new Intent(this,ViewBirds.class);
-        String[] searchParameters = {"birdID","birdName","birdSex","birdBirth","birdDeath"};
+        String birdId = ((EditText)findViewById(R.id.legBandId)).getText().toString();
+        String birdName = ((EditText)findViewById(R.id.birdName)).getText().toString();
+        String birdSex = "";
+        if(((CheckBox)findViewById(R.id.sexMale)).isChecked()==true
+                &&((CheckBox)findViewById(R.id.sexMale)).isChecked()==true)
+            birdSex = "both";
+        else if(((CheckBox)findViewById(R.id.sexMale)).isChecked()==true)
+            birdSex = "male";
+        else if (((CheckBox)findViewById(R.id.sexMale)).isChecked()==true)
+            birdSex = "female";
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd mm yyyy");
+        String birdBirth = "";
+        if(((CheckBox)findViewById(R.id.searchBirth)).isChecked()==true) {
+            DatePicker dp = (DatePicker)findViewById(R.id.birthDatePicker);
+            birdBirth =
+                    dateFormat.format(new Date(dp.getYear()-1900,dp.getMonth(),dp.getDayOfMonth()));
+        }
+        String birdDeath = "";
+        if(((CheckBox)findViewById(R.id.searchDeath)).isChecked()==true) {
+            DatePicker dp = (DatePicker)findViewById(R.id.deathDatePicker);
+            birdDeath =
+                    dateFormat.format(new Date(dp.getYear()-1900,dp.getMonth(),dp.getDayOfMonth()));
+        }
+        String[] searchParameters = {birdId,birdName,birdSex,birdBirth,birdDeath};
         intent.putExtra(EXTRA_MESSAGE,searchParameters);
         startActivity(intent);
     }
