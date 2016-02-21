@@ -8,15 +8,15 @@
     android:background="@color/background_floating_material_light"
     android:clickable="true">
     <TextView
-        android:id="@+id/birdID"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"/>
     <TextView
-        android:id="@+id/birdName"
+        android:id="@+id/info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/birdID"
+        android:layout_below="@id/title"
         android:layout_alignParentLeft="true"/>
 </RelativeLayout>

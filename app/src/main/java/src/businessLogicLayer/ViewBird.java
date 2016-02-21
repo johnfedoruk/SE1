@@ -35,18 +35,16 @@ public class ViewBird extends AppCompatActivity {
          */
 
         Intent intent = getIntent();
-        String birdName = intent.getStringExtra(SearchBird.EXTRA_MESSAGE);
-
-        birdName = "bird1";
-        Toast toast = Toast.makeText(getApplicationContext(), birdName, Toast.LENGTH_LONG);
+        String birdId = intent.getStringExtra(SearchBird.EXTRA_MESSAGE);
+        Toast toast = Toast.makeText(getApplicationContext(), birdId, Toast.LENGTH_LONG);
         toast.show();
 
         /**
          * Append Bird's Info to xml elements
          */
-        if(birdName != null)
+        if(birdId != null)
         {
-            Bird currentBird = DatabaseManager.findBird(birdName);
+            Bird currentBird = DatabaseManager.findBird(birdId);
             if (currentBird != null)
             {
                 TextView curr = (TextView) findViewById(R.id.birdName);

@@ -37,11 +37,11 @@ public class DatabaseManager {
         ArrayList<Bird> queryResults = this.birdList;
         return queryResults;
     }
-    public static Bird findBird(String name)
+    public static Bird findBird(String id)
     {
         for(int i = 0; i < birdList.size(); i++)
         {
-            if(birdList.get(i).getName().equals(name)) {
+            if(birdList.get(i).getId().equals(id)) {
                 return birdList.get(i);
             }
         }
