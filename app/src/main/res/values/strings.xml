@@ -23,6 +23,7 @@
     <string name="birdthdate">Birthdate</string>
     <string name="deathdate">Death Date</string>
     <string name="includeInQuery">Include In Query</string>
+    <string name="experimentType">Experiment Type</string>
     <string name="sex">Sex</string>
     <string name="sexMale">Male</string>
     <string name="sexFemale">Female</string>

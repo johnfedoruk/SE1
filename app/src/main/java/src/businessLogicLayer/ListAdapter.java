@@ -45,10 +45,6 @@ class ListAdapter extends ArrayAdapter<ListItem> {
             final Intent intent = this.intent;
             final String param = m.title;
             layout.setOnClickListener(new SelectQuery(ctx,intent,param));
-            //layout.setMinimumWidth(300);
-            //layout.setMinimumHeight(400);
-            //layout.setBackgroundColor(0xc1fff6);
-            //layout.setBackgroundColor(0x21000f);
         }
         return v;
     }

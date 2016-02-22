@@ -18,29 +18,10 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:text="@string/experimentId"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtExperimentId"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/experimentId"
-                android:layout_below="@+id/txtExperimentId"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:text="@string/experimentTitle"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtExperimentTitle"
-                android:layout_below="@+id/experimentId"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -75,9 +56,9 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:text="@string/experimentPosition"
+                android:text="@string/experimentType"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtExperimentPosition"
+                android:id="@+id/txtExperimentType"
                 android:layout_below="@+id/experimentGroup"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -85,8 +66,8 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/experimentPosition"
-                android:layout_below="@+id/txtExperimentPosition"
+                android:id="@+id/experimentType"
+                android:layout_below="@+id/txtExperimentType"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentRight="true"
@@ -94,37 +75,19 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:text="@string/experimentStatus"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtExperimentStatus"
-                android:layout_below="@+id/experimentPosition"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/experimentActive"
-                android:id="@+id/activeStatus"
-                android:layout_below="@+id/txtExperimentStatus"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/experimentInactive"
-                android:id="@+id/inactiveStatus"
-                android:layout_alignTop="@+id/activeStatus"
-                android:layout_toRightOf="@+id/activeStatus"
-                android:layout_toEndOf="@+id/activeStatus" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:text="@string/startDate"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtStartDate"
-                android:layout_below="@+id/activeStatus"
+                android:layout_below="@+id/experimentType"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/includeInQuery"
+                android:id="@+id/searchStart"
+                android:layout_below="@+id/txtStartDate"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -132,7 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/startDatePicker"
-                android:layout_below="@+id/txtStartDate"
+                android:layout_below="@+id/searchStart"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:datePickerMode="spinner"/>
@@ -146,11 +109,20 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/includeInQuery"
+                android:id="@+id/searchEnd"
+                android:layout_below="@+id/txtEndDate"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
             <DatePicker
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/endDatePicker"
-                android:layout_below="@+id/txtEndDate"
+                android:layout_below="@+id/searchEnd"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:datePickerMode="spinner"/>
