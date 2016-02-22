@@ -87,9 +87,14 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
                 Calendar deathdate = Calendar.getInstance();
                 try {
                     birthdate.setTime(sdf.parse(txtBirthDate.getText().toString()));
-                    deathdate.setTime(sdf.parse(txtDeathDate.getText().toString()));
                 } catch (ParseException e) {
                     e.printStackTrace();
+                }
+                try {
+                    deathdate.setTime(sdf.parse(txtDeathDate.getText().toString()));
+                }
+                catch(ParseException e) {
+                    deathdate = null;
                 }
                 String sex = "";
                 try {
