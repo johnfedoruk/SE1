@@ -17,7 +17,7 @@ import src.databaseLayer.Experiment;
 
 
 public class ViewExperiments extends ActionBarActivity {
-    private DatabaseManager db = new DatabaseManager();
+    private DatabaseManager db = MainActivity.db;
     public Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
