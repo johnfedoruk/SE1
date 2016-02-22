@@ -83,9 +83,9 @@ public class DatabaseManager {
      * @param name The name of the bird. If not defined, has length of zero.
      * @param sex The sex of the bird. If male, will be "male", if female, will be "female"
      *            if both will be "both", if undefined will have length of zero
-     * @param birthDate The birth date in string format. Has the format "dd mm yyyy". If not defined
+     * @param birthDate The birth date in string format. Has the format "yyyy-MM-dd". If not defined
      *                 it will have a length of zero.
-     * @param deathDate The death date in string format. Has the format "dd mm yyyy". If not defined
+     * @param deathDate The death date in string format. Has the format "yyyy-MM-dd". If not defined
      *                  it will have a length of zero.
      * @return The query results
      */
@@ -106,9 +106,9 @@ public class DatabaseManager {
 
             if(!id.equals("") && !tempBird.id.contains(id))
                 add = false;
-            if(!name.equals("") && !tempBird.name.contains(name))
+            if(!name.equals("") && !tempBird.name.toLowerCase().contains(name.toLowerCase()))
                 add = false;
-            if(!sex.equals("") && !tempBird.sex.equals(sex))
+            if(!sex.equals("") && !tempBird.sex.toLowerCase().equals(sex.toLowerCase()))
                 add = false;
             if(!birthDate.equals("") && !tempBird.getDateString(tempBird.getBirthDate()).equals(birthDate))
                 add = false;

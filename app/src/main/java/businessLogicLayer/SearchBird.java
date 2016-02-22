@@ -56,25 +56,24 @@ public class SearchBird extends AppCompatActivity {
         String birdId = ((EditText)findViewById(R.id.legBandId)).getText().toString();
         String birdName = ((EditText)findViewById(R.id.birdName)).getText().toString();
         String birdSex = "";
-        if(((CheckBox)findViewById(R.id.sexMale)).isChecked()==true
-                &&((CheckBox)findViewById(R.id.sexMale)).isChecked()==true)
-            birdSex = "both";
-        else if(((CheckBox)findViewById(R.id.sexMale)).isChecked()==true)
+        if(((CheckBox)findViewById(R.id.sexMale)).isChecked()&&
+                !((CheckBox)findViewById(R.id.sexFemale)).isChecked())
             birdSex = "male";
-        else if (((CheckBox)findViewById(R.id.sexMale)).isChecked()==true)
+        else if (((CheckBox)findViewById(R.id.sexFemale)).isChecked()&&
+                !((CheckBox)findViewById(R.id.sexMale)).isChecked())
             birdSex = "female";
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd mm yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String birdBirth = "";
         if(((CheckBox)findViewById(R.id.searchBirth)).isChecked()==true) {
             DatePicker dp = (DatePicker)findViewById(R.id.birthDatePicker);
             birdBirth =
-                    dateFormat.format(new Date(dp.getYear(),dp.getMonth(),dp.getDayOfMonth()));
+                    dateFormat.format(new Date(dp.getYear()-1900,dp.getMonth(),dp.getDayOfMonth()));
         }
         String birdDeath = "";
         if(((CheckBox)findViewById(R.id.searchDeath)).isChecked()==true) {
             DatePicker dp = (DatePicker)findViewById(R.id.deathDatePicker);
             birdDeath =
-                    dateFormat.format(new Date(dp.getYear(),dp.getMonth(),dp.getDayOfMonth()));
+                    dateFormat.format(new Date(dp.getYear()-1900,dp.getMonth(),dp.getDayOfMonth()));
         }
         String[] searchParameters = {birdId,birdName,birdSex,birdBirth,birdDeath};
         intent.putExtra(EXTRA_MESSAGE,searchParameters);
