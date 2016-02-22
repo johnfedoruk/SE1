@@ -33,12 +33,6 @@
                 android:layout_height="wrap_content"
                 android:onClick="openSearchBird" />
             <Button
-                android:id="@+id/btViewBird"
-                android:text="View Bird"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="openViewBird"/>
-            <Button
                 android:id="@+id/btCreateExperiment"
                 android:text="Create Experiment"
                 android:layout_width="match_parent"

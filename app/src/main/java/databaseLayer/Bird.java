@@ -10,7 +10,8 @@ public class Bird {
 
     String id, name, experiment, sex;
     Calendar birthDate, deathDate;
-    public Bird(String id, String name, String experiment, Calendar birthDate, Calendar deathDate, String sex)
+    MedicalHistory history;
+    public Bird(String id, String name, String experiment, Calendar birthDate, Calendar deathDate, String sex,MedicalHistory history)
     {
         this.id = id;
         this.name = name;
@@ -18,6 +19,7 @@ public class Bird {
         this.birthDate = birthDate;
         this.deathDate = deathDate;
         this.sex = sex;
+        this.history = history;
     }
 
     public String getName()
@@ -39,6 +41,7 @@ public class Bird {
         return sdf.format(cal.getTime());
     }
     public String getSex(){return this.sex;}
+    public MedicalHistory getMedicalHistory(){return this.history;}
 
     public void setId(String id){
         this.id = id;
@@ -56,4 +59,5 @@ public class Bird {
     public void setSex(String sex){
         this.sex = sex;
     }
+    public void setMedicalHistory(){this.history = history;}
 }

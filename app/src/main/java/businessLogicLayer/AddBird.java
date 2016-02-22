@@ -23,6 +23,7 @@ import java.util.Calendar;
 
 
 import databaseLayer.Bird;
+import databaseLayer.MedicalHistory;
 
 
 /**
@@ -34,7 +35,7 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
 
     public static TextView txtAddMedicalHistory;
     public static ImageView imgAddMedicalHistory;
-
+    public static MedicalHistory retrieveMedicalHistory;
     /**
      *
      * @param savedInstanceState
@@ -57,6 +58,7 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
         txtAddMedicalHistory = (TextView) findViewById(R.id.txtAddMedicalHistory);
         AddBird.imgAddMedicalHistory = (ImageView) findViewById(R.id.imgAddMedicalHistory);
         Button btAddBird = (Button) findViewById(R.id.btAddBird);
+        retrieveMedicalHistory = AddMedicalHistory.addHistory;
         btAddBird.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +95,7 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
                     sex = radioSexId.getText().toString();
                 }
                 catch(NullPointerException e){}
-                Bird b = new Bird(id,name,exp,birthdate,deathdate,sex);
+                Bird b = new Bird(id,name,exp,birthdate,deathdate,sex,retrieveMedicalHistory);
                 MainActivity.db.addBird(b);
 
                 ProgressDialog progressDialog = new ProgressDialog(AddBird.this);

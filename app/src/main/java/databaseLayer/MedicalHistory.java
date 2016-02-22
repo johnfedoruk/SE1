@@ -10,6 +10,13 @@ public class MedicalHistory {
 
     Calendar dateOfReport;
     String healthIssue,treatment,Notes;
+    public MedicalHistory()
+    {
+        this.dateOfReport = Calendar.getInstance();
+        this.healthIssue = "";
+        this.treatment = "";
+        this.Notes ="";
+    }
     public MedicalHistory(Calendar dateOfReport, String healthIssue,String treatment,String Notes)
     {
         this.dateOfReport = dateOfReport;

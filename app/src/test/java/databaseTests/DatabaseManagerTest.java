@@ -3,6 +3,7 @@ package databaseTests;
 import databaseLayer.DatabaseManager;
 import databaseLayer.Bird;
 import databaseLayer.Experiment;
+import databaseLayer.MedicalHistory;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +22,6 @@ public class DatabaseManagerTest {
 
     DatabaseManager myManager;
     Calendar date = Calendar.getInstance();
-
     @Before
     public void init()
     {
@@ -29,9 +29,9 @@ public class DatabaseManagerTest {
 
         myManager.clearDatabases();
 
-        myManager.addBird(new Bird("0001", "bird1", "Experiment #1", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 22), "Female"));
-        myManager.addBird(new Bird("0002", "bird2", "Experiment #2", myManager.getCalendar(2016, 2, 23), myManager.getCalendar(2016, 2, 24), "Male"));
-        myManager.addBird(new Bird("0003", "bird3", "Experiment #3", myManager.getCalendar(2016, 2, 24), myManager.getCalendar(2016,2,25), "Female"));
+        myManager.addBird(new Bird("0001", "bird1", "Experiment #1", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 22), "Female", new MedicalHistory(myManager.getCalendar(2016, 2, 27), "AIDS", "Tylenol", "did not work")));
+        myManager.addBird(new Bird("0002", "bird2", "Experiment #2", myManager.getCalendar(2016, 2, 23), myManager.getCalendar(2016, 2, 24), "Male",new MedicalHistory( myManager.getCalendar(2016, 2, 28),"Herpes","Tylenol","did not work")));
+        myManager.addBird(new Bird("0003", "bird3", "Experiment #3", myManager.getCalendar(2016, 2, 24), myManager.getCalendar(2016,2,25), "Female",new MedicalHistory( myManager.getCalendar(2016, 2, 29),"HIV","Tylenol","did not work")));
         myManager.addExperiment(new Experiment("Dying Bird", "Psychological", "Group 1", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 22), "John,Gimli", "blahblah"));
         myManager.addExperiment(new Experiment("Living Bird", "Suicidal", "Group 2", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 22), "James,Angelo", "blahblah"));
         myManager.addExperiment(new Experiment("Living Bird", "Suicidal", "Group 2", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 24), "James,Angelo", "blahblah"));
@@ -41,7 +41,7 @@ public class DatabaseManagerTest {
     @Test
     public void testFindBird()
     {
-        Bird myBird = new Bird("0001", "bird1","Experiment #1",myManager.getCalendar(2016, 02, 22),myManager.getCalendar(2016, 02, 22),"Female");
+        Bird myBird = new Bird("0001", "bird1","Experiment #1",myManager.getCalendar(2016, 02, 22),myManager.getCalendar(2016, 02, 22),"Female",new MedicalHistory( myManager.getCalendar(2016, 2, 22),"Glaucoma","Tylenol","did not work"));
 
         assertEquals(myBird.getId(), myManager.findBird("0001").getId());
         assertNotEquals(myBird, myManager.findBird("bird2"));
