@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:padding="40dp"
-    tools:context="src.businessLogicLayer.ExpAddSuccess">
+    tools:context="businessLogicLayer.ExpAddSuccess">
 
 
     <include layout="@layout/content_exp_add_success" />

@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name="src.presentationLayer.SplashScreen"
+            android:name="presentationLayer.SplashScreen"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="src.businessLogicLayer.MainActivity"
+            android:name="businessLogicLayer.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask">
             <intent-filter>
@@ -27,32 +27,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="src.businessLogicLayer.AddBird"
+            android:name="businessLogicLayer.AddBird"
             android:label="@string/title_activity_add_bird" />
         <activity
-            android:name="src.businessLogicLayer.SearchBird"
+            android:name="businessLogicLayer.SearchBird"
             android:label="@string/title_activity_search_bird" />
         <activity
-            android:name="src.businessLogicLayer.SearchExperiment"
+            android:name="businessLogicLayer.SearchExperiment"
             android:label="@string/title_activity_search_experiment" />
         <activity
-            android:name="src.businessLogicLayer.ViewBird"
+            android:name="businessLogicLayer.ViewBird"
             android:label="@string/title_activity_view_bird" />
         <activity
-            android:name="src.businessLogicLayer.ViewBirds"
+            android:name="businessLogicLayer.ViewBirds"
             android:label="@string/title_activity_view_birds" />
         <activity
-            android:name="src.businessLogicLayer.ViewExperiment"
+            android:name="businessLogicLayer.ViewExperiment"
             android:label="@string/title_activity_view_experiment" />
         <activity
-            android:name="src.businessLogicLayer.ViewExperiments"
+            android:name="businessLogicLayer.ViewExperiments"
             android:label="@string/title_activity_view_experiments" />
         <activity
-            android:name="src.businessLogicLayer.AddExperiment"
+            android:name="businessLogicLayer.AddExperiment"
             android:label="@string/title_activity_add_experiment"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="src.businessLogicLayer.ExpAddSuccess"
+            android:name="businessLogicLayer.ExpAddSuccess"
             android:label="@string/title_activity_exp_add_success"
             android:theme="@style/AppTheme.NoActionBar" />
 
@@ -61,11 +61,11 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="src.businessLogicLayer.AddBirdSuccess"
+            android:name="businessLogicLayer.AddBirdSuccess"
             android:label="@string/title_activity_add_bird_success"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="src.businessLogicLayer.AddMedicalHistory"
+            android:name="businessLogicLayer.AddMedicalHistory"
             android:label="@string/title_activity_add_medical_history"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:padding = "20dp"
-    tools:context="src.businessLogicLayer.AddMedicalHistory">
+    tools:context="businessLogicLayer.AddMedicalHistory">
 
 
 

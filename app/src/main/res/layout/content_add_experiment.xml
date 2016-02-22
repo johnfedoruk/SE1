@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="40dp"
     android:fitsSystemWindows="true"
-    tools:context="src.businessLogicLayer.AddExperiment">
+    tools:context="businessLogicLayer.AddExperiment">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
