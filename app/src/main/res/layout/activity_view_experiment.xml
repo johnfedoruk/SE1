@@ -90,21 +90,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <Button
-                android:id="@+id/btPrevious"
-                android:textStyle="bold"
-                android:text="Previous"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-
-            <Button
-                android:id="@+id/btNext"
-                android:text="Next"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-
         </LinearLayout>
     </ScrollView>
 

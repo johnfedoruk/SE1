@@ -12,10 +12,9 @@ import net.javacrypt.se1.R;
 import databaseLayer.DatabaseManager;
 
 
+@SuppressWarnings("all")
 public class MainActivity extends AppCompatActivity {
     public static DatabaseManager db;
-    //Calendar birthDate = Calendar.getInstance();
-    //Calendar deathDate = Calendar.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        this.db = new DatabaseManager();
@@ -39,18 +38,33 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.add_bird) {
+            Intent intent = new Intent(this,AddBird.class);
+            startActivity(intent);
             return true;
         }
-
+        if (id == R.id.add_experiment) {
+            Intent intent = new Intent(this,AddExperiment.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.search_bird) {
+            Intent intent = new Intent(this,SearchBird.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.search_experiment) {
+            Intent intent = new Intent(this,SearchExperiment.class);
+            startActivity(intent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
 
     /**
      * Allows the user to add a bird
-     * @param view
+     * @param view The View
      */
     public void openAddBird(View view) {
         Intent intent = new Intent(this,AddBird.class);
@@ -59,17 +73,26 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Allows the user to add a bird
-     * @param view
+     * @param view The View
      */
     public void openSearchBird(View view) {
         Intent intent = new Intent(this,SearchBird.class);
         startActivity(intent);
     }
 
+    /**
+     * Allows the user to open an experiment
+     * @param view The View
+     */
     public void openAddExperiment(View view) {
         Intent intent = new Intent(this,AddExperiment.class);
         startActivity(intent);
     }
+
+    /**
+     * Allows the user to search for an experiment
+     * @param view The View
+     */
     public void openSearchExperiment(View view) {
         Intent intent = new Intent(this,SearchExperiment.class);
         startActivity(intent);

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import net.javacrypt.se1.R;
 
@@ -16,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
+@SuppressWarnings("all")
 public class SearchExperiment extends ActionBarActivity {
     public final static String EXTRA_MESSAGE = "net.javacrypt.se1.MESSAGE";
 
@@ -34,7 +36,24 @@ public class SearchExperiment extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.add_bird) {
+            Intent intent = new Intent(this,AddBird.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.add_experiment) {
+            Intent intent = new Intent(this,AddExperiment.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.search_bird) {
+            Intent intent = new Intent(this,SearchBird.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.search_experiment) {
+            Intent intent = new Intent(this,SearchExperiment.class);
+            startActivity(intent);
             return true;
         }
 
@@ -43,8 +62,9 @@ public class SearchExperiment extends ActionBarActivity {
 
     /**
      * Allows the user to open an experiment
-     * @param view
+     * @param view The View
      */
+    @SuppressWarnings("all")
     public void openViewExperiment(View view) {
         Intent intent = new Intent(this,ViewExperiments.class);
         String StudyTitle = ((EditText)findViewById(R.id.experimentTitle)).getText().toString();

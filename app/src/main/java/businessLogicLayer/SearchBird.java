@@ -39,18 +39,31 @@ public class SearchBird extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.add_bird) {
+            Intent intent = new Intent(this,AddBird.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.add_experiment) {
+            Intent intent = new Intent(this,AddExperiment.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.search_bird) {
+            Intent intent = new Intent(this,SearchBird.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.search_experiment) {
+            Intent intent = new Intent(this,SearchExperiment.class);
+            startActivity(intent);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Allows the user to add a bird
-     * @param view
-     */
+    @SuppressWarnings("all")
     public void openViewBirds(View view) {
         Intent intent = new Intent(this,ViewBirds.class);
         String birdId = ((EditText)findViewById(R.id.legBandId)).getText().toString();
