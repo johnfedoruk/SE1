@@ -3,6 +3,7 @@ package src.businessLogicLayer;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class SearchBird extends ActionBarActivity {
+public class SearchBird extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "net.javacrypt.se1.MESSAGE";
 
     @Override
