@@ -34,7 +34,7 @@ public class DatabaseManagerTest {
         myManager.addBird(new Bird("0003", "bird3", "Experiment #3", myManager.getCalendar(2016, 2, 24), myManager.getCalendar(2016,2,25), "Female"));
         myManager.addExperiment(new Experiment("Dying Bird", "Psychological", "Group 1", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 22), "John,Gimli", "blahblah"));
         myManager.addExperiment(new Experiment("Living Bird", "Suicidal", "Group 2", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 22), "James,Angelo", "blahblah"));
-        myManager.addExperiment(new Experiment("Living Bird", "Suicidal", "Group 2", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 22), "James,Angelo", "blahblah"));
+        myManager.addExperiment(new Experiment("Living Bird", "Suicidal", "Group 2", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 24), "James,Angelo", "blahblah"));
 
     }
 
@@ -48,6 +48,32 @@ public class DatabaseManagerTest {
         assertNull(myManager.findBird("nonExistantBird"));
     }
 
+    @Test
+    public void testSearchBirdByName()
+    {
+        assertEquals(3, myManager.searchBirds("", "", "", "", "").size());
+        assertEquals(1, myManager.searchBirds("", "bird1", "", "", "").size());
+        assertEquals(0, myManager.searchBirds("", "nonExistantName", "", "", "").size());
+        assertNotNull(myManager.searchBirds("", "", "", "", ""));
+    }
+
+    @Test
+    public void testSearchBirdBySex()
+    {
+        assertEquals(2, myManager.searchBirds("", "", "Female", "", "").size());
+        assertEquals(1, myManager.searchBirds("", "", "Male", "", "").size());
+        assertEquals(0, myManager.searchBirds("", "", "nonExistantSex", "", "").size());
+        assertNotNull(myManager.searchBirds("", "", "", "", ""));
+    }
+
+    @Test
+    public void testSearchBirdByDate()
+    {
+        assertEquals(1, myManager.searchBirds("", "", "", "2016-03-22", "").size());
+        assertEquals(1, myManager.searchBirds("", "", "", "", "2016-03-24").size());
+        assertEquals(3, myManager.searchBirds("", "", "", "", "").size());
+        assertNotNull(myManager.searchBirds("", "", "", "", ""));
+    }
 
     @Test
     public void testSearchExperimentByTitle()

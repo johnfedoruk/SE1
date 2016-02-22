@@ -29,25 +29,24 @@ public class ExperimentLocalStore {
         spEditor.commit();
     }
 
-    /*public Experiment getCurrentExperiment()
-    {
+    /*
+    public Experiment getCurrentExperiment() {
         String title = userLocalDatabase.getString("title", "");
-        String type = userLocalDatabase.getString("type","");
-        String group = userLocalDatabase.getString("group","");
+        String type = userLocalDatabase.getString("type", "");
+        String group = userLocalDatabase.getString("group", "");
         Date startdate = userLocalDatabase.getString("startdate", "");
         Date enddate = userLocalDatabase.getString("enddate", "");
-        String experimenters =  userLocalDatabase.getString("experimenters","");
-        String notes = userLocalDatabase.getString("notes","");
+        String experimenters = userLocalDatabase.getString("experimenters", "");
+        String notes = userLocalDatabase.getString("notes", "");
 
-        Experiment storedExperiment = new Experiment(title,type,group,(Date)startdate,(Date)enddate,experimenters,notes);
+        Experiment storedExperiment = new Experiment(title, type, group, (Date) startdate, (Date) enddate, experimenters, notes);
         return storedExperiment;
-    }
     }*/
 
     public void setCurrentExperiment(boolean using)
     {
         SharedPreferences.Editor spEditor =userLocalDatabase.edit();
-        spEditor.putBoolean("Using",using);
+        spEditor.putBoolean("Using", using);
         spEditor.commit();
     }
 

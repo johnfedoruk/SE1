@@ -8,9 +8,9 @@ import java.util.Calendar;
  */
 public class Bird {
 
-    String id,name,experiment,sex;
-    Calendar birthDate,deathDate;
-    public Bird(String id, String name,String experiment,Calendar birthDate,Calendar deathDate,String sex)
+    String id, name, experiment, sex;
+    Calendar birthDate, deathDate;
+    public Bird(String id, String name, String experiment, Calendar birthDate, Calendar deathDate, String sex)
     {
         this.id = id;
         this.name = name;
@@ -29,12 +29,12 @@ public class Bird {
     {
         return this.id;
     }
-    public String getExperiment(){return this.experiment;}
+    public String getExperiment() { return this.experiment; }
 
-    public Calendar getBirthDate(){return this.birthDate;}
-    public Calendar getDeathDate(){return this.deathDate;}
+    public Calendar getBirthDate() { return this.birthDate; }
+    public Calendar getDeathDate() { return this.deathDate; }
 
-    public String getDateString(Calendar cal){
+    public String getDateString(Calendar cal) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return sdf.format(cal.getTime());
     }

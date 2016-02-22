@@ -54,7 +54,7 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
         *Listener for the AddBird button
         *
          */
-        txtAddMedicalHistory= (TextView) findViewById(R.id.txtAddMedicalHistory);
+        txtAddMedicalHistory = (TextView) findViewById(R.id.txtAddMedicalHistory);
         AddBird.imgAddMedicalHistory = (ImageView) findViewById(R.id.imgAddMedicalHistory);
         Button btAddBird = (Button) findViewById(R.id.btAddBird);
         btAddBird.setOnClickListener(new View.OnClickListener() {

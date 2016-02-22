@@ -110,9 +110,9 @@ public class DatabaseManager {
                 add = false;
             if(!sex.equals("") && !tempBird.sex.equals(sex))
                 add = false;
-            if(!birthDate.equals("") && !tempBird.birthDate.equals(birthDate))
+            if(!birthDate.equals("") && !tempBird.getDateString(tempBird.getBirthDate()).equals(birthDate))
                 add = false;
-            if(!deathDate.equals("") && !tempBird.deathDate.equals(deathDate))
+            if(!deathDate.equals("") && !tempBird.getDateString(tempBird.getDeathDate()).equals(deathDate))
                 add = false;
 
             if(add)
