@@ -30,9 +30,9 @@ public class MedicalHistory {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return sdf.format(cal.getTime());
     }
-    public String healthIssue() {return this.healthIssue;}
-    public String treatment() {return this.treatment;}
-    public String Notes() {return this.Notes;}
+    public String getHealthIssue() {return this.healthIssue;}
+    public String getTreatment() {return this.treatment;}
+    public String getNotes() {return this.Notes;}
 
     public void setDateOfReport(Calendar DateOfReport){this.dateOfReport = dateOfReport;}
     public void setHealthIssue(String healthIssue){this.healthIssue = healthIssue;}

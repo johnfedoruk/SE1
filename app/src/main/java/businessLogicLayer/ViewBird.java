@@ -1,10 +1,13 @@
 package businessLogicLayer;
 
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.media.MediaCodecList;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import net.javacrypt.se1.R;
@@ -13,6 +16,7 @@ import net.javacrypt.se1.R;
 
 import databaseLayer.DatabaseManager;
 import databaseLayer.Bird;
+import databaseLayer.MedicalHistory;
 
 /*
  * Created by Kaj Moroz
@@ -21,6 +25,7 @@ import databaseLayer.Bird;
 public class ViewBird extends AppCompatActivity {
 
     TextView birdBirthdate;
+    static int id = 1;
     @Override
     /*
      * When onCreate is called, it requires a Bird's ID tag to be passed into ViewBird.
@@ -62,8 +67,89 @@ public class ViewBird extends AppCompatActivity {
 
                 curr = (TextView) findViewById(R.id.birdSex);
                 curr.append(currentBird.getSex());
+
+                MedicalHistory medicalHistory = currentBird.getMedicalHistory();
+                if(medicalHistory!=null&&medicalHistory.getHealthIssue().length()>0) {
+                    RelativeLayout layout = (RelativeLayout)findViewById(R.id.contentWrapper);
+                    RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.WRAP_CONTENT,
+                            RelativeLayout.LayoutParams.WRAP_CONTENT );
+                    /**
+                     * Medial History Title
+                     */
+                    int currId = newId();
+                    curr = new TextView(this);
+                    curr.setId(currId);
+                    curr.setTypeface(null, Typeface.BOLD);
+                    curr.setText("Medial History");
+                    params.addRule(RelativeLayout.BELOW, R.id.birdSex);
+                    params.setMargins(0,20,0,0);
+                    layout.addView(curr, params);
+                    /**
+                     * Date of report
+                     */
+                    curr = new TextView(this);
+                    curr.setText("Date of report: " +
+                            medicalHistory.getDateString(medicalHistory.getDateOfReport()));
+                    params = new RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.WRAP_CONTENT,
+                            RelativeLayout.LayoutParams.WRAP_CONTENT );
+                    params.addRule(RelativeLayout.BELOW, currId);
+                    currId = newId();
+                    curr.setId(currId);
+                    layout.addView(curr, params);
+                    /**
+                     * Health Issues
+                     */
+                    curr = new TextView(this);
+                    curr.setText("Health Issues: " +
+                            medicalHistory.getHealthIssue());
+                    params = new RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.WRAP_CONTENT,
+                            RelativeLayout.LayoutParams.WRAP_CONTENT );
+                    params.addRule(RelativeLayout.BELOW, currId);
+                    currId = newId();
+                    curr.setId(currId);
+                    layout.addView(curr, params);
+                    /**
+                     * treatment
+                     */
+                    curr = new TextView(this);
+                    curr.setText("Treatement: " +
+                            medicalHistory.getTreatment());
+                    params = new RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.WRAP_CONTENT,
+                            RelativeLayout.LayoutParams.WRAP_CONTENT );
+                    params.addRule(RelativeLayout.BELOW, currId);
+                    currId = newId();
+                    curr.setId(currId);
+                    layout.addView(curr, params);
+                    /**
+                     * Notes
+                     */
+                    curr = new TextView(this);
+                    curr.setText("Notes: " +
+                            medicalHistory.getNotes());
+                    params = new RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.WRAP_CONTENT,
+                            RelativeLayout.LayoutParams.WRAP_CONTENT );
+                    params.addRule(RelativeLayout.BELOW, currId);
+                    currId = newId();
+                    curr.setId(currId);
+                    layout.addView(curr, params);
+                }
+
             }
         }
+    }
+
+    /**
+     * Get an unused id for programmatically adding ID's to textviews
+     * @return An unused ID.
+     */
+    public int newId() {
+        while(findViewById(++id)!=null);
+        return id;
     }
 
     @Override
