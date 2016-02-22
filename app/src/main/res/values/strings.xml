@@ -11,6 +11,7 @@
     <string name="title_activity_view_bird">ViewBird</string>
     <string name="title_activity_view_birds">ViewBirds</string>
     <string name="title_activity_view_experiment">ViewExperiment</string>
+    <string name="title_activity_view_experiments">ViewExperiments</string>
     <string name="title_activity_add_experiment">AddExperiment</string>
     <string name="title_activity_exp_add_success">ExpAddSuccess</string>
     <string name="title_activity_add_bird_success">AddBirdSuccess</string>

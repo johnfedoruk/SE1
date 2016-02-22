@@ -45,6 +45,9 @@
             android:name="src.businessLogicLayer.ViewExperiment"
             android:label="@string/title_activity_view_experiment" />
         <activity
+            android:name="src.businessLogicLayer.ViewExperiments"
+            android:label="@string/title_activity_view_experiments" />
+        <activity
             android:name="src.businessLogicLayer.AddExperiment"
             android:label="@string/title_activity_add_experiment"
             android:theme="@style/AppTheme.NoActionBar" />

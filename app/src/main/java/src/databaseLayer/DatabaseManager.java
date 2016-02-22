@@ -50,7 +50,8 @@ public class DatabaseManager {
     }
 
     /**
-     * searchBirds Queries the birdList and returns all birds that match the definitions
+     * searchBirds
+     *  Queries the birdList and returns all birds that match the definitions
      * @param id The id of the bird. If not defined, has length of zero.
      * @param name The name of the bird. If not defined, has length of zero.
      * @param sex The sex of the bird. If male, will be "male", if female, will be "female"
@@ -69,6 +70,30 @@ public class DatabaseManager {
          *  CHANGE THE RETURN VALUE
          */
         return birdList;
+    }
+
+    /**
+     * searchExperiments
+     *  Queries the experimentList and returns all birds that match the definitions
+     * @param StudyTitle The title of the experiment. If undefined will have length of zero.
+     * @param StudyType The type of experiment. If undefined will have length of zero.
+     * @param GroupWithinExperiment The group within the experiment. If undefined will have length
+     *                              of zero
+     * @param StartDate The start date of the experiment. Has the format "dd mm yyyy". If not defined
+     *                 it will have a length of zero.
+     * @param EndDate The end date of the experiment. Has the format "dd mm yyyy". If not defined
+     *                 it will have a length of zero.
+     * @return The query results
+     */
+    public static ArrayList<Experiment> searchExperiments(String StudyTitle,String StudyType,String
+                                                          GroupWithinExperiment,String StartDate,
+                                                          String EndDate) {
+        ArrayList<Experiment> queryResult = new ArrayList<>();
+        /** TODO
+         *  SOME SEARCH ALGORITHM. MUST BE IMPLEMENTED!!!!!!
+         *  CHANGE THE RETURN VALUE
+         */
+        return experimentList;
     }
 
     public ArrayList<Experiment> getExperiment(){

@@ -40,9 +40,15 @@ public class SearchExperiment extends ActionBarActivity {
      * @param view
      */
     public void openViewExperiment(View view) {
-        Intent intent = new Intent(this,ViewExperiment.class);
-        String experimentId = "Experiment 1";
-        intent.putExtra(EXTRA_MESSAGE,experimentId);
+        Intent intent = new Intent(this,ViewExperiments.class);
+        String StudyTitle = "";
+        String StudyType = "";
+        String GroupWithinExperiment = "";
+        String StartDate = "";
+        String EndDate = "";
+        String[] params = {StudyTitle,StudyType,
+                GroupWithinExperiment,StartDate,EndDate};
+        intent.putExtra(EXTRA_MESSAGE,params);
         startActivity(intent);
     }
 }
