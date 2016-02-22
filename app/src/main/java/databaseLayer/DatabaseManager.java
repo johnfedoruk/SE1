@@ -31,6 +31,16 @@ public class DatabaseManager {
     }
 
     /**
+     * clearDatabases
+     * clears the array lists, for testing purposes only
+     */
+    public void clearDatabases()
+    {
+        birdList = new ArrayList<Bird>();
+        experimentList = new ArrayList<Experiment>();
+    }
+
+    /**
      * addBird
      * add bird to the bird list
      * @param bird the bird to be added
@@ -44,12 +54,8 @@ public class DatabaseManager {
      * add an experiment to the experiment list
      * @param exp the experiment to be added
      */
-    public void addExperiment(Experiment exp){
+    public void addExperiment(Experiment exp) {
         this.experimentList.add(exp);
-    }
-    public ArrayList<Bird> search() {
-        ArrayList<Bird> queryResults = this.birdList;
-        return queryResults;
     }
 
     /**
