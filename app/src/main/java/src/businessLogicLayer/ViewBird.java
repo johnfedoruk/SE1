@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import net.javacrypt.se1.R;
@@ -19,19 +20,28 @@ import java.util.Calendar;
 
 import src.databaseLayer.Bird;
 import src.databaseLayer.DatabaseManager;
+import android.widget.Adapter;
+import android.widget.ListView;
 
-
+/*
+ * Created by Kaj Moroz
+ *
+ */
 public class ViewBird extends AppCompatActivity {
 
     TextView birdBirthdate;
     @Override
+    /*
+     * When onCreate is called, it requires a Bird's ID tag to be passed into ViewBird.
+     *
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_bird);
-
+        DatabaseManager db = MainActivity.db;
         /**
          *
-         * Get the bird ID
+         * Get the bird ID from the Database
          *
          */
 
@@ -45,7 +55,7 @@ public class ViewBird extends AppCompatActivity {
          */
         if(birdId != null)
         {
-            Bird currentBird = DatabaseManager.findBird(birdId);
+            Bird currentBird = db.searchBirds(birdId, "", "", "", "").get(0); //Bird IDs are unique
             if (currentBird != null)
             {
                 TextView curr = (TextView) findViewById(R.id.birdName);
@@ -64,8 +74,6 @@ public class ViewBird extends AppCompatActivity {
                 curr.append(currentBird.getSex());
             }
         }
-
-
     }
 
     @Override

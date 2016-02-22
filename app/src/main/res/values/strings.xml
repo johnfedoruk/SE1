@@ -35,4 +35,5 @@
     <string name="startDate">Experimemt Start</string>
     <string name="endDate">Experimemt End</string>
     <string name="title_activity_add_medical_history">AddMedicalHistory</string>
+    <string name="medicalListDash">- </string>
 </resources>
