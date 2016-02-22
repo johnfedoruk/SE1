@@ -51,18 +51,18 @@ public class SearchExperiment extends ActionBarActivity {
         String StudyType = ((EditText)findViewById(R.id.experimentType)).getText().toString();
         String GroupWithinExperiment = ((EditText)findViewById(R.id.experimentGroup)).getText()
                 .toString();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd mm yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String StartDate = "";
-        if(((CheckBox)findViewById(R.id.searchStart)).isChecked()==true) {
+        if(((CheckBox)findViewById(R.id.searchStart)).isChecked()) {
             DatePicker dp = (DatePicker)findViewById(R.id.startDatePicker);
             StartDate =
-                    dateFormat.format(new Date(dp.getYear(),dp.getMonth(),dp.getDayOfMonth()));
+                    dateFormat.format(new Date(dp.getYear()-1900,dp.getMonth(),dp.getDayOfMonth()));
         }
         String EndDate = "";
-        if(((CheckBox)findViewById(R.id.searchEnd)).isChecked()==true) {
+        if(((CheckBox)findViewById(R.id.searchEnd)).isChecked()) {
             DatePicker dp = (DatePicker)findViewById(R.id.endDatePicker);
             EndDate =
-                    dateFormat.format(new Date(dp.getYear(),dp.getMonth(),dp.getDayOfMonth()));
+                    dateFormat.format(new Date(dp.getYear()-1900,dp.getMonth(),dp.getDayOfMonth()));
         }
         String[] params = {StudyTitle,StudyType,
                 GroupWithinExperiment,StartDate,EndDate};

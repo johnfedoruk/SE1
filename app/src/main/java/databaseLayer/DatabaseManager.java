@@ -150,15 +150,20 @@ public class DatabaseManager {
             add = true;
             tempExperiment = experimentList.get(i);
 
-            if(!studyTitle.equals("") && !tempExperiment.getStudyTitle().contains(studyTitle))
+            if(!studyTitle.equals("") && !tempExperiment.getStudyTitle().toLowerCase()
+                    .contains(studyTitle.toLowerCase()))
                 add = false;
-            if(!studyType.equals("") && !tempExperiment.getStudyType().contains(studyType))
+            if(!studyType.equals("") && !tempExperiment.getStudyType().toLowerCase()
+                    .contains(studyType.toLowerCase()))
                 add = false;
-            if(!groupWithinExperiment.equals("") && !tempExperiment.getGroupWithinExperiment().contains(groupWithinExperiment))
+            if(!groupWithinExperiment.equals("") && !tempExperiment.getGroupWithinExperiment()
+                    .toLowerCase().contains(groupWithinExperiment.toLowerCase()))
                 add = false;
-            if(!startDate.equals("") && !tempExperiment.getStartDate().toString().equals(startDate))
+            if(!startDate.equals("") && !tempExperiment.getDateString(tempExperiment.getStartDate())
+                    .equals(startDate))
                 add = false;
-            if(!endDate.equals("") && !tempExperiment.getEndDate().toString().equals(endDate))
+            if(!endDate.equals("") && !tempExperiment.getDateString(tempExperiment.getEndDate())
+                    .equals(endDate))
                 add = false;
 
             if(add)
@@ -192,13 +197,6 @@ public class DatabaseManager {
         this.cal.set(yyyy,m,dd);
         return this.cal;
     }
-   /* public String getCalendarday(){
-        Calendar cal = Calendar.getInstance();
-        cal.set(1993,02,26);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-        return sdf.format(cal.getTime());
-    }*/
 
     /**
      * getBird

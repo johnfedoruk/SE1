@@ -1,5 +1,6 @@
 package businessLogicLayer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -22,7 +23,6 @@ public class ViewExperiment extends AppCompatActivity implements View.OnClickLis
     TextView viewEndDate;
     TextView viewExperimenters;
     TextView viewNotes;
-    int i=0;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_experiment);
@@ -34,58 +34,21 @@ public class ViewExperiment extends AppCompatActivity implements View.OnClickLis
         viewExperimenters = (TextView) findViewById(R.id.viewExperimenters);
         viewNotes = (TextView) findViewById(R.id.viewNotes);
 
+        Intent intent = getIntent();
+        String experimentTitle = intent.getStringExtra(SearchBird.EXTRA_MESSAGE);
 
-        viewStudyTitle.setText(MainActivity.db.getExperiment().get(i).getStudyTitle());
-        viewStudyType.setText(MainActivity.db.getExperiment().get(i).getStudyType());
-        viewGroupWithinExperiment.setText(MainActivity.db.getExperiment().get(i).getGroupWithinExperiment());
-        viewStartDate.setText(MainActivity.db.getExperiment().get(i).getDateString(MainActivity.db.getExperiment().get(i).getStartDate()));
-        viewEndDate.setText(MainActivity.db.getExperiment().get(i).getDateString(MainActivity.db.getExperiment().get(i).getEndDate()));
-        viewExperimenters.setText(MainActivity.db.getExperiment().get(i).getExperimenters());
-        viewNotes.setText(MainActivity.db.getExperiment().get(i).getNotes());
-
-        Button btNext = (Button) findViewById(R.id.btNext);
-        btNext.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if((i>=0)&&(i<MainActivity.db.getExperiment().size()-1)) {
-                    i = i + 1;
-
-                    viewStudyTitle.setText(MainActivity.db.getExperiment().get(i).getStudyTitle());
-                    viewStudyType.setText(MainActivity.db.getExperiment().get(i).getStudyType());
-                    viewGroupWithinExperiment.setText(MainActivity.db.getExperiment().get(i).getGroupWithinExperiment());
-                    viewStartDate.setText(MainActivity.db.getExperiment().get(i).getDateString(MainActivity.db.getExperiment().get(i).getStartDate()));
-                    viewEndDate.setText(MainActivity.db.getExperiment().get(i).getDateString(MainActivity.db.getExperiment().get(i).getEndDate()));
-                    viewExperimenters.setText(MainActivity.db.getExperiment().get(i).getExperimenters());
-                    viewNotes.setText(MainActivity.db.getExperiment().get(i).getNotes());
-                }
-                else{}
-
-            }
-        });
-
-        Button btPrevious = (Button) findViewById(R.id.btPrevious);
-        btPrevious.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                if((i>0)&&(i<(MainActivity.db.getExperiment().size()))) {
-                    i=i-1;
-                    viewStudyTitle.setText(MainActivity.db.getExperiment().get(i).getStudyTitle());
-                    viewStudyType.setText(MainActivity.db.getExperiment().get(i).getStudyType());
-                    viewGroupWithinExperiment.setText(MainActivity.db.getExperiment().get(i).getGroupWithinExperiment());
-                    viewStartDate.setText(MainActivity.db.getExperiment().get(i).getDateString(MainActivity.db.getExperiment().get(i).getStartDate()));
-                    viewEndDate.setText(MainActivity.db.getExperiment().get(i).getDateString(MainActivity.db.getExperiment().get(i).getEndDate()));
-                    viewExperimenters.setText(MainActivity.db.getExperiment().get(i).getExperimenters());
-                    viewNotes.setText(MainActivity.db.getExperiment().get(i).getNotes());
-                }
-                else{}
-
-            }
-        });
-
-
+        if(experimentTitle.length()>0) {
+            viewStudyTitle.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getStudyTitle());
+            viewStudyType.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getStudyType());
+            viewGroupWithinExperiment.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getGroupWithinExperiment());
+            viewStartDate.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getDateString(MainActivity.db.getExperiment().get(0).getStartDate()));
+            viewEndDate.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getDateString(MainActivity.db.getExperiment().get(0).getEndDate()));
+            viewExperimenters.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getExperimenters());
+            viewNotes.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getNotes());
+        }
+        else {
+            viewStudyTitle.setText("No Results");
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
