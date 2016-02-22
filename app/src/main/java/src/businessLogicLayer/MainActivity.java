@@ -26,10 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-       // this.db.addBird(new Bird("0004", "bird1", "Experiment #1", MainActivity.db.getCalendar(birthDate, 2016, 2, 22), MainActivity.db.getCalendar(deathDate, 2016, 2, 22), "Female"));
-       // this.db.addBird(new Bird("0005", "bird1", "Experiment #1", MainActivity.db.getCalendar(birthDate, 2016, 2, 22), MainActivity.db.getCalendar(deathDate, 2016, 2, 22), "Female"));
-
-    }
+           }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -72,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void openViewBird(View view) {
-        //this.db.addBird(new Bird("0004", "bird1", "Experiment #1", MainActivity.db.getCalendar(birthDate, 2016, 2, 22), MainActivity.db.getCalendar(deathDate, 2016, 2, 22), "Female"));
         Intent intent = new Intent(this,ViewBird.class);
         startActivity(intent);
     }

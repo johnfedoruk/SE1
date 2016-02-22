@@ -62,14 +62,14 @@ public class DatabaseManager {
      *                  it will have a length of zero.
      * @return The query results
      */
-    public static ArrayList<Bird> searchBirds(String id,String name,String sex,String birdDate,
+    public ArrayList<Bird> searchBirds(String id,String name,String sex,String birdDate,
                                               String deathDate) {
         ArrayList<Bird> queryResult = new ArrayList<Bird>();
         /** TODO
          *  SOME SEARCH ALGORITHM. MUST BE IMPLEMENTED!!!!!!
          *  CHANGE THE RETURN VALUE
          */
-        return birdList;
+        return this.birdList;
     }
 
     /**

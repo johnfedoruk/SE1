@@ -38,8 +38,8 @@ public class AddExperiment extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_experiment);
-        Button btAddBird = (Button) findViewById(R.id.btCreateExperiment);
-        btAddBird.setOnClickListener(new View.OnClickListener() {
+        Button btAddExperiment= (Button) findViewById(R.id.btCreateExperiment);
+        btAddExperiment.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {

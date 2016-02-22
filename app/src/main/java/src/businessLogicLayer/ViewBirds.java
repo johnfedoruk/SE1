@@ -15,7 +15,7 @@ import src.databaseLayer.DatabaseManager;
 
 
 public class ViewBirds extends ActionBarActivity {
-    private DatabaseManager db = new DatabaseManager();
+    DatabaseManager db = MainActivity.db;
     public Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

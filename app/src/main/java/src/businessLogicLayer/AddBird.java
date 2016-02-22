@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
@@ -67,13 +69,17 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
                 Retrieve all the info from the textfields
                  */
 
+
                 EditText txtLegBandId = (EditText) findViewById(R.id.txtLegBandId),
                 txtName = (EditText) findViewById(R.id.txtBirdName),
                 txtExperiment = (EditText) findViewById(R.id.txtExperiment),
                 txtBirthDate = (EditText) findViewById(R.id.txtBirthDate),
-                txtDeathDate = (EditText) findViewById(R.id.txtDeathDate),
-                txtSex = (EditText) findViewById(R.id.txtSex);
+                txtDeathDate = (EditText) findViewById(R.id.txtDeathDate);
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                RadioGroup radioSex = (RadioGroup)findViewById(R.id.radioSex);
+                int selectedId = radioSex.getCheckedRadioButtonId();
+                RadioButton radioSexId = (RadioButton) findViewById(selectedId);
+
 
                 String id = txtLegBandId.getText().toString();
                 String name = txtName.getText().toString();
@@ -86,7 +92,11 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                String sex =  txtSex.getText().toString();
+                String sex = "";
+                try {
+                    sex = radioSexId.getText().toString();
+                }
+                catch(NullPointerException e){}
                 Bird b = new Bird(id,name,exp,birthdate,deathdate,sex);
                 MainActivity.db.addBird(b);
 
@@ -159,7 +169,20 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
 
     }
 
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
 
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radioMale:
+                if (checked)
+                    break;
+            case R.id.radioFemale:
+                if (checked)
+                    break;
+        }
+    }
     @Override
     public void onClick(View v) {
 
