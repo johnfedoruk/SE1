@@ -81,7 +81,7 @@ public class ViewBird extends AppCompatActivity {
                     curr = new TextView(this);
                     curr.setId(currId);
                     curr.setTypeface(null, Typeface.BOLD);
-                    curr.setText("Medial History");
+                    curr.setText("Medical History");
                     params.addRule(RelativeLayout.BELOW, R.id.birdSex);
                     params.setMargins(0,20,0,0);
                     layout.addView(curr, params);
