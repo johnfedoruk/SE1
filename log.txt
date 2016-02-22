@@ -33,7 +33,7 @@
 -Adding everyone as collaborators
 -Sharing Wireframe sketches
 -Two people completed wireframe sketches, John and Kaj.
--Pictures of the resulting wireframes are in the folder Wireframes
+-Pictures of the resulting wireframes are in the folder Documentation/Iteration 1 Docs/Pictures
 -Compared our goals set out in iteration 0 with the UI set forward in the wireframes.
 -Marked who will do what on the wireframes.
 
@@ -75,9 +75,9 @@ Who wants to do what?
 
 ----- Estimated Time Spent -----
 			Account Name
-John - 13 Hours		johnfedoruk
-Jose - 20 Hours		isomt or matundjf
-Kaj - 12 Hours		kajmoroz
-Kevin - 13 Hours	kevinleonard
-Landon - 10 Hours	ratstache
-Zili - 10 Hours		xiezilli
+John - 23 Hours		johnfedoruk
+Jose - 30 Hours		isomt or matundjf
+Kaj - 20 Hours		kajmoroz
+Kevin - 23 Hours	kevinleonard
+Landon - 16 Hours	ratstache
+Zili - 20 Hours		xiezilli
