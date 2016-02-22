@@ -72,3 +72,12 @@ Who wants to do what?
  -Added Progress dialog and finished the AddBird. -Jose
 -Modified the unit testing to be compliant with the new database function.
 >Meeting Length: 2 Hours
+
+----- Estimated Time Spent -----
+			Account Name
+John - 13 Hours		johnfedoruk
+Jose - 20 Hours		isomt or matundjf
+Kaj - 12 Hours		kajmoroz
+Kevin - 13 Hours	kevinleonard
+Landon - 10 Hours	ratstache
+Zili - 10 Hours		xiezilli
