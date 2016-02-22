@@ -30,8 +30,10 @@ public class Bird {
         return this.id;
     }
     public String getExperiment(){return this.experiment;}
+
     public Calendar getBirthDate(){return this.birthDate;}
     public Calendar getDeathDate(){return this.deathDate;}
+
     public String getDateString(Calendar cal){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return sdf.format(cal.getTime());
@@ -53,8 +55,5 @@ public class Bird {
     }
     public void setSex(String sex){
         this.sex = sex;
-
     }
-
-
 }

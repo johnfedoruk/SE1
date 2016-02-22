@@ -25,15 +25,20 @@ import java.util.Calendar;
 import databaseLayer.Bird;
 
 
+/**
+ *
+ */
 public class AddBird extends AppCompatActivity implements View.OnClickListener{
-
-
 
     //EditText txtLegBandId,txtName,txtExperiment,txtBirthDate,txtDeathDate,txtSex;
 
     public static TextView txtAddMedicalHistory;
     public static ImageView imgAddMedicalHistory;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,6 +111,11 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
     }
 
 
+    /**
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -113,6 +123,11 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
         return true;
     }
 
+    /**
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -132,6 +147,9 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
         startActivity(intent);
     }*/
 
+    /**
+     *
+     */
     public void onStart() {
         super.onStart();
 
@@ -160,6 +178,10 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
 
     }
 
+    /**
+     *
+     * @param view
+     */
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
@@ -174,10 +196,20 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
                     break;
         }
     }
+
+    /**
+     *
+     * @param v
+     */
     @Override
     public void onClick(View v) {
 
     }
+
+    /**
+     *
+     * @param view
+     */
     public void openAddMedicalHistory(View view) {
 
         Intent intent = new Intent(this,AddMedicalHistory.class);

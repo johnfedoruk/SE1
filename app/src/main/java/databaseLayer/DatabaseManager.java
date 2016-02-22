@@ -5,6 +5,7 @@ import java.util.Calendar;
 
 /**
  * Created by pure__000 on 2016-02-16.
+ * The class that acts as an intermediary between the database and the other layers
  */
 public class DatabaseManager {
 
@@ -12,6 +13,10 @@ public class DatabaseManager {
     private static ArrayList<Experiment> experimentList;
     private Calendar cal;
 
+    /**
+     * DatabaseManager
+     * default constructor
+     */
     public DatabaseManager()
     {
         birdList = new ArrayList<Bird>();
@@ -25,9 +30,20 @@ public class DatabaseManager {
         experimentList.add(new Experiment("Living Bird", "Suicidal","Group 2", getCalendar(2016,2,22), getCalendar(2016,2,22), "James,Angelo", "blahblah"));
     }
 
+    /**
+     * addBird
+     * add bird to the bird list
+     * @param bird the bird to be added
+     */
     public void addBird(Bird bird){
         this.birdList.add(bird);
     }
+
+    /**
+     * addExperiment
+     * add an experiment to the experiment list
+     * @param exp the experiment to be added
+     */
     public void addExperiment(Experiment exp){
         this.experimentList.add(exp);
     }
@@ -67,33 +83,34 @@ public class DatabaseManager {
      *                  it will have a length of zero.
      * @return The query results
      */
-    public ArrayList<Bird> searchBirds(String id,String name,String sex,String birthDate,
+    public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate,
                                               String deathDate) {
 
         ArrayList<Bird> queryResult = new ArrayList<Bird>();
 
         Bird tempBird;
+
+        boolean add;
+
         /**This will be replaced with a simple sql statement**/
         for (int i = 0; i < birdList.size(); i++ )
         {
+            add = true;
             tempBird = birdList.get(i);
 
             if(!id.equals("") && !tempBird.id.contains(id))
-                break;
-
+                add = false;
             if(!name.equals("") && !tempBird.name.contains(name))
-                break;
-
-            if(!sex.equals("") && !tempBird.sex.contains(sex))
-                break;
-
+                add = false;
+            if(!sex.equals("") && !tempBird.sex.equals(sex))
+                add = false;
             if(!birthDate.equals("") && !tempBird.birthDate.equals(birthDate))
-                break;
-
+                add = false;
             if(!deathDate.equals("") && !tempBird.deathDate.equals(deathDate))
-                break;
+                add = false;
 
-            queryResult.add(tempBird);
+            if(add)
+                queryResult.add(tempBird);
 
         }
         return queryResult;
@@ -117,38 +134,53 @@ public class DatabaseManager {
                                                           String endDate) {
         ArrayList<Experiment> queryResult = new ArrayList<>();
 
+        boolean add;
+
         Experiment tempExperiment;
 
         /**This will be replaced with a simple sql statement**/
         for (int i = 0; i < experimentList.size(); i++ )
         {
+            add = true;
             tempExperiment = experimentList.get(i);
 
             if(!studyTitle.equals("") && !tempExperiment.getStudyTitle().contains(studyTitle))
-                break;
-
+                add = false;
             if(!studyType.equals("") && !tempExperiment.getStudyType().contains(studyType))
-                break;
-
+                add = false;
             if(!groupWithinExperiment.equals("") && !tempExperiment.getGroupWithinExperiment().contains(groupWithinExperiment))
-                break;
-
+                add = false;
             if(!startDate.equals("") && !tempExperiment.getStartDate().toString().equals(startDate))
-                break;
-
+                add = false;
             if(!endDate.equals("") && !tempExperiment.getEndDate().toString().equals(endDate))
-                break;
+                add = false;
 
-            queryResult.add(tempExperiment);
+            if(add)
+                queryResult.add(tempExperiment);
 
         }
 
         return queryResult;
     }
 
+
+    /**
+     * getExperiment
+     * get the experiment list
+     * @return experimentList
+     */
     public ArrayList<Experiment> getExperiment(){
         return this.experimentList;
     }
+
+    /**
+     * getCalendar
+     * generate and return a calendar made up of the parameters
+     * @param yyyy the year for the calendar
+     * @param m the month for the calendar
+     * @param dd the day for the calendar
+     * @return the calendar generated
+     */
     public Calendar getCalendar(int yyyy,int m, int dd){
         this.cal = Calendar.getInstance();
         this.cal.set(yyyy,m,dd);
@@ -161,6 +193,12 @@ public class DatabaseManager {
 
         return sdf.format(cal.getTime());
     }*/
+
+    /**
+     * getBird
+     * gets the bird list
+     * @return birdList
+     */
     public ArrayList<Bird> getBird(){
         return this.birdList;
     }
