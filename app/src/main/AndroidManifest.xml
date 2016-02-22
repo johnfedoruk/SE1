@@ -49,8 +49,7 @@
             android:label="@string/title_activity_view_experiments" />
         <activity
             android:name="businessLogicLayer.AddExperiment"
-            android:label="@string/title_activity_add_experiment"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_add_experiment"/>
         <activity
             android:name="businessLogicLayer.ExpAddSuccess"
             android:label="@string/title_activity_exp_add_success"
@@ -67,7 +66,7 @@
         <activity
             android:name="businessLogicLayer.AddMedicalHistory"
             android:label="@string/title_activity_add_medical_history"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

@@ -14,6 +14,7 @@ import databaseLayer.Bird;
 import databaseLayer.DatabaseManager;
 
 
+@SuppressWarnings("all")
 public class ViewBirds extends ActionBarActivity {
     DatabaseManager db = MainActivity.db;
     public Context context;
@@ -32,7 +33,7 @@ public class ViewBirds extends ActionBarActivity {
         String deathDate = searchInfo[4];
         ArrayList<Bird> query = db.searchBirds(id,name,sex,birdDate,deathDate);
         ListView listView = (ListView)this.findViewById(R.id.listView);
-        ArrayList<ListItem> items = new ArrayList<ListItem>();
+        ArrayList<ListItem> items = new ArrayList<>();
         for(int i=0;i<query.size();i++) {
             bird = query.get(i);
             items.add(new ListItem("ID: ",bird.getId(),"Name: ",bird.getName()));
@@ -55,8 +56,24 @@ public class ViewBirds extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.add_bird) {
+            Intent intent = new Intent(this,AddBird.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.add_experiment) {
+            Intent intent = new Intent(this,AddExperiment.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.search_bird) {
+            Intent intent = new Intent(this,SearchBird.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.search_experiment) {
+            Intent intent = new Intent(this,SearchExperiment.class);
+            startActivity(intent);
             return true;
         }
 

@@ -29,6 +29,7 @@ import databaseLayer.MedicalHistory;
 /**
  *
  */
+@SuppressWarnings("all")
 public class AddBird extends AppCompatActivity implements View.OnClickListener{
 
     //EditText txtLegBandId,txtName,txtExperiment,txtBirthDate,txtDeathDate,txtSex;
@@ -38,7 +39,7 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
     public static MedicalHistory retrieveMedicalHistory;
     /**
      *
-     * @param savedInstanceState
+     * @param savedInstanceState savedState
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +95,9 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
                 try {
                     sex = radioSexId.getText().toString();
                 }
-                catch(NullPointerException e){}
+                catch(NullPointerException e){
+                    return;
+                }
                 Bird b = new Bird(id,name,exp,birthdate,deathdate,sex,retrieveMedicalHistory);
                 MainActivity.db.addBird(b);
 
@@ -112,12 +115,6 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
 
     }
 
-
-    /**
-     *
-     * @param menu
-     * @return
-     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -125,11 +122,6 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
         return true;
     }
 
-    /**
-     *
-     * @param item
-     * @return
-     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -137,21 +129,30 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.add_bird) {
+            Intent intent = new Intent(this,AddBird.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.add_experiment) {
+            Intent intent = new Intent(this,AddExperiment.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.search_bird) {
+            Intent intent = new Intent(this,SearchBird.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.search_experiment) {
+            Intent intent = new Intent(this,SearchExperiment.class);
+            startActivity(intent);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-   /* public void openAddBirdSuccess(View view) {
-        Intent intent = new Intent(this, AddBirdSuccess.class);
-        startActivity(intent);
-    }*/
 
-    /**
-     *
-     */
     public void onStart() {
         super.onStart();
 
@@ -180,10 +181,6 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
 
     }
 
-    /**
-     *
-     * @param view
-     */
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
@@ -199,19 +196,11 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
         }
     }
 
-    /**
-     *
-     * @param v
-     */
     @Override
     public void onClick(View v) {
 
     }
 
-    /**
-     *
-     * @param view
-     */
     public void openAddMedicalHistory(View view) {
 
         Intent intent = new Intent(this,AddMedicalHistory.class);
