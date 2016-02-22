@@ -74,10 +74,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,SearchExperiment.class);
         startActivity(intent);
     }
-    public void openViewExperiment(View view) {
-
-        Intent intent = new Intent(this,ViewExperiment.class);
-        startActivity(intent);
-    }
    
 }

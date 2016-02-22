@@ -44,12 +44,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="openSearchExperiment"/>
-            <Button
-                android:id="@+id/btViewExperiment"
-                android:text="View Experiment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="openViewExperiment"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
