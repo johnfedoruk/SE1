@@ -2,6 +2,7 @@ package databaseLayer;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * Created by pure__000 on 2016-02-16.
