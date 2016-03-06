@@ -22,8 +22,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
-import databaseLayer.Bird;
-import databaseLayer.MedicalHistory;
+import domainObjects.Bird;
+import domainObjects.MedicalHistory;
 
 
 /**
