@@ -121,8 +121,8 @@ public class AddExperiment extends AppCompatActivity implements View.OnClickList
                 }
                 String experimenters =  txtExperimenters.getText().toString();
                 String notes = txtNotes.getText().toString();
-
-                Experiment exp = new Experiment(title,type,group,startdate,enddate,experimenters,notes);
+                boolean active = true;
+                Experiment exp = new Experiment(title,type,group,startdate,enddate,experimenters,notes,active);
                 db.addExperiment(exp);
                 startActivity(new Intent(this, ExpAddSuccess.class));
                 break;

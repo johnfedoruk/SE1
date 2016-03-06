@@ -11,8 +11,9 @@ public class Experiment {
 
     private String StudyTitle, StudyType, GroupWithinExperiment, Experimenters, Notes;
     Calendar StartDate = Calendar.getInstance(), EndDate=Calendar.getInstance();
+    boolean status;
 
-    public Experiment( String StudyTitle, String StudyType,String GroupWithinExperiment,Calendar StartDate, Calendar EndDate, String Experimenters,String Notes) {
+    public Experiment( String StudyTitle, String StudyType,String GroupWithinExperiment,Calendar StartDate, Calendar EndDate, String Experimenters,String Notes,boolean status) {
         this.StudyTitle = StudyTitle;
         this.StudyType = StudyType;
         this.GroupWithinExperiment = GroupWithinExperiment;
@@ -20,6 +21,7 @@ public class Experiment {
         this.EndDate = EndDate;
         this.Experimenters = Experimenters;
         this.Notes = Notes;
+        this.status = status;
     }
 
     //getters
@@ -48,6 +50,7 @@ public class Experiment {
     public String getNotes() {
         return this.Notes;
     }
+    public boolean isActive() {return this.status;}
 
     //setters
     public void setStudyTitle(String StudyTitle){
@@ -71,6 +74,7 @@ public class Experiment {
     public void setNotes(String Notes){
         this.Notes = Notes;
     }
+    public void setStatus(boolean status){this.status = status;}
 
 
 }

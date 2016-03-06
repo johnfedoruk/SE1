@@ -24,11 +24,11 @@ public class DatabaseManager {
         experimentList = new ArrayList<Experiment>();
         cal = Calendar.getInstance();
 
-        birdList.add(new Bird("0001", "bird1", "Experiment #1", getCalendar(2016,2,22), getCalendar(2016,2,22), "Female",new MedicalHistory( getCalendar(2016, 2, 22),"Chicken pox","Tylenol","did not work")));
-        birdList.add(new Bird("0002", "bird2", "Experiment #2", getCalendar(2016,2,23), getCalendar(2016,2,24), "Male",new MedicalHistory( getCalendar(2016, 2, 24),"Flu","Polysporin","did not work")));
-        birdList.add(new Bird("0003", "bird3", "Experiment #3", getCalendar(2016,2,24), getCalendar(2016,2,25), "Female",new MedicalHistory( getCalendar(2016, 2, 25),"Down Syndrome","Chemotherapy","did not work")));
-        experimentList.add(new Experiment("Dying Bird", "Psychological","Group 1", getCalendar(2016,2,22), getCalendar(2016,2,22), "John,Gimli", "blahblah"));
-        experimentList.add(new Experiment("Living Bird", "Suicidal","Group 2", getCalendar(2016,2,22), getCalendar(2016,2,22), "James,Angelo", "blahblah"));
+        birdList.add(new Bird("0001", "bird1", "Experiment #1", getCalendar(2016,2,22), getCalendar(2016,2,22), "Female",new MedicalHistory( getCalendar(2016, 2, 22),"Chicken pox","Tylenol","did not work"),true));
+        birdList.add(new Bird("0002", "bird2", "Experiment #2", getCalendar(2016,2,23), getCalendar(2016,2,24), "Male",new MedicalHistory( getCalendar(2016, 2, 24),"Flu","Polysporin","did not work"),true));
+        birdList.add(new Bird("0003", "bird3", "Experiment #3", getCalendar(2016,2,24), getCalendar(2016,2,25), "Female",new MedicalHistory( getCalendar(2016, 2, 25),"Down Syndrome","Chemotherapy","did not work"),true));
+        experimentList.add(new Experiment("Dying Bird", "Psychological","Group 1", getCalendar(2016,2,22), getCalendar(2016,2,22), "John,Gimli", "blahblah",true));
+        experimentList.add(new Experiment("Living Bird", "Suicidal","Group 2", getCalendar(2016,2,22), getCalendar(2016,2,22), "James,Angelo", "blahblah",true));
     }
 
     /**

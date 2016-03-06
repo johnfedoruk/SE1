@@ -39,6 +39,18 @@ public class DatabaseManagerTest {
     }
 
     @Test
+    public void testAddBird() throws Exception
+    {
+        //NULL test case
+        myManager.addBird(new Bird(null, null, null, myManager.getCalendar(0, 0, 0), myManager.getCalendar(0, 0, 0), null, new MedicalHistory(myManager.getCalendar(0, 0, 0), null, null, null)));
+    }
+
+    public void testAddExperiment()
+    {
+
+    }
+
+    @Test
     public void testFindBird()
     {
         Bird myBird = new Bird("0001", "bird1","Experiment #1",myManager.getCalendar(2016, 02, 22),myManager.getCalendar(2016, 02, 22),"Female",new MedicalHistory( myManager.getCalendar(2016, 2, 22),"Glaucoma","Tylenol","did not work"));

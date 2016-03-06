@@ -11,7 +11,8 @@ public class Bird {
     String id, name, experiment, sex;
     Calendar birthDate, deathDate;
     MedicalHistory history;
-    public Bird(String id, String name, String experiment, Calendar birthDate, Calendar deathDate, String sex,MedicalHistory history)
+    boolean status;
+    public Bird(String id, String name, String experiment, Calendar birthDate, Calendar deathDate, String sex,MedicalHistory history,boolean status)
     {
         this.id = id;
         this.name = name;
@@ -20,6 +21,7 @@ public class Bird {
         this.deathDate = deathDate;
         this.sex = sex;
         this.history = history;
+
     }
 
     public String getName()
