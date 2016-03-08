@@ -1,4 +1,4 @@
-package databaseLayer;
+package domainObjects;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

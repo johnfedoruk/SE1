@@ -3,6 +3,8 @@ package databaseLayer;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import domainObjects.Experiment;
+
 /**
  * Created by Jose Matundan on 2/14/2016.
  */

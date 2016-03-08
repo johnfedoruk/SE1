@@ -3,6 +3,10 @@ package databaseLayer;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import domainObjects.Bird;
+import domainObjects.Experiment;
+import domainObjects.MedicalHistory;
+
 /**
  * Created by pure__000 on 2016-02-16.
  * The class that acts as an intermediary between the database and the other layers
@@ -104,11 +108,11 @@ public class DatabaseManager {
             add = true;
             tempBird = birdList.get(i);
 
-            if(!id.equals("") && !tempBird.id.contains(id))
+            if(!id.equals("") && !tempBird.getId().contains(id))
                 add = false;
-            if(!name.equals("") && !tempBird.name.toLowerCase().contains(name.toLowerCase()))
+            if(!name.equals("") && !tempBird.getName().toLowerCase().contains(name.toLowerCase()))
                 add = false;
-            if(!sex.equals("") && !tempBird.sex.toLowerCase().equals(sex.toLowerCase()))
+            if(!sex.equals("") && !tempBird.getSex().toLowerCase().equals(sex.toLowerCase()))
                 add = false;
             if(!birthDate.equals("") && !tempBird.getDateString(tempBird.getBirthDate()).equals(birthDate))
                 add = false;

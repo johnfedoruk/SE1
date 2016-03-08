@@ -76,8 +76,29 @@ Who wants to do what?
 ----- Estimated Time Spent -----
 			Account Name
 John - 23 Hours		johnfedoruk
-Jose - 30 Hours		isomt or matundjf
+Jose - 30 Hours		iskomt or matundjf
 Kaj - 20 Hours		kajmoroz
 Kevin - 23 Hours	kevinleonard
 Landon - 16 Hours	ratstache
 Zili - 20 Hours		xiezilli
+
+
+----- Iteration 2 -----
+
+2016/03/04
+-Kaj said he would do the database portion of the app for i2
+-Forgot to put in vision for i2, placing in github with commit.
+-What we're doing for i2
+ -Mostly Editting of birds and refactoring.
+ -Retiring Birds/Finishing Experiments 	Jose
+ -Editing Birds John
+ -Geneology Landon
+ -Edit Experiments Kevin
+ -SQL Database	Kaj Moroz
+ -Import Excel Files zili/Figuring out how to load the data in.
+-Adding user story "I need to be able to save my data"
+-Removing gradle files using gitignore.
+-Reworking Searches
+-Classifies Birds by species and search by species.
+-Next meeting Tuesday.
+>Meeting Length: 2 Hours

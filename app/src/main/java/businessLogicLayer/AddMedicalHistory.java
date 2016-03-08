@@ -11,7 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import databaseLayer.MedicalHistory;
+import domainObjects.MedicalHistory;
 
 public class AddMedicalHistory extends AppCompatActivity implements View.OnClickListener {
     public static MedicalHistory addHistory = new MedicalHistory();
