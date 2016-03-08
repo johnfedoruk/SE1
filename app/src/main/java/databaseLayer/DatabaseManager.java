@@ -89,10 +89,23 @@ public class DatabaseManager {
      *                  it will have a length of zero.
      * @return The query results
      */
-    public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate,
-                                              String deathDate) {
+    public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate)
+    {
+        return searchBirds(new Bird(id, name, "", sex, birthDate, deathDate) );
+    }
+
+    public ArrayList<Bird> searchBirds(Bird inputBird) {
 
         ArrayList<Bird> queryResult = new ArrayList<Bird>();
+
+
+
+        String id = inputBird.getId();
+        String name = inputBird.getName();
+        String sex = inputBird.getSex();
+        String birthDate = inputBird.getDateString(inputBird.getBirthDate());
+        String deathDate = inputBird.getDateString(inputBird.getDeathDate());
+
 
         Bird tempBird;
 
@@ -172,6 +185,11 @@ public class DatabaseManager {
         }
 
         return queryResult;
+    }
+
+    public static ArrayList<Experiment> searchExperiments(Experiment experiment)
+    {
+        return searchExperiments(experiment.getStudyTitle(), experiment.getStudyType(), experiment.getGroupWithinExperiment(), experiment.getDateString(experiment.getStartDate()), experiment.getDateString(experiment.getEndDate()));
     }
 
 

@@ -1,10 +1,14 @@
 package databaseLayer;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * Created by pure__000 on 2016-02-16.
+ *
+ * Additional Constructor added by Kaj on 2016-03-08
  */
 public class Bird {
 
@@ -20,6 +24,33 @@ public class Bird {
         this.deathDate = deathDate;
         this.sex = sex;
         this.history = history;
+    }
+
+    public Bird(String id, String name, String experiment, String birthDate, String deathDate, String sex)
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        this.id = id;
+        this.name = name;
+        this.experiment = experiment;
+
+        Calendar bDate = Calendar.getInstance();
+        Calendar dDate = Calendar.getInstance();
+        try {
+            bDate.setTime(sdf.parse(birthDate));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            dDate.setTime(sdf.parse(deathDate));
+        }
+        catch(ParseException e) {
+            dDate = null;
+        }
+
+        this.birthDate = bDate;
+        this.deathDate = dDate;
+        this.sex = sex;
+        this.history = null;
     }
 
     public String getName()

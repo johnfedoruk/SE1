@@ -50,7 +50,7 @@ public class ViewBird extends AppCompatActivity {
          */
         if(birdId != null)
         {
-            Bird currentBird = db.searchBirds(birdId, "", "", "", "").get(0); //Bird IDs are unique
+            Bird currentBird = db.searchBirds(new Bird(birdId, "", "", "", "", "")).get(0); //Bird IDs are unique
             if (currentBird != null)
             {
                 TextView curr = (TextView) findViewById(R.id.birdName);
