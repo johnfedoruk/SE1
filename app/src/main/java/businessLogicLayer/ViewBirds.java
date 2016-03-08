@@ -10,7 +10,7 @@ import android.widget.ListView;
 
 import net.javacrypt.se1.R;
 import java.util.ArrayList;
-import databaseLayer.Bird;
+import domainObjects.Bird;
 import databaseLayer.DatabaseManager;
 
 
