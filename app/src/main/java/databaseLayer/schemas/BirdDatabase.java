@@ -241,6 +241,15 @@ public final class BirdDatabase {
             clauseElements.add(BirdEntry.BIRD_DDAY);
         }
 
+        if(params.getDad() != null)
+        {
+            clauseElements.add(BirdEntry.BIRD_DAD);
+        }
+
+        if(params.getMom() != null)
+        {
+            clauseElements.add(BirdEntry.BIRD_MOM);
+        }
 
         return clauseElements;
     }
@@ -283,6 +292,16 @@ public final class BirdDatabase {
             tempArray.add(String.valueOf(params.getDeathDate().getTimeInMillis()));
         }
 
+        if(params.getDad() != null)
+        {
+            tempArray.add(String.valueOf(params.getDad()));
+        }
+
+        if (params.getMom() != null)
+        {
+            tempArray.add(String.valueOf(params.getMom()));
+        }
+
        /* if(params.getStatus())
         {
             tempArray.add("true");
@@ -310,6 +329,8 @@ public final class BirdDatabase {
         String name = "";
         String exp = "";
         String stat = "";
+        String mom = "";
+        String dad = "";
         params.setStatus(true);
 
         //Queries each data elem in params: BIRD_NAME =? AND BIRD_ID =? AND...
@@ -353,7 +374,7 @@ public final class BirdDatabase {
         return queryResult;
     }
     public static final String DELETE_ENTRIES = "DROP TABLE IF EXISTS " + BirdEntry.TABLE_LABEL+";";
-    public static final String ADD_ENTRIES = "INSERT INTO " + BirdEntry.TABLE_LABEL+ " VALUES (";
+    public static final String ADD_ENTRIES = "INSERT INTO " + BirdEntry.TABLE_LABEL + " VALUES (";
     public static final String[] BIRD_ROW = {
             BirdEntry.BIRD_NAME,
             BirdEntry.BIRD_ID,
@@ -363,6 +384,8 @@ public final class BirdDatabase {
             BirdEntry.BIRD_DDAY,
             BirdEntry.BIRD_STATUS,
             BirdEntry.BIRD_MED,
+            BirdEntry.BIRD_DAD,
+            BirdEntry.BIRD_MOM
     };
 
 }
