@@ -102,3 +102,18 @@ Zili - 20 Hours		xiezilli
 -Classifies Birds by species and search by species.
 -Next meeting Tuesday.
 >Meeting Length: 2 Hours
+
+Kaj Moroz 2016/03/08
+-Committed Database Interface and function refactoring in Database Manager.
+
+2016/03/08
+-Kaj refactored the interface, and seperated into SQL and Stub.
+-Where did we lose marks? How should we get that fixed for the marker for the next iteration.
+ -Google Services, is that imported?
+ -Ask marker what happened with the build
+-Landon added a Logfile link to the wiki.
+-Landon added in a domain object for files to pass back and forth.
+-Zili asked for clarification of what he needs to do for the importing files. Mostly just figure out an estimate of how much time it would take.
+-Discussed refactoring and clarified the jobs people were given last meeting. 
+-Video Conference Friday 11:30-1:30
+>Meeting Length 2 Hours

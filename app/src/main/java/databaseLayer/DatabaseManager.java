@@ -2,7 +2,10 @@ package databaseLayer;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import android.database.sqlite.SQLiteOpenHelper;
+
+import domainObjects.Bird;
+import domainObjects.Experiment;
+import domainObjects.MedicalHistory;
 
 /**
  * Created by pure__000 on 2016-02-16.
@@ -90,10 +93,23 @@ public class DatabaseManager {
      *                  it will have a length of zero.
      * @return The query results
      */
-    public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate,
-                                              String deathDate) {
+    public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate)
+    {
+        return searchBirds(new Bird(id, name, "", sex, birthDate, deathDate) );
+    }
+
+    public ArrayList<Bird> searchBirds(Bird inputBird) {
 
         ArrayList<Bird> queryResult = new ArrayList<Bird>();
+
+
+
+        String id = inputBird.getId();
+        String name = inputBird.getName();
+        String sex = inputBird.getSex();
+        String birthDate = inputBird.getDateString(inputBird.getBirthDate());
+        String deathDate = inputBird.getDateString(inputBird.getDeathDate());
+
 
         Bird tempBird;
 
@@ -105,11 +121,11 @@ public class DatabaseManager {
             add = true;
             tempBird = birdList.get(i);
 
-            if(!id.equals("") && !tempBird.id.contains(id))
+            if(!id.equals("") && !tempBird.getId().contains(id))
                 add = false;
-            if(!name.equals("") && !tempBird.name.toLowerCase().contains(name.toLowerCase()))
+            if(!name.equals("") && !tempBird.getName().toLowerCase().contains(name.toLowerCase()))
                 add = false;
-            if(!sex.equals("") && !tempBird.sex.toLowerCase().equals(sex.toLowerCase()))
+            if(!sex.equals("") && !tempBird.getSex().toLowerCase().equals(sex.toLowerCase()))
                 add = false;
             if(!birthDate.equals("") && !tempBird.getDateString(tempBird.getBirthDate()).equals(birthDate))
                 add = false;
@@ -173,6 +189,11 @@ public class DatabaseManager {
         }
 
         return queryResult;
+    }
+
+    public static ArrayList<Experiment> searchExperiments(Experiment experiment)
+    {
+        return searchExperiments(experiment.getStudyTitle(), experiment.getStudyType(), experiment.getGroupWithinExperiment(), experiment.getDateString(experiment.getStartDate()), experiment.getDateString(experiment.getEndDate()));
     }
 
 

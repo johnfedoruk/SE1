@@ -2,21 +2,20 @@ package businessLogicLayer;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.media.MediaCodecList;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import net.javacrypt.se1.R;
 
 
 
 import databaseLayer.DatabaseManager;
-import databaseLayer.Bird;
-import databaseLayer.MedicalHistory;
+import domainObjects.Bird;
+import domainObjects.MedicalHistory;
 
 /*
  * Created by Kaj Moroz
@@ -50,7 +49,7 @@ public class ViewBird extends AppCompatActivity {
          */
         if(birdId != null)
         {
-            Bird currentBird = db.searchBirds(birdId, "", "", "", "").get(0); //Bird IDs are unique
+            Bird currentBird = db.searchBirds(new Bird(birdId, "", "", "", "", "")).get(0); //Bird IDs are unique
             if (currentBird != null)
             {
                 TextView curr = (TextView) findViewById(R.id.birdName);

@@ -1,9 +1,9 @@
 package databaseTests;
 
 import databaseLayer.DatabaseManager;
-import databaseLayer.Bird;
-import databaseLayer.Experiment;
-import databaseLayer.MedicalHistory;
+import domainObjects.Bird;
+import domainObjects.Experiment;
+import domainObjects.MedicalHistory;
 
 import org.junit.Before;
 import org.junit.Test;

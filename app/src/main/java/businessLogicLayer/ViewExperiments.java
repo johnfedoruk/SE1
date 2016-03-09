@@ -13,7 +13,7 @@ import net.javacrypt.se1.R;
 import java.util.ArrayList;
 
 import databaseLayer.DatabaseManager;
-import databaseLayer.Experiment;
+import domainObjects.Experiment;
 
 
 @SuppressWarnings("all")
