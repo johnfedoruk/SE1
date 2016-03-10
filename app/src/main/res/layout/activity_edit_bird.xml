@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:padding="20dp"
     android:fitsSystemWindows="true"
-    tools:context="businessLogicLayer.AddBird">
+    tools:context="businessLogicLayer.EditBird">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
@@ -24,15 +24,15 @@
                 android:layout_height="wrap_content" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="Name"
-        android:layout_height="wrap_content"
-        />
-    <EditText
-        android:id="@+id/txtBirdName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Name"
+                android:layout_height="wrap_content"
+                />
+            <EditText
+                android:id="@+id/txtBirdName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
 
             <TextView
@@ -45,29 +45,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="Birthdate"
-        android:layout_height="wrap_content"
-        />
-    <EditText
-        android:id="@+id/txtBirthDate"
-        android:layout_width="match_parent"
-        android:inputType="date"
-        android:layout_height="wrap_content"
-        android:hint ="Touch here to select date"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Birthdate"
+                android:layout_height="wrap_content"
+                />
+            <EditText
+                android:id="@+id/txtBirthDate"
+                android:layout_width="match_parent"
+                android:inputType="date"
+                android:layout_height="wrap_content"
+                android:hint ="Touch here to select date"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="Death Date(if applicable)"
-        android:layout_height="wrap_content"
-        />
-    <EditText
-        android:id="@+id/txtDeathDate"
-        android:layout_width="match_parent"
-        android:inputType="date"
-        android:layout_height="wrap_content"
-        android:hint ="Touch here to select date"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Death Date(if applicable)"
+                android:layout_height="wrap_content"
+                />
+            <EditText
+                android:id="@+id/txtDeathDate"
+                android:layout_width="match_parent"
+                android:inputType="date"
+                android:layout_height="wrap_content"
+                android:hint ="Touch here to select date"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -107,23 +107,23 @@
                 android:orientation="horizontal">
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:text="Add Medical History"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginTop="7dp"
-                android:id="@+id/txtAddMedicalHistory"
-                />
-            <ImageView
-                android:id="@+id/imgAddMedicalHistory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="right"
-                android:layout_weight="1"
-                android:onClick="openAddMedicalHistory"
-                android:src="@android:drawable/ic_input_add" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Add Medical History"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="7dp"
+                    android:id="@+id/txtAddMedicalHistory"
+                    />
+                <ImageView
+                    android:id="@+id/imgAddMedicalHistory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:onClick="openAddMedicalHistory"
+                    android:src="@android:drawable/ic_input_add" />
             </LinearLayout>
             <Button
                 android:id="@+id/btAddBird"

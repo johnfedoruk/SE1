@@ -30,6 +30,9 @@
             android:name="businessLogicLayer.AddBird"
             android:label="@string/title_activity_add_bird" />
         <activity
+            android:name="businessLogicLayer.EditBird"
+            android:label="@string/title_activity_edit_bird" />
+        <activity
             android:name="businessLogicLayer.SearchBird"
             android:label="@string/title_activity_search_bird" />
         <activity
