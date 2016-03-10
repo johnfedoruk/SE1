@@ -14,9 +14,11 @@
     <string name="title_activity_view_experiment">ViewExperiment</string>
     <string name="title_activity_view_experiments">ViewExperiments</string>
     <string name="title_activity_add_experiment">AddExperiment</string>
+    <string name="title_activity_edit_experiment">EditExperiment</string>
     <string name="title_activity_exp_add_success">ExpAddSuccess</string>
     <string name="title_activity_add_bird_success">AddBirdSuccess</string>
     <string name="search">Search</string>
+    <string name="edit">Edit</string>
     <string name="legbandID">LegBandID</string>
     <string name="name">Name</string>
     <string name="groupWithExperiment">Group within Experiment</string>

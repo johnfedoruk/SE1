@@ -51,6 +51,9 @@
             android:name="businessLogicLayer.AddExperiment"
             android:label="@string/title_activity_add_experiment"/>
         <activity
+            android:name="businessLogicLayer.EditExperiment"
+            android:label="@string/title_activity_edit_experiment"/>
+        <activity
             android:name="businessLogicLayer.ExpAddSuccess"
             android:label="@string/title_activity_exp_add_success"
             android:theme="@style/AppTheme.NoActionBar" />
