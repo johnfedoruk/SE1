@@ -11,19 +11,28 @@ import android.widget.TextView;
 
 import net.javacrypt.se1.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import databaseLayer.DatabaseManager;
+import domainObjects.Experiment;
+
 /**
  * Created by Zili on 2016-02-15.
  */
 @SuppressWarnings("all")
 public class ViewExperiment extends AppCompatActivity implements View.OnClickListener {
-
+    public final static String EXTRA_MESSAGE = "net.javacrypt.se1.MESSAGE";
     TextView viewStudyTitle;
-    TextView viewStudyType;
-    TextView viewGroupWithinExperiment;
-    TextView viewStartDate;
-    TextView viewEndDate;
-    TextView viewExperimenters;
-    TextView viewNotes;
+        TextView viewStudyType;
+        TextView viewGroupWithinExperiment;
+        TextView viewStartDate;
+        TextView viewEndDate;
+        TextView viewExperimenters;
+        TextView viewNotes;
+        DatabaseManager db = new DatabaseManager();
+        Button btEditExperiment;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_experiment);
@@ -50,6 +59,10 @@ public class ViewExperiment extends AppCompatActivity implements View.OnClickLis
         else {
             viewStudyTitle.setText("No Results");
         }
+
+        btEditExperiment = (Button) findViewById(R.id.btEditExperiment);
+
+        btEditExperiment.setOnClickListener(this);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -92,5 +105,17 @@ public class ViewExperiment extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
 
+        switch (v.getId()) {
+            case R.id.btEditExperiment:
+
+                Intent intent = new Intent(this, EditExperiment.class);
+                String title = (String) viewStudyTitle.getText();
+                intent.putExtra(EXTRA_MESSAGE, title);
+
+                startActivity(intent);
+                break;
+        }
+
     }
+
 }
