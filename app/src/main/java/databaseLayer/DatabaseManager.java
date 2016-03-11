@@ -106,10 +106,10 @@ public class DatabaseManager {
      */
     public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate, String status)
     {
-<<<<<<< HEAD
+
         return searchBirds(new Bird(id, name, "", birthDate, deathDate, sex,status) );
-=======
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+      /*  SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Calendar bd = Calendar.getInstance();
         Calendar dd = Calendar.getInstance();
         try {
@@ -122,7 +122,7 @@ public class DatabaseManager {
         catch(Exception e){dd = null;}
         Bird bird = new Bird(id,name,"",bd,dd,sex,null);
         return searchBirds(bird);
->>>>>>> a3ae27990ce38f3372e350a24957c76641aeb357
+*/
     }
 
     public ArrayList<Bird> searchBirds(Bird inputBird) {

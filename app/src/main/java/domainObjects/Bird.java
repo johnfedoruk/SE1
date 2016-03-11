@@ -41,7 +41,7 @@ public class Bird implements Serializable {
 
         Calendar bDate = Calendar.getInstance();
         Calendar dDate = Calendar.getInstance();
-        try {
+        /*try {
             bDate.setTime(sdf.parse(birthDate));
         } catch (ParseException e) {
             e.printStackTrace();
@@ -51,7 +51,7 @@ public class Bird implements Serializable {
         }
         catch(ParseException e) {
             dDate = null;
-        }
+        }*/
 
         birthDate = getDateString(bDate);
         deathDate = getDateString(bDate);
