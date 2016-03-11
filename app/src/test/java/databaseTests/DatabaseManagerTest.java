@@ -29,12 +29,12 @@ public class DatabaseManagerTest {
 
         myManager.clearDatabases();
 
-        myManager.addBird(new Bird("0001", "bird1", "Experiment #1", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 22), "Female", new MedicalHistory(myManager.getCalendar(2016, 2, 27), "AIDS", "Tylenol", "did not work")));
-        myManager.addBird(new Bird("0002", "bird2", "Experiment #2", myManager.getCalendar(2016, 2, 23), myManager.getCalendar(2016, 2, 24), "Male",new MedicalHistory( myManager.getCalendar(2016, 2, 28),"Herpes","Tylenol","did not work")));
-        myManager.addBird(new Bird("0003", "bird3", "Experiment #3", myManager.getCalendar(2016, 2, 24), myManager.getCalendar(2016,2,25), "Female",new MedicalHistory( myManager.getCalendar(2016, 2, 29),"HIV","Tylenol","did not work")));
-        myManager.addExperiment(new Experiment("Dying Bird", "Psychological", "Group 1", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 22), "John,Gimli", "blahblah"));
-        myManager.addExperiment(new Experiment("Living Bird", "Suicidal", "Group 2", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 22), "James,Angelo", "blahblah"));
-        myManager.addExperiment(new Experiment("Living Bird", "Suicidal", "Group 2", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 24), "James,Angelo", "blahblah"));
+        myManager.addBird(new Bird("0001", "bird1", "Experiment #1", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 22), "Female", new MedicalHistory(myManager.getCalendar(2016, 2, 27), "AIDS", "Tylenol", "did not work"),true));
+        myManager.addBird(new Bird("0002", "bird2", "Experiment #2", myManager.getCalendar(2016, 2, 23), myManager.getCalendar(2016, 2, 24), "Male", new MedicalHistory(myManager.getCalendar(2016, 2, 28), "Herpes", "Tylenol", "did not work"), true));
+        myManager.addBird(new Bird("0003", "bird3", "Experiment #3", myManager.getCalendar(2016, 2, 24), myManager.getCalendar(2016, 2, 25), "Female", new MedicalHistory(myManager.getCalendar(2016, 2, 29), "HIV", "Tylenol", "did not work"), true));
+        myManager.addExperiment(new Experiment("Dying Bird", "Psychological", "Group 1", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 22), "John,Gimli", "blahblah",true));
+        myManager.addExperiment(new Experiment("Living Bird", "Suicidal", "Group 2", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 22), "James,Angelo", "blahblah",true));
+        myManager.addExperiment(new Experiment("Living Bird", "Suicidal", "Group 2", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 24), "James,Angelo", "blahblah",true));
 
     }
 
@@ -42,7 +42,7 @@ public class DatabaseManagerTest {
     public void testAddBird() throws Exception
     {
         //NULL test case
-        myManager.addBird(new Bird(null, null, null, myManager.getCalendar(0, 0, 0), myManager.getCalendar(0, 0, 0), null, new MedicalHistory(myManager.getCalendar(0, 0, 0), null, null, null)));
+        myManager.addBird(new Bird(null, null, null, myManager.getCalendar(0, 0, 0), myManager.getCalendar(0, 0, 0), null, new MedicalHistory(myManager.getCalendar(0, 0, 0), null, null, null),true));
     }
 
     public void testAddExperiment()
@@ -53,7 +53,7 @@ public class DatabaseManagerTest {
     @Test
     public void testFindBird()
     {
-        Bird myBird = new Bird("0001", "bird1","Experiment #1",myManager.getCalendar(2016, 02, 22),myManager.getCalendar(2016, 02, 22),"Female",new MedicalHistory( myManager.getCalendar(2016, 2, 22),"Glaucoma","Tylenol","did not work"));
+        Bird myBird = new Bird("0001", "bird1","Experiment #1",myManager.getCalendar(2016, 02, 22),myManager.getCalendar(2016, 02, 22),"Female",new MedicalHistory( myManager.getCalendar(2016, 2, 22),"Glaucoma","Tylenol","did not work"),true);
 
         assertEquals(myBird.getId(), myManager.findBird("0001").getId());
         assertNotEquals(myBird, myManager.findBird("bird2"));

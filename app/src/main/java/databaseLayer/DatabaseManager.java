@@ -31,7 +31,7 @@ public class DatabaseManager {
         birdList.add(new Bird("0002", "bird2", "Experiment #2", getCalendar(2016,2,23), getCalendar(2016,2,24), "Male",new MedicalHistory( getCalendar(2016, 2, 24),"Flu","Polysporin","did not work"),true));
         birdList.add(new Bird("0003", "bird3", "Experiment #3", getCalendar(2016,2,24), getCalendar(2016,2,25), "Female",new MedicalHistory( getCalendar(2016, 2, 25),"Down Syndrome","Chemotherapy","did not work"),true));
         experimentList.add(new Experiment("Dying Bird", "Psychological","Group 1", getCalendar(2016,2,22), getCalendar(2016,2,22), "John,Gimli", "blahblah",true));
-        experimentList.add(new Experiment("Living Bird", "Suicidal","Group 2", getCalendar(2016,2,22), getCalendar(2016,2,22), "James,Angelo", "blahblah",true));
+        experimentList.add(new Experiment("Living Bird", "Suicidal","Group 2", getCalendar(2016,2,22), getCalendar(2016,2,22), "James,Angelo", "blahblah",false));
     }
 
     /**
@@ -93,9 +93,9 @@ public class DatabaseManager {
      *                  it will have a length of zero.
      * @return The query results
      */
-    public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate)
+    public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate, String status)
     {
-        return searchBirds(new Bird(id, name, "", sex, birthDate, deathDate) );
+        return searchBirds(new Bird(id, name, "", birthDate, deathDate, sex,status) );
     }
 
     public ArrayList<Bird> searchBirds(Bird inputBird) {
@@ -182,6 +182,7 @@ public class DatabaseManager {
             if(!endDate.equals("") && !tempExperiment.getDateString(tempExperiment.getEndDate())
                     .equals(endDate))
                 add = false;
+
             if(add)
                 queryResult.add(tempExperiment);
 

@@ -2,6 +2,7 @@ package businessLogicLayer;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,8 @@ class ListAdapter extends ArrayAdapter<ListItem> {
             final TextView title = (TextView) v.findViewById(R.id.title);
             TextView info = (TextView) v.findViewById(R.id.info);
             TextView status = (TextView) v.findViewById(R.id.status);
+            TextView statusinfo = (TextView) v.findViewById(R.id.statusinfo);
+
             if (title != null) {
                 title.setText(m.titlePrefix+m.title);
             }
@@ -43,8 +46,15 @@ class ListAdapter extends ArrayAdapter<ListItem> {
                 info.setText(m.infoPrefix+m.info);
             }
             if(status!=null){
-               status.setText(m.status+m.statusinfo);
+               status.setText(m.status);
             }
+            if(statusinfo!=null){
+                statusinfo.setText(m.statusinfo);
+                String statuscolor = statusinfo.getText().toString();
+                if(statuscolor.equals("active")){statusinfo.setTextColor(Color.parseColor("#00cc00"));}
+                else if(statuscolor.equals("inactive")){statusinfo.setTextColor(Color.parseColor("#cc0000"));}
+            }
+
             RelativeLayout layout = (RelativeLayout)v.findViewById(R.id.item);
             final Intent intent = this.intent;
             final String param = m.title;

@@ -1,5 +1,7 @@
 package businessLogicLayer;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -27,6 +29,7 @@ public class ViewBird extends AppCompatActivity {
 
     TextView birdBirthdate;
     static int id = 1;
+
     private Bird currentBird = null;
     @Override
     /*
@@ -52,7 +55,7 @@ public class ViewBird extends AppCompatActivity {
          */
         if(birdId != null)
         {
-            this.currentBird = db.searchBirds(new Bird(birdId, "", "", "", "", "")).get(0); //Bird IDs are unique
+            this.currentBird = db.searchBirds(new Bird(birdId, "", "", "", "", "","")).get(0); //Bird IDs are unique
             if (currentBird != null)
             {
                 TextView curr = (TextView) findViewById(R.id.birdName);
@@ -218,5 +221,30 @@ public class ViewBird extends AppCompatActivity {
 
         }
         */
+    }
+
+    public void retireBird(View view)
+    {
+
+
+        new AlertDialog.Builder(this)
+                .setTitle("Delete entry")
+                .setMessage("Are you sure you want to retire this bird?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = getIntent();
+                        String birdId = intent.getStringExtra(SearchBird.EXTRA_MESSAGE);
+                        currentBird = MainActivity.db.searchBirds(new Bird(birdId, "", "", "", "", "","")).get(0);
+                        currentBird.setStatus(false);
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+
     }
 }

@@ -69,6 +69,16 @@
                 android:layout_below="@+id/birdSex"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/retireBird"
+                android:text="Retire"
+                android:onClick="retireBird"
+                android:layout_below="@+id/editBird"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

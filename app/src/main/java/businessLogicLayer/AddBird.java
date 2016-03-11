@@ -70,12 +70,12 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
 
 
                 EditText txtLegBandId = (EditText) findViewById(R.id.txtLegBandId),
-                txtName = (EditText) findViewById(R.id.txtBirdName),
-                txtExperiment = (EditText) findViewById(R.id.txtExperiment),
-                txtBirthDate = (EditText) findViewById(R.id.txtBirthDate),
-                txtDeathDate = (EditText) findViewById(R.id.txtDeathDate);
+                        txtName = (EditText) findViewById(R.id.txtBirdName),
+                        txtExperiment = (EditText) findViewById(R.id.txtExperiment),
+                        txtBirthDate = (EditText) findViewById(R.id.txtBirthDate),
+                        txtDeathDate = (EditText) findViewById(R.id.txtDeathDate);
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                RadioGroup radioSex = (RadioGroup)findViewById(R.id.radioSex);
+                RadioGroup radioSex = (RadioGroup) findViewById(R.id.radioSex);
                 int selectedId = radioSex.getCheckedRadioButtonId();
                 RadioButton radioSexId = (RadioButton) findViewById(selectedId);
 
@@ -92,19 +92,17 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
                 }
                 try {
                     deathdate.setTime(sdf.parse(txtDeathDate.getText().toString()));
-                }
-                catch(ParseException e) {
+                } catch (ParseException e) {
                     deathdate = null;
                 }
                 String sex = "";
                 try {
                     sex = radioSexId.getText().toString();
-                }
-                catch(NullPointerException e){
+                } catch (NullPointerException e) {
                     return;
                 }
-                boolean status=true;
-                Bird b = new Bird(id,name,exp,birthdate,deathdate,sex,retrieveMedicalHistory,status);
+                boolean status = true;
+                Bird b = new Bird(id, name, exp, birthdate, deathdate, sex, retrieveMedicalHistory, status);
                 MainActivity.db.addBird(b);
 
                 ProgressDialog progressDialog = new ProgressDialog(AddBird.this);
@@ -113,7 +111,7 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
                 progressDialog.show();
 
                 /*Go to bird page*/
-                Intent myIntent = new Intent(AddBird.this,AddBirdSuccess.class);
+                Intent myIntent = new Intent(AddBird.this, AddBirdSuccess.class);
                 startActivity(myIntent);
 
             }
@@ -202,14 +200,14 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
         }
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
-
-    public void openAddMedicalHistory(View view) {
+     public void openAddMedicalHistory(View view) {
 
         Intent intent = new Intent(this,AddMedicalHistory.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

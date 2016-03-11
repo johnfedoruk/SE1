@@ -28,10 +28,11 @@ public class Bird implements Serializable {
         this.deathDate = deathDate;
         this.sex = sex;
         this.history = history;
+        this.status = status;
 
     }
 
-    public Bird(String id, String name, String experiment, String birthDate, String deathDate, String sex)
+    public Bird(String id, String name, String experiment, String birthDate, String deathDate, String sex, String status)
     {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         this.id = id;
@@ -52,10 +53,11 @@ public class Bird implements Serializable {
             dDate = null;
         }
 
-        this.birthDate = bDate;
-        this.deathDate = dDate;
+        birthDate = getDateString(bDate);
+        deathDate = getDateString(bDate);
         this.sex = sex;
         this.history = null;
+        this.status = true;
     }
 
     public String getName()

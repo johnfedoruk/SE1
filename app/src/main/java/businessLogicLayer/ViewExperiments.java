@@ -34,7 +34,7 @@ public class ViewExperiments extends ActionBarActivity {
         String GroupWithinExperiment = searchInfo[2];
         String StartDate = searchInfo[3];
         String EndDate = searchInfo[4];
-        String Active = "true";
+        String Active;
         ArrayList<Experiment> query = db.searchExperiments(StudyTitle,StudyType,
                 GroupWithinExperiment,StartDate,EndDate);
         ListView listView = (ListView)this.findViewById(R.id.listView);

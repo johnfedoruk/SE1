@@ -1,5 +1,6 @@
 package businessLogicLayer;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -23,6 +24,22 @@ public class AddMedicalHistory extends AppCompatActivity implements View.OnClick
 
     }
 
+    public void onStart() {
+        super.onStart();
+
+        EditText txtDateOfReport = (EditText) findViewById(R.id.txtDateOfReport);
+        txtDateOfReport.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    DateDialog dialog = new DateDialog(v);
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    dialog.show(ft, "DatePicker");
+                }
+            }
+        });
+
+    }
     @Override
     public void onClick(View v) {
 

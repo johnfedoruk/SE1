@@ -1,5 +1,7 @@
 package businessLogicLayer;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -31,7 +33,7 @@ public class ViewExperiment extends AppCompatActivity implements View.OnClickLis
         TextView viewEndDate;
         TextView viewExperimenters;
         TextView viewNotes;
-        DatabaseManager db = new DatabaseManager();
+        DatabaseManager db = MainActivity.db;
         Button btEditExperiment;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,4 +120,25 @@ public class ViewExperiment extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    public void endExperiment(View view)
+    {
+        new AlertDialog.Builder(this)
+                .setTitle("Delete entry")
+                .setMessage("Are you sure you want to end this experiment?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = getIntent();
+                        String experimentTitle = intent.getStringExtra(SearchBird.EXTRA_MESSAGE);
+                        MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).setStatus(false);
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+
+    }
 }

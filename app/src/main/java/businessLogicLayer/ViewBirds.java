@@ -31,12 +31,15 @@ public class ViewBirds extends ActionBarActivity {
         String sex = searchInfo[2];
         String birdDate = searchInfo[3];
         String deathDate = searchInfo[4];
-        ArrayList<Bird> query = db.searchBirds(id,name,sex,birdDate,deathDate);
+        String Active;
+        ArrayList<Bird> query = db.searchBirds(id,name,sex,birdDate,deathDate,"");
         ListView listView = (ListView)this.findViewById(R.id.listView);
         ArrayList<ListItem> items = new ArrayList<>();
         for(int i=0;i<query.size();i++) {
             bird = query.get(i);
-            items.add(new ListItem("ID: ",bird.getId(),"Name: ",bird.getName(),"Status: ", "true"));
+            if(bird.getStatus()==true){Active = "active";}
+            else{Active="inactive";}
+            items.add(new ListItem("ID: ",bird.getId(),"Name: ",bird.getName(),"Status: ", Active));
         }
         ListAdapter adapt = new ListAdapter(this, R.layout.item, items);
         adapt.setIntent(new Intent(this,ViewBird.class));
