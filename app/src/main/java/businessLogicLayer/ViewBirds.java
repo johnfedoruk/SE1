@@ -36,7 +36,7 @@ public class ViewBirds extends ActionBarActivity {
         ArrayList<ListItem> items = new ArrayList<>();
         for(int i=0;i<query.size();i++) {
             bird = query.get(i);
-            items.add(new ListItem("ID: ",bird.getId(),"Name: ",bird.getName()));
+            items.add(new ListItem("ID: ",bird.getId(),"Name: ",bird.getName(),"Status: ", "true"));
         }
         ListAdapter adapt = new ListAdapter(this, R.layout.item, items);
         adapt.setIntent(new Intent(this,ViewBird.class));

@@ -50,7 +50,7 @@ public class Experiment {
     public String getNotes() {
         return this.Notes;
     }
-    public boolean isActive() {return this.status;}
+    public boolean getStatus() {return this.status;}
 
     //setters
     public void setStudyTitle(String StudyTitle){

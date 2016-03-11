@@ -35,11 +35,15 @@ class ListAdapter extends ArrayAdapter<ListItem> {
         if (m != null) {
             final TextView title = (TextView) v.findViewById(R.id.title);
             TextView info = (TextView) v.findViewById(R.id.info);
+            TextView status = (TextView) v.findViewById(R.id.status);
             if (title != null) {
                 title.setText(m.titlePrefix+m.title);
             }
             if(info!=null){
                 info.setText(m.infoPrefix+m.info);
+            }
+            if(status!=null){
+               status.setText(m.status+m.statusinfo);
             }
             RelativeLayout layout = (RelativeLayout)v.findViewById(R.id.item);
             final Intent intent = this.intent;

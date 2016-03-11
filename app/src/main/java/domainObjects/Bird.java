@@ -80,6 +80,7 @@ public class Bird implements Serializable {
     }
     public String getSex(){return this.sex;}
     public MedicalHistory getMedicalHistory(){return this.history;}
+    public boolean getStatus(){return this.status;}
 
     public void setId(String id){
         this.id = id;
@@ -98,4 +99,5 @@ public class Bird implements Serializable {
         this.sex = sex;
     }
     public void setMedicalHistory(){this.history = history;}
+    public void setStatus(boolean status){this.status = status;}
 }

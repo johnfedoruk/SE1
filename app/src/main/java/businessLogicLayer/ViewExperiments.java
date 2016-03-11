@@ -34,14 +34,17 @@ public class ViewExperiments extends ActionBarActivity {
         String GroupWithinExperiment = searchInfo[2];
         String StartDate = searchInfo[3];
         String EndDate = searchInfo[4];
+        String Active = "true";
         ArrayList<Experiment> query = db.searchExperiments(StudyTitle,StudyType,
                 GroupWithinExperiment,StartDate,EndDate);
         ListView listView = (ListView)this.findViewById(R.id.listView);
         ArrayList<ListItem> items = new ArrayList<>();
         for(int i=0;i<query.size();i++) {
             experiment = query.get(i);
+            if(experiment.getStatus()==true){Active = "active";}
+            else{Active="inactive";}
             items.add(new ListItem("Title: ",experiment.getStudyTitle(),"Type: ",
-                    experiment.getStudyType()));
+                    experiment.getStudyType(),"Status: ",Active));
         }
         ListAdapter adapt = new ListAdapter(this, R.layout.item, items);
         adapt.setIntent(new Intent(this,ViewExperiment.class));

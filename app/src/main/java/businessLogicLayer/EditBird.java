@@ -103,7 +103,7 @@ public class EditBird extends AppCompatActivity implements View.OnClickListener{
                 catch(NullPointerException e){
                     return;
                 }
-                Bird b = new Bird(id,name,exp,birthdate,deathdate,sex,retrieveMedicalHistory);
+                Bird b = new Bird(id,name,exp,birthdate,deathdate,sex,retrieveMedicalHistory,true);
                 MainActivity.db.addBird(b);
 
                 ProgressDialog progressDialog = new ProgressDialog(EditBird.this);

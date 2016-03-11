@@ -182,7 +182,6 @@ public class DatabaseManager {
             if(!endDate.equals("") && !tempExperiment.getDateString(tempExperiment.getEndDate())
                     .equals(endDate))
                 add = false;
-
             if(add)
                 queryResult.add(tempExperiment);
 
