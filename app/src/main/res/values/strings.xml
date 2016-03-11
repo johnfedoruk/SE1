@@ -18,6 +18,7 @@
     <string name="title_activity_edit_experiment">EditExperiment</string>
     <string name="title_activity_exp_add_success">ExpAddSuccess</string>
     <string name="title_activity_add_bird_success">AddBirdSuccess</string>
+    <string name="title_activity_edit_bird_success">AddBirdSuccess</string>
     <string name="search">Search</string>
     <string name="edit">Edit</string>
     <string name="legbandID">LegBandID</string>
@@ -33,6 +34,7 @@
     <string name="sexFemale">Female</string>
     <string name="experimentId">Experiment Id</string>
     <string name="experimentTitle">Experiment Title</string>
+    <string name="editBirdTxt">Edit Bird</string>
     <string name="experimentGroup">Experiment Group</string>
     <string name="experimentPosition">Experiment Position</string>
     <string name="experimentStatus">Experiment Status</string>

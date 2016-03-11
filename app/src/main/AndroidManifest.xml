@@ -60,6 +60,10 @@
             android:name="businessLogicLayer.ExpAddSuccess"
             android:label="@string/title_activity_exp_add_success"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="businessLogicLayer.EditBirdSuccess"
+            android:label="@string/title_activity_edit_bird_success"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="com.google.android.gms.version"

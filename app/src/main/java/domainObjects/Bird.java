@@ -69,7 +69,14 @@ public class Bird implements Serializable {
 
     public Calendar getBirthDate() { return this.birthDate; }
     public Calendar getDeathDate() { return this.deathDate; }
-
+    public String getDateString(Calendar cal,String str) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(str);
+            return sdf.format(cal.getTime());
+        }catch(Exception e) {
+            return null;
+        }
+    }
     public String getDateString(Calendar cal) {
         if(cal==null)
             return "";
@@ -95,5 +102,5 @@ public class Bird implements Serializable {
     public void setSex(String sex){
         this.sex = sex;
     }
-    public void setMedicalHistory(){this.history = history;}
+    public void setMedicalHistory(MedicalHistory history){this.history = history;}
 }

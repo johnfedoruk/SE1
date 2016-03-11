@@ -25,7 +25,6 @@ import domainObjects.MedicalHistory;
  */
 public class ViewBird extends AppCompatActivity {
 
-    TextView birdBirthdate;
     static int id = 1;
     private Bird currentBird = null;
     @Override
@@ -46,13 +45,16 @@ public class ViewBird extends AppCompatActivity {
         Intent intent = getIntent();
         String birdId = intent.getStringExtra(SearchBird.EXTRA_MESSAGE);
 
-
         /**
          * Append Bird's Info to xml elements
          */
         if(birdId != null)
         {
-            this.currentBird = db.searchBirds(new Bird(birdId, "", "", "", "", "")).get(0); //Bird IDs are unique
+            try {
+                this.currentBird =
+                        db.searchBirds(new Bird(birdId,"","",null,null,"",null)).get(0); //Bird IDs are unique
+            }
+            catch(Exception e) {this.currentBird=null;}
             if (currentBird != null)
             {
                 TextView curr = (TextView) findViewById(R.id.birdName);
@@ -84,7 +86,7 @@ public class ViewBird extends AppCompatActivity {
                     curr.setId(currId);
                     curr.setTypeface(null, Typeface.BOLD);
                     curr.setText("Medical History");
-                    params.addRule(RelativeLayout.BELOW, R.id.birdSex);
+                    params.addRule(RelativeLayout.BELOW, R.id.editBird);
                     params.setMargins(0,20,0,0);
                     layout.addView(curr, params);
                     /**
@@ -142,6 +144,9 @@ public class ViewBird extends AppCompatActivity {
                 }
 
             }
+            else {
+                Toast.makeText(this,"ERROR LOADING BIRD",Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -195,28 +200,14 @@ public class ViewBird extends AppCompatActivity {
 
     public void editBird(View v) {
         if(this.currentBird!=null) {
-            Toast.makeText(this,"Edit Bird",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this,EditBird.class);
-            //Bundle bundle = new Bundle();
-            //bundle.putSerializable("bird",this.currentBird);
-            //intent.putExtra("bird", bundle);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("bird", this.currentBird);
+            intent.putExtras(bundle);
             startActivity(intent);
         }
         else {
             Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show();
         }
-        /*
-        switch (v.getId()) {
-            case R.id.btEditExperiment:
-
-                Intent intent = new Intent(this, EditExperiment.class);
-                String title = (String) viewStudyTitle.getText();
-                intent.putExtra(EXTRA_MESSAGE, title);
-
-                startActivity(intent);
-                break;
-
-        }
-        */
     }
 }
