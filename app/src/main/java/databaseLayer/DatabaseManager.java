@@ -1,5 +1,6 @@
 package databaseLayer;
 
+import android.content.Context;
 import android.provider.ContactsContract;
 
 import java.text.SimpleDateFormat;
@@ -19,6 +20,7 @@ import databaseLayer.DatabaseStub;
 public class DatabaseManager {
 
     private static DatabaseStub dbStub;
+    private static DatabaseSQL dbSQL = null;
 
     /**
      * DatabaseManager
@@ -29,6 +31,11 @@ public class DatabaseManager {
         this.dbStub = new DatabaseStub();
     }
 
+
+    public void generateDatabase(Context context)
+    {
+        this.dbSQL = new DatabaseSQL(context);
+    }
     /**
      * clearDatabases
      * clears the array lists, for testing purposes only
