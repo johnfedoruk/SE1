@@ -1,5 +1,7 @@
 package databaseLayer;
 
+import android.provider.ContactsContract;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -7,6 +9,8 @@ import java.util.Calendar;
 import domainObjects.Bird;
 import domainObjects.Experiment;
 import domainObjects.MedicalHistory;
+import databaseLayer.DatabaseStub;
+
 
 /**
  * Created by pure__000 on 2016-02-16.
@@ -14,9 +18,7 @@ import domainObjects.MedicalHistory;
  */
 public class DatabaseManager {
 
-    private static ArrayList<Bird> birdList;
-    private static ArrayList<Experiment> experimentList;
-    private Calendar cal;
+    private static DatabaseStub dbStub;
 
     /**
      * DatabaseManager
@@ -24,16 +26,7 @@ public class DatabaseManager {
      */
     public DatabaseManager()
     {
-        birdList = new ArrayList<>();
-        experimentList = new ArrayList<>();
-        cal = Calendar.getInstance();
-
-        birdList.add(new Bird("0001", "bird1", "Experiment #1", getCalendar(2016,2,22), getCalendar(2016,2,22), "Female",new MedicalHistory( getCalendar(2016, 2, 22),"Chicken pox","Tylenol","did not work"),true));
-        birdList.add(new Bird("0002", "bird2", "Experiment #2", getCalendar(2016,2,23), getCalendar(2016,2,24), "Male",new MedicalHistory( getCalendar(2016, 2, 24),"Flu","Polysporin","did not work"),true));
-        birdList.add(new Bird("0003", "bird3", "Experiment #3", getCalendar(2016,2,24), getCalendar(2016,2,25), "Female",new MedicalHistory( getCalendar(2016, 2, 25),"Down Syndrome","Chemotherapy","did not work"),true));
-        experimentList.add(new Experiment("Dying Bird", "Psychological","Group 1", getCalendar(2016,2,22), getCalendar(2016,2,22), "John,Gimli", "blahblah",true));
-        experimentList.add(new Experiment("Living Bird", "Suicidal","Group 2", getCalendar(2016,2,22), getCalendar(2016,2,22), "James,Angelo", "blahblah",false));
-
+        this.dbStub = new DatabaseStub();
     }
 
     /**
@@ -42,8 +35,7 @@ public class DatabaseManager {
      */
     public void clearDatabases()
     {
-        birdList = new ArrayList<Bird>();
-        experimentList = new ArrayList<Experiment>();
+        dbStub.clearDatabases();
     }
 
     /**
@@ -52,16 +44,10 @@ public class DatabaseManager {
      * @param bird the bird to be added
      */
     public void addBird(Bird bird){
-        this.birdList.add(bird);
+        dbStub.addBird(bird);
     }
     public void removeBird(String id){
-        id = id.trim().toLowerCase();
-        for(int i=0;i<this.birdList.size();i++) {
-            if(this.birdList.get(i).getId().toLowerCase().trim().equals(id)) {
-                this.birdList.remove(i);
-                return;
-            }
-        }
+        dbStub.removeBird(id);
     }
 
     /**
@@ -70,7 +56,7 @@ public class DatabaseManager {
      * @param exp the experiment to be added
      */
     public void addExperiment(Experiment exp) {
-        this.experimentList.add(exp);
+        dbStub.addExperiment(exp);
     }
 
     /**
@@ -81,14 +67,7 @@ public class DatabaseManager {
      */
     public static Bird findBird(String id)
     {
-        for(int i = 0; i < birdList.size(); i++)
-        {
-            if(birdList.get(i).getId().equals(id)) {
-                return birdList.get(i);
-            }
-        }
-
-        return null;
+        return dbStub.findBird(id);
     }
 
     /**
@@ -106,66 +85,15 @@ public class DatabaseManager {
      */
     public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate, String status)
     {
-
-        return searchBirds(new Bird(id, name, "", birthDate, deathDate, sex,status) );
-
-      /*  SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar bd = Calendar.getInstance();
-        Calendar dd = Calendar.getInstance();
-        try {
-            bd.setTime(simpleDateFormat.parse(birthDate));
-        }
-        catch(Exception e){bd = null;}
-        try {
-            dd.setTime(simpleDateFormat.parse(deathDate));
-        }
-        catch(Exception e){dd = null;}
-        Bird bird = new Bird(id,name,"",bd,dd,sex,null);
-        return searchBirds(bird);
-*/
+        return dbStub.searchBirds(id, name, sex, birthDate, deathDate,status);
     }
 
+    public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate)
+    {
+        return dbStub.searchBirds(id, name, sex, birthDate, deathDate);
+    }
     public ArrayList<Bird> searchBirds(Bird inputBird) {
-
-        ArrayList<Bird> queryResult = new ArrayList<>(this.birdList);
-        String id = inputBird.getId().trim().toLowerCase();
-        String name = inputBird.getName().trim().toLowerCase();
-        String sex = inputBird.getSex().trim().toLowerCase();
-        String birthDate = inputBird.getDateString(inputBird.getBirthDate()).trim().toLowerCase();
-        String deathDate = inputBird.getDateString(inputBird.getDeathDate()).trim().toLowerCase();
-
-        /**This will be replaced with a simple sql statement**/
-        for(int i=queryResult.size()-1;i>=0;i--) {
-            if(id!=null&&id.length()>0&&
-                    !queryResult.get(i).getId().trim().toLowerCase().equals(id)) {
-                queryResult.remove(i);
-                continue;
-            }
-            if(name!=null&&name.length()>0&&
-                    !queryResult.get(i).getName().trim().toLowerCase().equals(name)) {
-                queryResult.remove(i);
-                continue;
-            }
-            if(sex!=null&&sex.length()>0&&
-                    !queryResult.get(i).getSex().trim().toLowerCase().equals(sex)) {
-                queryResult.remove(i);
-                continue;
-            }
-            if(birthDate!=null&&birthDate.length()>0&&
-                    !queryResult.get(i).getDateString(queryResult.get(i).getBirthDate())
-                            .equals(birthDate)) {
-                queryResult.remove(i);
-                continue;
-            }
-            if(deathDate!=null&&deathDate.length()>0&&
-                    !queryResult.get(i).getDateString(queryResult.get(i).getDeathDate())
-                    .equals(deathDate)) {
-                queryResult.remove(i);
-                continue;
-            }
-        }
-        queryResult.trimToSize();
-        return queryResult;
+        return dbStub.searchBirds(inputBird);
     }
 
     /**
@@ -184,45 +112,12 @@ public class DatabaseManager {
     public static ArrayList<Experiment> searchExperiments(String studyTitle, String studyType, String
                                                           groupWithinExperiment, String startDate,
                                                           String endDate) {
-        ArrayList<Experiment> queryResult = new ArrayList<>();
-
-        boolean add;
-
-        Experiment tempExperiment;
-
-        /**This will be replaced with a simple sql statement**/
-        for (int i = 0; i < experimentList.size(); i++ )
-        {
-            add = true;
-            tempExperiment = experimentList.get(i);
-
-            if(!studyTitle.equals("") && !tempExperiment.getStudyTitle().toLowerCase()
-                    .contains(studyTitle.toLowerCase()))
-                add = false;
-            if(!studyType.equals("") && !tempExperiment.getStudyType().toLowerCase()
-                    .contains(studyType.toLowerCase()))
-                add = false;
-            if(!groupWithinExperiment.equals("") && !tempExperiment.getGroupWithinExperiment()
-                    .toLowerCase().contains(groupWithinExperiment.toLowerCase()))
-                add = false;
-            if(!startDate.equals("") && !tempExperiment.getDateString(tempExperiment.getStartDate())
-                    .equals(startDate))
-                add = false;
-            if(!endDate.equals("") && !tempExperiment.getDateString(tempExperiment.getEndDate())
-                    .equals(endDate))
-                add = false;
-
-            if(add)
-                queryResult.add(tempExperiment);
-
-        }
-
-        return queryResult;
+       return dbStub.searchExperiments(studyTitle, studyType, groupWithinExperiment, startDate, endDate);
     }
 
     public static ArrayList<Experiment> searchExperiments(Experiment experiment)
     {
-        return searchExperiments(experiment.getStudyTitle(), experiment.getStudyType(), experiment.getGroupWithinExperiment(), experiment.getDateString(experiment.getStartDate()), experiment.getDateString(experiment.getEndDate()));
+        return dbStub.searchExperiments(experiment);
     }
 
 
@@ -232,7 +127,7 @@ public class DatabaseManager {
      * @return experimentList
      */
     public ArrayList<Experiment> getExperiment(){
-        return this.experimentList;
+        return dbStub.getExperiment();
     }
 
     /**
@@ -244,9 +139,7 @@ public class DatabaseManager {
      * @return the calendar generated
      */
     public Calendar getCalendar(int yyyy,int m, int dd){
-        this.cal = Calendar.getInstance();
-        this.cal.set(yyyy,m,dd);
-        return this.cal;
+        return dbStub.getCalendar(yyyy, m, dd);
     }
 
     /**
@@ -255,6 +148,6 @@ public class DatabaseManager {
      * @return birdList
      */
     public ArrayList<Bird> getBird(){
-        return this.birdList;
+        return dbStub.getBird();
     }
 }
