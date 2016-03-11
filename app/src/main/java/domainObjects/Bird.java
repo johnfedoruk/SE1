@@ -1,5 +1,8 @@
 package domainObjects;
 
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -10,7 +13,7 @@ import java.util.Locale;
  *
  * Additional Constructor added by Kaj on 2016-03-08
  */
-public class Bird {
+public class Bird implements Serializable {
 
     String id, name, experiment, sex;
     Calendar birthDate, deathDate;
