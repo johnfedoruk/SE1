@@ -106,7 +106,7 @@ Zili - 20 Hours		xiezilli
 Kaj Moroz 2016/03/08
 -Committed Database Interface and function refactoring in Database Manager.
 
-2016/03/08
+2016/03/08  
 -Kaj refactored the interface, and seperated into SQL and Stub.
 -Where did we lose marks? How should we get that fixed for the marker for the next iteration.
  -Google Services, is that imported?
@@ -117,3 +117,23 @@ Kaj Moroz 2016/03/08
 -Discussed refactoring and clarified the jobs people were given last meeting. 
 -Video Conference Friday 11:30-1:30
 >Meeting Length 2 Hours
+
+Kaj Moroz 2016/03/11
+-Refactored the DatabaseManager so that it's the interface, and DatabaseStub is the actual Stub Database
+
+3/11/2016
+-Did a remote meeting.
+-Did updates on what everyone has done and what you need to do.
+-Finished Retiring and Finishing Experiments
+ -Add intent for when the birds retires.
+-How is the spike on excel file importing going?
+ -zili Looking at converting the excel file into textFiles.
+-John added serializable to the bird object so you can pass around bird objects.
+ -You need to added serializable to implement it it.
+-John taking a smoke.
+-Integration Tests need to be done once the Database is implemented
+-DatabaseManager is now an interface for DatabaseStub and DatabaseSQL
+-searchBird was refactored to handle status in the DatbaseStub.
+-Talking about refactoring all of the old intents to pass birds.
+>Meeting Length 40 minutes
+
