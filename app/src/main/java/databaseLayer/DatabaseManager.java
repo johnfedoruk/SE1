@@ -1,5 +1,6 @@
 package databaseLayer;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -23,8 +24,8 @@ public class DatabaseManager {
      */
     public DatabaseManager()
     {
-        birdList = new ArrayList<Bird>();
-        experimentList = new ArrayList<Experiment>();
+        birdList = new ArrayList<>();
+        experimentList = new ArrayList<>();
         cal = Calendar.getInstance();
 
         birdList.add(new Bird("0001", "bird1", "Experiment #1", getCalendar(2016,2,22), getCalendar(2016,2,22), "Female",new MedicalHistory( getCalendar(2016, 2, 22),"Chicken pox","Tylenol","did not work"),true));
@@ -32,6 +33,7 @@ public class DatabaseManager {
         birdList.add(new Bird("0003", "bird3", "Experiment #3", getCalendar(2016,2,24), getCalendar(2016,2,25), "Female",new MedicalHistory( getCalendar(2016, 2, 25),"Down Syndrome","Chemotherapy","did not work"),true));
         experimentList.add(new Experiment("Dying Bird", "Psychological","Group 1", getCalendar(2016,2,22), getCalendar(2016,2,22), "John,Gimli", "blahblah",true));
         experimentList.add(new Experiment("Living Bird", "Suicidal","Group 2", getCalendar(2016,2,22), getCalendar(2016,2,22), "James,Angelo", "blahblah",false));
+
     }
 
     /**
@@ -51,6 +53,15 @@ public class DatabaseManager {
      */
     public void addBird(Bird bird){
         this.birdList.add(bird);
+    }
+    public void removeBird(String id){
+        id = id.trim().toLowerCase();
+        for(int i=0;i<this.birdList.size();i++) {
+            if(this.birdList.get(i).getId().toLowerCase().trim().equals(id)) {
+                this.birdList.remove(i);
+                return;
+            }
+        }
     }
 
     /**
@@ -95,47 +106,65 @@ public class DatabaseManager {
      */
     public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate, String status)
     {
+<<<<<<< HEAD
         return searchBirds(new Bird(id, name, "", birthDate, deathDate, sex,status) );
+=======
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar bd = Calendar.getInstance();
+        Calendar dd = Calendar.getInstance();
+        try {
+            bd.setTime(simpleDateFormat.parse(birthDate));
+        }
+        catch(Exception e){bd = null;}
+        try {
+            dd.setTime(simpleDateFormat.parse(deathDate));
+        }
+        catch(Exception e){dd = null;}
+        Bird bird = new Bird(id,name,"",bd,dd,sex,null);
+        return searchBirds(bird);
+>>>>>>> a3ae27990ce38f3372e350a24957c76641aeb357
     }
 
     public ArrayList<Bird> searchBirds(Bird inputBird) {
 
-        ArrayList<Bird> queryResult = new ArrayList<Bird>();
-
-
-
-        String id = inputBird.getId();
-        String name = inputBird.getName();
-        String sex = inputBird.getSex();
-        String birthDate = inputBird.getDateString(inputBird.getBirthDate());
-        String deathDate = inputBird.getDateString(inputBird.getDeathDate());
-
-
-        Bird tempBird;
-
-        boolean add;
+        ArrayList<Bird> queryResult = new ArrayList<>(this.birdList);
+        String id = inputBird.getId().trim().toLowerCase();
+        String name = inputBird.getName().trim().toLowerCase();
+        String sex = inputBird.getSex().trim().toLowerCase();
+        String birthDate = inputBird.getDateString(inputBird.getBirthDate()).trim().toLowerCase();
+        String deathDate = inputBird.getDateString(inputBird.getDeathDate()).trim().toLowerCase();
 
         /**This will be replaced with a simple sql statement**/
-        for (int i = 0; i < birdList.size(); i++ )
-        {
-            add = true;
-            tempBird = birdList.get(i);
-
-            if(!id.equals("") && !tempBird.getId().contains(id))
-                add = false;
-            if(!name.equals("") && !tempBird.getName().toLowerCase().contains(name.toLowerCase()))
-                add = false;
-            if(!sex.equals("") && !tempBird.getSex().toLowerCase().equals(sex.toLowerCase()))
-                add = false;
-            if(!birthDate.equals("") && !tempBird.getDateString(tempBird.getBirthDate()).equals(birthDate))
-                add = false;
-            if(!deathDate.equals("") && !tempBird.getDateString(tempBird.getDeathDate()).equals(deathDate))
-                add = false;
-
-            if(add)
-                queryResult.add(tempBird);
-
+        for(int i=queryResult.size()-1;i>=0;i--) {
+            if(id!=null&&id.length()>0&&
+                    !queryResult.get(i).getId().trim().toLowerCase().equals(id)) {
+                queryResult.remove(i);
+                continue;
+            }
+            if(name!=null&&name.length()>0&&
+                    !queryResult.get(i).getName().trim().toLowerCase().equals(name)) {
+                queryResult.remove(i);
+                continue;
+            }
+            if(sex!=null&&sex.length()>0&&
+                    !queryResult.get(i).getSex().trim().toLowerCase().equals(sex)) {
+                queryResult.remove(i);
+                continue;
+            }
+            if(birthDate!=null&&birthDate.length()>0&&
+                    !queryResult.get(i).getDateString(queryResult.get(i).getBirthDate())
+                            .equals(birthDate)) {
+                queryResult.remove(i);
+                continue;
+            }
+            if(deathDate!=null&&deathDate.length()>0&&
+                    !queryResult.get(i).getDateString(queryResult.get(i).getDeathDate())
+                    .equals(deathDate)) {
+                queryResult.remove(i);
+                continue;
+            }
         }
+        queryResult.trimToSize();
         return queryResult;
     }
 

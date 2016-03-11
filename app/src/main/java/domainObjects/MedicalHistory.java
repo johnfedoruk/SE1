@@ -1,12 +1,13 @@
 package domainObjects;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
  * Created by Jose Matundan on 2/20/2016.
  */
-public class MedicalHistory {
+public class MedicalHistory implements Serializable {
 
     Calendar dateOfReport;
     String healthIssue,treatment,Notes;

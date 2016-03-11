@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import net.javacrypt.se1.R;
 
+import org.w3c.dom.Text;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -37,6 +39,7 @@ public class EditBird extends AppCompatActivity implements View.OnClickListener{
     public static TextView txtAddMedicalHistory;
     public static ImageView imgAddMedicalHistory;
     public static MedicalHistory retrieveMedicalHistory;
+    public static Bird currentBird = null;
     /**
      *
      * @param savedInstanceState savedState
@@ -56,6 +59,44 @@ public class EditBird extends AppCompatActivity implements View.OnClickListener{
         *Listener for the AddBird button
         *
          */
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        this.currentBird = (Bird)bundle.getSerializable("bird");
+        if(this.currentBird!=null) {
+            TextView textView;
+            EditText editText;
+            RadioButton radioButton;
+            String str = "dd-MM-yyyy";
+            // autocomplete id
+            textView = (TextView) findViewById(R.id.txtLegBandId);
+            textView.setText(this.currentBird.getId());
+            // autocomplete name
+            textView = (TextView) findViewById(R.id.txtBirdName);
+            textView.setText(this.currentBird.getName());
+            // autocomplete experiment
+            textView = (TextView) findViewById(R.id.txtExperiment);
+            textView.setText(this.currentBird.getExperiment());
+            // autocomplete birthDate
+            editText = (EditText) findViewById(R.id.txtBirthDate);
+            editText.setText(this.currentBird.getDateString(this.currentBird.getBirthDate(),str));
+            // autocomplete deathDate
+            editText = (EditText) findViewById(R.id.txtDeathDate);
+            editText.setText(this.currentBird.getDateString(this.currentBird.getDeathDate(),str));
+            // autocomplete sex
+            if(this.currentBird.getSex().toLowerCase().equals("male"))
+                radioButton = (RadioButton)findViewById(R.id.radioMale);
+            else if(this.currentBird.getSex().toLowerCase().equals("female"))
+                radioButton = (RadioButton)findViewById(R.id.radioFemale);
+            else
+                radioButton = null;
+            if(radioButton!=null)
+                radioButton.setChecked(true);
+            // autocomplete medical history
+            AddMedicalHistory.addHistory = this.currentBird.getMedicalHistory();
+
+        }
+
+
         txtAddMedicalHistory = (TextView) findViewById(R.id.txtAddMedicalHistory);
         AddBird.imgAddMedicalHistory = (ImageView) findViewById(R.id.imgAddMedicalHistory);
         Button btAddBird = (Button) findViewById(R.id.btAddBird);
@@ -103,16 +144,21 @@ public class EditBird extends AppCompatActivity implements View.OnClickListener{
                 catch(NullPointerException e){
                     return;
                 }
+
                 Bird b = new Bird(id,name,exp,birthdate,deathdate,sex,retrieveMedicalHistory,true);
+
+             
+                MainActivity.db.removeBird(EditBird.currentBird.getId());
+
                 MainActivity.db.addBird(b);
 
                 ProgressDialog progressDialog = new ProgressDialog(EditBird.this);
-                progressDialog.setTitle("Adding Bird");
+                progressDialog.setTitle("Editing Bird");
                 progressDialog.setMessage("Please wait...");
                 progressDialog.show();
 
                 /*Go to bird page*/
-                Intent myIntent = new Intent(EditBird.this,AddBirdSuccess.class);
+                Intent myIntent = new Intent(EditBird.this,EditBirdSuccess.class);
                 startActivity(myIntent);
 
             }
