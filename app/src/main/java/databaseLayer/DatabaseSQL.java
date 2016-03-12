@@ -1,36 +1,45 @@
 package databaseLayer;
 
+import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.ContactsContract;
+
+import java.util.ArrayList;
 
 import databaseLayer.schemas.BirdDatabase;
+import domainObjects.Bird;
+import domainObjects.Experiment;
 
 import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
 
 /**
  * Created by Kaj on 3/7/2016.
  */
-public class DatabaseSQL extends SQLiteOpenHelper{
+public class DatabaseSQL{
 
-    public static final int DB_VERSION = 1;
-    public static final String DB_NAME = "SQLDatabase.db";
+    DatabaseHelper dbHelper;
+    BirdDatabase birdTable;
 
-    SQLiteDatabase birdData;
     public DatabaseSQL(Context context)
     {
-        super(context, DB_NAME, null, DB_VERSION);
+        dbHelper = new DatabaseHelper(context);
+        birdTable = new BirdDatabase(context);
     }
 
-    public void onCreate(SQLiteDatabase db)
+
+    public void clearDatabases()
     {
-        db.execSQL(BirdDatabase.CREATE_ENTRIES);
+        SQLiteDatabase dirtyDB = dbHelper.getWritableDatabase();
+        dirtyDB.execSQL(BirdDatabase.DELETE_ENTRIES);
     }
 
-    public void onUpgrade(SQLiteDatabase db, int currVersion, int newVersion)
+    public void insert(Bird values)
     {
-        db.execSQL(BirdDatabase.DELETE_ENTRIES);
-        onCreate(db);
+        birdTable.insert(values);
     }
+
+
 
 }
