@@ -25,7 +25,7 @@ public class ExperimentDatabase {
         public static final String TABLE_LABEL = "exp_table";
         public static final String EXP_TITLE = "title";
         public static final String EXP_TYPE = "type";
-        public static final String EXP_GROUP = "group";
+        public static final String EXP_GROUP = "study";
         public static final String EXP_START = "start_date";
         public static final String EXP_END = "end_date";
         public static final String EXP_TERS = "experimenters";

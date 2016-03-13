@@ -66,7 +66,7 @@ public final class BirdDatabase {
             BirdEntry.BIRD_STATUS + TYPE_TEXT + COMMA +
             BirdEntry.BIRD_MED + TYPE_TEXT + COMMA +
             BirdEntry.BIRD_DAD + TYPE_TEXT + COMMA +
-            BirdEntry.BIRD_MOM + TYPE_TEXT + COMMA +
+            BirdEntry.BIRD_MOM + TYPE_TEXT +
             " );";
 
     public ArrayList<Bird> getBird(){

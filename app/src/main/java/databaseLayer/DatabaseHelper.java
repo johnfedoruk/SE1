@@ -13,7 +13,7 @@ import domainObjects.Experiment;
  */
 public class DatabaseHelper extends SQLiteOpenHelper{
 
-    public static final int DB_VERSION = 1;
+    public static final int DB_VERSION = 2;
     public static final String DB_NAME = "SQLDatabase.db";
 
     public DatabaseHelper(Context context)

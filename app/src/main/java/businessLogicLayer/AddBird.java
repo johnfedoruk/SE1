@@ -39,7 +39,7 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
     public static ImageView imgAddMedicalHistory;
     public static MedicalHistory retrieveMedicalHistory;
     public static DateParser dateParser = new DateParser();
-    private EditText txtLegBandId, txtName, txtExperiment, txtBirthDate, txtDeathDate;
+    private EditText txtLegBandId, txtName, txtExperiment, txtBirthDate, txtDeathDate, txtMotherId, txtFatherId;
     private Button btAddBird;
     private  RadioButton radioSexId;
     private RadioGroup radioSex;
@@ -65,11 +65,14 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
         *
          */
         txtLegBandId = (EditText) findViewById(R.id.txtLegBandId);
-                txtName = (EditText) findViewById(R.id.txtBirdName);
-                txtExperiment = (EditText) findViewById(R.id.txtExperiment);
-                txtBirthDate = (EditText) findViewById(R.id.txtBirthDate);
-                txtDeathDate = (EditText) findViewById(R.id.txtDeathDate);
+        txtName = (EditText) findViewById(R.id.txtBirdName);
+        txtExperiment = (EditText) findViewById(R.id.txtExperiment);
+        txtBirthDate = (EditText) findViewById(R.id.txtBirthDate);
+        txtDeathDate = (EditText) findViewById(R.id.txtDeathDate);
+        txtFatherId = (EditText) findViewById(R.id.txtFatherId);
+        txtMotherId = (EditText) findViewById(R.id.txtMotherId);
         txtAddMedicalHistory = (TextView) findViewById(R.id.txtAddMedicalHistory);
+
         AddBird.imgAddMedicalHistory = (ImageView) findViewById(R.id.imgAddMedicalHistory);
 
         retrieveMedicalHistory = AddMedicalHistory.addHistory;
@@ -115,6 +118,28 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
             public void afterTextChanged(Editable s) {InputValidation.isDate(txtDeathDate, false);}
         });
 
+        txtMotherId.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {InputValidation.isID(txtMotherId, false);}
+        });
+
+        txtFatherId.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {InputValidation.isID(txtFatherId, false);}
+        });
+
         radioSex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -140,6 +165,8 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
                     String exp = txtExperiment.getText().toString();
                     String birthdate = txtBirthDate.getText().toString();
                     String deathdate = txtDeathDate.getText().toString();
+                    String motherId = txtMotherId.getText().toString();
+                    String fatherId = txtFatherId.getText().toString();
 
                     int selectedId = radioSex.getCheckedRadioButtonId();
                     radioSexId = (RadioButton) findViewById(selectedId);
@@ -162,7 +189,7 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
                     }
 
                     boolean status = true;
-                    Bird b = new Bird(id, name, exp, bDate, dDate, sex, retrieveMedicalHistory, status);
+                    Bird b = new Bird(id, name, exp, bDate, dDate, sex, retrieveMedicalHistory, status, motherId, fatherId);
                     MainActivity.db.addBird(b);
 
                     ProgressDialog progressDialog = new ProgressDialog(AddBird.this);
