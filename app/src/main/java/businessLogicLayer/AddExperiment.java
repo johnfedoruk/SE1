@@ -5,11 +5,15 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
 import net.javacrypt.se1.R;
 
@@ -18,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import databaseLayer.DatabaseManager;
+import domainObjects.DateParser;
 import domainObjects.Experiment;
 
 /*============================JOSE============================*/
@@ -25,7 +30,7 @@ public class AddExperiment extends AppCompatActivity implements View.OnClickList
 
     DatabaseManager db = new DatabaseManager();
     Button btCreateExperiment;
-
+    public static DateParser dateParser = new DateParser();
     EditText txtStudyTitle, txtStudyType, txtGroupWithinExperiment, txtStartDate, txtEndDate, txtExperimenters, txtNotes;
     databaseLayer.ExperimentLocalStore ExperimentLocalStore;
 
@@ -33,20 +38,7 @@ public class AddExperiment extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_experiment);
-        Button btAddExperiment= (Button) findViewById(R.id.btCreateExperiment);
-        btAddExperiment.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                ProgressDialog progressDialog = new ProgressDialog(AddExperiment.this);
-                progressDialog.setTitle("Adding Bird");
-                progressDialog.setMessage("Please wait...");
-                progressDialog.show();
-                Intent myIntent = new Intent(AddExperiment.this, ExpAddSuccess.class);
-                startActivity(myIntent);
-
-            }
-        });
 
         txtStudyTitle = ((EditText) findViewById(R.id.txtStudyTitle));
         txtStudyType = ((EditText) findViewById(R.id.txtStudyType));
@@ -56,10 +48,76 @@ public class AddExperiment extends AppCompatActivity implements View.OnClickList
         txtExperimenters = ((EditText) findViewById(R.id.txtExperimenters));
         txtNotes = ((EditText) findViewById(R.id.txtNotes));
 
+        txtStudyTitle.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void afterTextChanged(Editable s) {InputValidation.hasText(txtStudyTitle);}
+        });
+
+        txtStartDate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void afterTextChanged(Editable s) {InputValidation.isDate(txtStartDate, true);}
+        });
+
+        txtEndDate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void afterTextChanged(Editable s) {InputValidation.isDate(txtEndDate, false);}
+        });
+
         btCreateExperiment = (Button) findViewById(R.id.btCreateExperiment);
+        btCreateExperiment.setOnClickListener(new View.OnClickListener() {
 
-        btCreateExperiment.setOnClickListener(this);
+            @Override
+            public void onClick(View v) {
 
+                if(checkValidation()) {
+                    String title = txtStudyTitle.getText().toString();
+                    String type = txtStudyType.getText().toString();
+                    String group = txtGroupWithinExperiment.getText().toString();
+                    String startDate = txtStartDate.getText().toString();
+                    String endDate = txtEndDate.getText().toString();
+                    Calendar sDate = dateParser.toCalendar(startDate);
+                    Calendar eDate;
+                    if(endDate.equals(""))
+                    {
+                        eDate = null;
+                    }
+                    else
+                    {
+                        eDate = dateParser.toCalendar(endDate);
+                    }
+
+                    String experimenters = txtExperimenters.getText().toString();
+                    String notes = txtNotes.getText().toString();
+                    boolean active = true;
+
+                    Experiment exp = new Experiment(title, type, group, sDate, eDate, experimenters, notes, active);
+                    db.addExperiment(exp);
+                    startActivity(new Intent(AddExperiment.this, ExpAddSuccess.class));
+                    ProgressDialog progressDialog = new ProgressDialog(AddExperiment.this);
+                    progressDialog.setTitle("Adding Experiment");
+                    progressDialog.setMessage("Please wait...");
+                    progressDialog.show();
+                    Intent myIntent = new Intent(AddExperiment.this, ExpAddSuccess.class);
+                    startActivity(myIntent);
+                }
+                else
+                {
+                    Toast.makeText(AddExperiment.this, "Form contains an error", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     @Override
@@ -102,30 +160,7 @@ public class AddExperiment extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btCreateExperiment:
 
-                String title = txtStudyTitle.getText().toString();
-                String type = txtStudyType.getText().toString();
-                String group = txtGroupWithinExperiment.getText().toString();
-                Calendar startdate = Calendar.getInstance();
-                Calendar enddate = Calendar.getInstance();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                try {
-                    startdate.setTime(sdf.parse(txtStartDate.getText().toString()));
-
-                    enddate.setTime(sdf.parse(txtEndDate.getText().toString()));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                String experimenters =  txtExperimenters.getText().toString();
-                String notes = txtNotes.getText().toString();
-                boolean active = true;
-                Experiment exp = new Experiment(title,type,group,startdate,enddate,experimenters,notes,active);
-                db.addExperiment(exp);
-                startActivity(new Intent(this, ExpAddSuccess.class));
-                break;
-        }
     }
 
     @Override
@@ -157,7 +192,14 @@ public class AddExperiment extends AppCompatActivity implements View.OnClickList
         });
     }
 
+    private boolean checkValidation() {
+        boolean ret = true;
 
+        if (!InputValidation.hasText(txtStudyTitle)) ret = false;
+        if (!InputValidation.isDate(txtStartDate, true)) ret = false;
+        if (!InputValidation.isDate(txtEndDate, false)) ret = false;
+        return ret;
+    }
 
 }
 /*============================JOSE============================*/

@@ -101,8 +101,9 @@ public class EditExperiment extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
 
             case R.id.btEditExperiment:
-
-                break;
+                Intent myIntent = new Intent(EditExperiment.this, ExpAddSuccess.class);
+                startActivity(myIntent);
+                 break;
 
         }
     }

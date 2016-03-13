@@ -27,7 +27,8 @@ public class MedicalHistory implements Serializable {
     }
 
     public Calendar getDateOfReport() {return this.dateOfReport;}
-    public String getDateString(Calendar cal){
+    public String getDateString(Calendar cal)
+    {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return sdf.format(cal.getTime());
     }
