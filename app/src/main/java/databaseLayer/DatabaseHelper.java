@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     public DatabaseHelper(Context context)
     {
-        super(context, DB_NAME, null, DB_VERSION);
+        super(context, BirdDatabase.BirdEntry.DB_NAME, null, DB_VERSION);
     }
 
     public void onCreate(SQLiteDatabase db) {

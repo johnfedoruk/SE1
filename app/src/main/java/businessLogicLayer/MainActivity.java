@@ -1,6 +1,7 @@
 package businessLogicLayer;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -9,16 +10,19 @@ import android.view.View;
 
 import net.javacrypt.se1.R;
 
+import databaseLayer.DatabaseHelper;
 import databaseLayer.DatabaseManager;
 
 
 @SuppressWarnings("all")
 public class MainActivity extends AppCompatActivity {
     public static DatabaseManager db;
+    public DatabaseHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.dbHelper = new DatabaseHelper(getApplicationContext());
        this.db = new DatabaseManager();
-        this.db.generateDatabase(getApplicationContext());
+        this.db.generateDatabase(dbHelper);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

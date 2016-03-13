@@ -148,6 +148,7 @@ public class ViewBird extends AppCompatActivity {
                     currId = newId();
                     curr.setId(currId);
                     layout.addView(curr, params);
+
                 }
 
             }

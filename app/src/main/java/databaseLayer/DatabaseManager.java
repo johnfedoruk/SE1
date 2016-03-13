@@ -1,6 +1,7 @@
 package databaseLayer;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.ContactsContract;
 
 import java.text.SimpleDateFormat;
@@ -32,9 +33,9 @@ public class DatabaseManager {
     }
 
 
-    public void generateDatabase(Context context)
+    public void generateDatabase(SQLiteOpenHelper helpMe)
     {
-        this.dbSQL = new DatabaseSQL(context);
+        this.dbSQL = new DatabaseSQL(helpMe);
     }
     /**
      * clearDatabases
@@ -52,6 +53,7 @@ public class DatabaseManager {
      */
     public void addBird(Bird bird){
         dbStub.addBird(bird);
+        dbSQL.addBird(bird);
     }
     public void removeBird(String id){
         dbStub.removeBird(id);

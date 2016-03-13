@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.ContactsContract;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
+import businessLogicLayer.MainActivity;
 import databaseLayer.schemas.BirdDatabase;
 import domainObjects.Bird;
 import domainObjects.Experiment;
@@ -19,27 +21,140 @@ import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
  */
 public class DatabaseSQL{
 
-    DatabaseHelper dbHelper;
-    BirdDatabase birdTable;
+    static BirdDatabase birdTable;
+    private Calendar cal;
+    private SQLiteOpenHelper helpThisGuy;
 
-    public DatabaseSQL(Context context)
+
+    public DatabaseSQL(SQLiteOpenHelper helpPleaseSomebody)
     {
-        dbHelper = new DatabaseHelper(context);
-        birdTable = new BirdDatabase(context);
+        birdTable = new BirdDatabase(helpPleaseSomebody);
+        helpThisGuy = helpPleaseSomebody;
     }
 
 
     public void clearDatabases()
     {
-        SQLiteDatabase dirtyDB = dbHelper.getWritableDatabase();
+        SQLiteDatabase dirtyDB = helpThisGuy.getWritableDatabase();
         dirtyDB.execSQL(BirdDatabase.DELETE_ENTRIES);
     }
 
-    public void insert(Bird values)
+    public void addBird(Bird values)
     {
         birdTable.insert(values);
     }
 
+    public void removeBird(String id){
 
+    }
+
+    /**
+     * addExperiment
+     * add an experiment to the experiment list
+     * @param exp the experiment to be added
+     */
+    public static void addExperiment(Experiment exp) {
+    }
+
+    /**
+     * findBird
+     * finds a bird with a certain id
+     * @param id the id of the bird to be found
+     * @return either null (when bird is not found) or the Bird
+     */
+    public static Bird findBird(String id)
+    {
+        return birdTable.findBird(id);
+    }
+
+    /**
+     * searchBirds
+     *  Queries the birdList and returns all birds that match the definitions
+     * @param id The id of the bird. If not defined, has length of zero.
+     * @param name The name of the bird. If not defined, has length of zero.
+     * @param sex The sex of the bird. If male, will be "male", if female, will be "female"
+     *            if both will be "both", if undefined will have length of zero
+     * @param birthDate The birth date in string format. Has the format "yyyy-MM-dd". If not defined
+     *                 it will have a length of zero.
+     * @param deathDate The death date in string format. Has the format "yyyy-MM-dd". If not defined
+     *                  it will have a length of zero.
+     * @return The query results
+     */
+    public static ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate, String status)
+    {
+        return searchBirds(new Bird(id, name, "", birthDate, deathDate, sex, status));
+
+    }
+
+    public static ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate) {
+
+        return searchBirds(new Bird(id, name, "", birthDate, deathDate, sex, ""));
+    }
+
+    public static ArrayList<Bird> searchBirds(Bird inputBird) {
+
+        ArrayList<Bird> queryResult = new ArrayList<>();
+
+        return queryResult;
+    }
+
+    /**
+     * searchExperiments
+     *  Queries the experimentList and returns all birds that match the definitions
+     * @param studyTitle The title of the experiment. If undefined will have length of zero.
+     * @param studyType The type of experiment. If undefined will have length of zero.
+     * @param groupWithinExperiment The group within the experiment. If undefined will have length
+     *                              of zero
+     * @param startDate The start date of the experiment. Has the format "dd mm yyyy". If not defined
+     *                 it will have a length of zero.
+     * @param endDate The end date of the experiment. Has the format "dd mm yyyy". If not defined
+     *                 it will have a length of zero.
+     * @return The query results
+     */
+    public static ArrayList<Experiment> searchExperiments(String studyTitle, String studyType, String
+            groupWithinExperiment, String startDate,
+                                                          String endDate) {
+        ArrayList<Experiment> queryResult = new ArrayList<>();
+
+        return queryResult;
+    }
+
+    public static ArrayList<Experiment> searchExperiments(Experiment experiment)
+    {
+        return searchExperiments(experiment.getStudyTitle(), experiment.getStudyType(), experiment.getGroupWithinExperiment(), experiment.getDateString(experiment.getStartDate()), experiment.getDateString(experiment.getEndDate()));
+    }
+
+
+    /**
+     * getExperiment
+     * get the experiment list
+     * @return experimentList
+     */
+    public static ArrayList<Experiment> getExperiment(){
+        return null;
+    }
+
+    /**
+     * getCalendar
+     * generate and return a calendar made up of the parameters
+     * @param yyyy the year for the calendar
+     * @param m the month for the calendar
+     * @param dd the day for the calendar
+     * @return the calendar generated
+     */
+    public Calendar getCalendar(int yyyy,int m, int dd){
+        this.cal = Calendar.getInstance();
+        this.cal.set(yyyy,m,dd);
+        return this.cal;
+    }
+
+    /**
+     * getBird
+     * gets the bird list
+     * @return birdList
+     */
+    public static ArrayList<Bird> getBird(){
+        return null;
+    }
 
 }
