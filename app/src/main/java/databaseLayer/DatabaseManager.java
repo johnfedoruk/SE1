@@ -225,4 +225,32 @@ public class DatabaseManager {
             return dbStub.getBird();
         }
     }
+
+    public ArrayList<String> generateRelatives(String birdId)
+    {
+        ArrayList<String> relatives = new ArrayList<String>();
+
+        String mom, dad;
+
+        Bird currBird;
+
+        if(birdId == null || birdId == "")
+        {
+            return relatives;
+        }
+        else
+        {
+            relatives.add(birdId);
+
+            currBird = dbSQL.findBird(birdId);
+
+            mom = currBird.getMom();
+            dad = currBird.getDad();
+
+            relatives.addAll(generateRelatives(mom));
+            relatives.addAll(generateRelatives(dad));
+
+            return relatives;
+        }
+    }
 }

@@ -15,7 +15,7 @@ import java.util.Locale;
  */
 public class Bird implements Serializable {
 
-    String id, name, experiment, sex;
+    String id, name, experiment, sex, mom, dad;
     Calendar birthDate, deathDate;
     MedicalHistory history;
     boolean status;
@@ -106,6 +106,9 @@ public class Bird implements Serializable {
         return this.id;
     }
     public String getExperiment() { return this.experiment; }
+
+    public String getMom() { return this.mom; }
+    public String getDad() { return this.dad; }
 
     public Calendar getBirthDate() { return this.birthDate; }
     public Calendar getDeathDate() { return this.deathDate; }
