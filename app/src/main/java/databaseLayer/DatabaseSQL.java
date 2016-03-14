@@ -53,7 +53,7 @@ public class DatabaseSQL{
      * add an experiment to the experiment list
      * @param exp the experiment to be added
      */
-    public static void addExperiment(Experiment exp) {
+    public void addExperiment(Experiment exp) {
     }
 
     /**
@@ -62,7 +62,7 @@ public class DatabaseSQL{
      * @param id the id of the bird to be found
      * @return either null (when bird is not found) or the Bird
      */
-    public static Bird findBird(String id)
+    public Bird findBird(String id)
     {
         return birdTable.findBird(id);
     }
@@ -80,22 +80,19 @@ public class DatabaseSQL{
      *                  it will have a length of zero.
      * @return The query results
      */
-    public static ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate, String status)
+    public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate, String status)
     {
         return searchBirds(new Bird(id, name, "", birthDate, deathDate, sex, status));
 
     }
 
-    public static ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate) {
+    public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate) {
 
         return searchBirds(new Bird(id, name, "", birthDate, deathDate, sex, ""));
     }
 
-    public static ArrayList<Bird> searchBirds(Bird inputBird) {
-
-        ArrayList<Bird> queryResult = new ArrayList<>();
-
-        return queryResult;
+    public ArrayList<Bird> searchBirds(Bird inputBird) {
+        return birdTable.searchBirds(inputBird);
     }
 
     /**
@@ -119,7 +116,7 @@ public class DatabaseSQL{
         return queryResult;
     }
 
-    public static ArrayList<Experiment> searchExperiments(Experiment experiment)
+    public ArrayList<Experiment> searchExperiments(Experiment experiment)
     {
         return searchExperiments(experiment.getStudyTitle(), experiment.getStudyType(), experiment.getGroupWithinExperiment(), experiment.getDateString(experiment.getStartDate()), experiment.getDateString(experiment.getEndDate()));
     }
@@ -130,7 +127,7 @@ public class DatabaseSQL{
      * get the experiment list
      * @return experimentList
      */
-    public static ArrayList<Experiment> getExperiment(){
+    public ArrayList<Experiment> getExperiment(){
         return null;
     }
 
@@ -153,7 +150,7 @@ public class DatabaseSQL{
      * gets the bird list
      * @return birdList
      */
-    public static ArrayList<Bird> getBird(){
+    public ArrayList<Bird> getBird(){
         return null;
     }
 
