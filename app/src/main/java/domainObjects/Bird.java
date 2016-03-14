@@ -54,7 +54,7 @@ public class Bird implements Serializable {
         }*/
 
         birthDate = getDateString(bDate);
-        deathDate = getDateString(bDate);
+        deathDate = getDateString(dDate);
         this.sex = sex;
         this.history = null;
         this.status = true;

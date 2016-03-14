@@ -26,6 +26,8 @@ import domainObjects.Experiment;
 @SuppressWarnings("all")
 public class ViewExperiment extends AppCompatActivity implements View.OnClickListener {
     public final static String EXTRA_MESSAGE = "net.javacrypt.se1.MESSAGE";
+     Experiment currentExperiment = null;
+
     TextView viewStudyTitle;
         TextView viewStudyType;
         TextView viewGroupWithinExperiment;
@@ -33,8 +35,10 @@ public class ViewExperiment extends AppCompatActivity implements View.OnClickLis
         TextView viewEndDate;
         TextView viewExperimenters;
         TextView viewNotes;
-        DatabaseManager db = MainActivity.db;
+
         Button btEditExperiment;
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_experiment);
@@ -45,18 +49,34 @@ public class ViewExperiment extends AppCompatActivity implements View.OnClickLis
         viewEndDate = (TextView) findViewById(R.id.viewEndDate);
         viewExperimenters = (TextView) findViewById(R.id.viewExperimenters);
         viewNotes = (TextView) findViewById(R.id.viewNotes);
+        DatabaseManager db = MainActivity.db;
 
         Intent intent = getIntent();
-        String experimentTitle = intent.getStringExtra(SearchBird.EXTRA_MESSAGE);
+        String experimentTitle = intent.getStringExtra(SearchExperiment.EXTRA_MESSAGE);
+
+
 
         if(experimentTitle.length()>0) {
-            viewStudyTitle.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getStudyTitle());
-            viewStudyType.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getStudyType());
-            viewGroupWithinExperiment.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getGroupWithinExperiment());
-            viewStartDate.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getDateString(MainActivity.db.getExperiment().get(0).getStartDate()));
-            viewEndDate.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getDateString(MainActivity.db.getExperiment().get(0).getEndDate()));
-            viewExperimenters.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getExperimenters());
-            viewNotes.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getNotes());
+
+            String studyTitle = MainActivity.db.searchExperiments(experimentTitle, "", "", "", "").get(0).getStudyTitle();
+            String studyType = MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getStudyType();
+            String groupWithinExperiment = MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getGroupWithinExperiment();
+            String startDate = MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getDateString(MainActivity.db.getExperiment().get(0).getStartDate());
+            String endDate = MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getDateString(MainActivity.db.getExperiment().get(0).getEndDate());
+            String experimenters = MainActivity.db.searchExperiments(experimentTitle, "", "", "", "").get(0).getExperimenters();
+            String notes = MainActivity.db.searchExperiments(experimentTitle, "", "", "", "").get(0).getNotes();
+            String status = "";
+
+
+            viewStudyTitle.setText(studyTitle);
+            viewStudyType.setText(studyType);
+            viewGroupWithinExperiment.setText(groupWithinExperiment);
+            viewStartDate.setText(startDate);
+            viewEndDate.setText(endDate);
+            viewExperimenters.setText(experimenters);
+            viewNotes.setText(notes);
+
+            currentExperiment = new Experiment(studyTitle, studyType, groupWithinExperiment, startDate, endDate, experimenters, notes, status);
         }
         else {
             viewStudyTitle.setText("No Results");
@@ -110,11 +130,13 @@ public class ViewExperiment extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
             case R.id.btEditExperiment:
 
-                Intent intent = new Intent(this, EditExperiment.class);
-                String title = (String) viewStudyTitle.getText();
-                intent.putExtra(EXTRA_MESSAGE, title);
-
-                startActivity(intent);
+                if(this.currentExperiment!=null) {
+                    Intent intent = new Intent(this,EditExperiment.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("experiment", this.currentExperiment);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
                 break;
         }
 
