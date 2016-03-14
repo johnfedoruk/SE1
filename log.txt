@@ -163,6 +163,14 @@ kajmoroz	   (Kaj)		ViewBird 	- 3 Hours
 					DatabaseHelper	-6 Hours
 					ExperimentDatabase -3 Hours
 
+ratstache (Landon)			GenerateRelatives method (DatabaseManager) -6 hours
+					ViewBird UI changes - 2 hours
+					Relatives Activity - 2 hours
+					GenerateRelativesTests - 2 hours
+					Database fixes - 3 hours
+					meetings - 6 hours
+				
+
 
 
 
