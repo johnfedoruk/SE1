@@ -34,27 +34,52 @@ public class Bird implements Serializable {
 
     public Bird(String id, String name, String experiment, String birthDate, String deathDate, String sex, String status)
     {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        this.id = id;
-        this.name = name;
-        this.experiment = experiment;
+
+        if(id == null)
+        {
+            this.id = "";
+        }
+        else
+        {
+            this.id = id;
+        }
+
+        if(name == null)
+        {
+            this.name = "";
+        }
+        else
+        {
+            this.name = name;
+        }
+
+        if(experiment == null)
+        {
+            experiment = "";
+        }
+        else
+        {
+            this.experiment = experiment;
+        }
 
         Calendar bDate = Calendar.getInstance();
         Calendar dDate = Calendar.getInstance();
-        /*try {
-            bDate.setTime(sdf.parse(birthDate));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        try {
-            dDate.setTime(sdf.parse(deathDate));
-        }
-        catch(ParseException e) {
-            dDate = null;
-        }*/
 
+        if(birthDate != null && !deathDate.equals(""))
+        {
+            bDate.setTimeInMillis(Long.parseLong(birthDate));
+        }
+
+        if(deathDate != null && !deathDate.equals(""))
+        {
+            dDate.setTimeInMillis(Long.parseLong(deathDate));
+        }
+
+<<<<<<< Updated upstream
         birthDate = getDateString(bDate);
         deathDate = getDateString(dDate);
+=======
+>>>>>>> Stashed changes
         this.sex = sex;
         this.history = null;
         this.status = true;
@@ -111,4 +136,44 @@ public class Bird implements Serializable {
      public void setMedicalHistory(MedicalHistory history){this.history = history;}
     public void setStatus(boolean status){this.status = status;}
 
+    public Boolean equals(Bird comp)
+    {
+        Boolean check = true;
+        if(this.status != comp.getStatus())
+        {
+            check = false;
+        }
+
+        if(!this.id.equals(comp.getId()))
+        {
+            check = false;
+        }
+
+        if(!this.name.equals(comp.getName()))
+        {
+            check = false;
+        }
+
+        if( this.birthDate != null && comp.birthDate != null && this.birthDate.compareTo(comp.getBirthDate()) != 0 )
+        {
+            check = false;
+        }
+
+        if( this.deathDate != null && comp.deathDate != null && this.deathDate.compareTo(comp.getDeathDate()) != 0 )
+        {
+            check = false;
+        }
+
+        if(!comp.getMedicalHistory().toString().equals(this.history.toString()) )
+        {
+            check = false;
+        }
+
+        if(comp.getSex().equals(this.sex))
+        {
+            check = false;
+        }
+
+        return check;
+    }
 }

@@ -58,7 +58,7 @@ public class MedicalHistory implements Serializable {
     //Serialize the data in MedicalHistory for the Database
     public String toString()
     {
-        return String.valueOf(dateOfReport.getTime().getTime()) + "," + healthIssue + "," + treatment + "," +  Notes;
+        return String.valueOf(dateOfReport.getTime().getTime()) + "," + healthIssue + " ," + treatment + " ," +  Notes + " ";
     }
 
 }
