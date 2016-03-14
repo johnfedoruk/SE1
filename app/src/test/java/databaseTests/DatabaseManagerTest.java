@@ -119,7 +119,7 @@ public class DatabaseManagerTest {
     }
 
     @Test
-    public void testGetRelatives()
+    public void testGenerateRelatives()
     {
         ArrayList<Bird> mybirds = new ArrayList<>();
 
@@ -129,13 +129,28 @@ public class DatabaseManagerTest {
         mybirds.add(new Bird("0002", "bird2", "Experiment #2", myManager.getCalendar(2016, 2, 23), myManager.getCalendar(2016, 2, 24), "Male", new MedicalHistory(myManager.getCalendar(2016, 2, 28), "Herpes", "Tylenol", "did not work"), true));
         mybirds.add(new Bird("0003", "bird3", "Experiment #3", myManager.getCalendar(2016, 2, 24), myManager.getCalendar(2016, 2, 25), "Female", new MedicalHistory(myManager.getCalendar(2016, 2, 29), "HIV", "Tylenol", "did not work"), true));
 
+        assertEquals(3, myManager.generateRelatives(currBird.getId()).size());
+
         //test generate relatives works
         assertEquals(mybirds.get(0).getId(), myManager.generateRelatives(currBird.getId()).get(0).getId());
         assertEquals(mybirds.get(1).getId(), myManager.generateRelatives(currBird.getId()).get(1).getId() );
-        assertEquals(mybirds.get(2).getId(), myManager.generateRelatives(currBird.getId()).get(2).getId() );
+        assertEquals(mybirds.get(2).getId(), myManager.generateRelatives(currBird.getId()).get(2).getId());
 
         //test not equals
         assertNotEquals(mybirds.get(0).getId(), myManager.generateRelatives(currBird.getId()).get(2).getId());
 
+        //test recursive case
+        String currBirdID = "0004";
+        myManager.addBird(new Bird("0004", "bird4", "Experiment #4", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 22), "Female", new MedicalHistory(myManager.getCalendar(2016, 2, 27), "AIDS", "Tylenol", "did not work"),true, "0005", "0006"));
+        myManager.addBird(new Bird("0005", "bird5", "Experiment #5", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 22), "Female", new MedicalHistory(myManager.getCalendar(2016, 2, 27), "AIDS", "Tylenol", "did not work"),true, "0007", ""));
+        myManager.addBird(new Bird("0006", "bird6", "Experiment #6", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 22), "Female", new MedicalHistory(myManager.getCalendar(2016, 2, 27), "AIDS", "Tylenol", "did not work"),true));
+        myManager.addBird(new Bird("0007", "bird7", "Experiment #7", myManager.getCalendar(2016, 2, 22), myManager.getCalendar(2016, 2, 22), "Female", new MedicalHistory(myManager.getCalendar(2016, 2, 27), "AIDS", "Tylenol", "did not work"),true));
+
+        assertEquals(4, myManager.generateRelatives(currBirdID).size());
+
+        //test one bird in chain doesn't exist
+        myManager.removeBird("0007");
+
+        assertEquals(3, myManager.generateRelatives(currBirdID).size());
     }
 }
