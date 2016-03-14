@@ -52,38 +52,31 @@ public class ViewRelatives extends AppCompatActivity implements View.OnClickList
         ListAdapter adapt = new ListAdapter(this, R.layout.item, items);
         Intent intentView = new Intent(this,ViewBird.class);
         ArrayList<String> birdVals = new ArrayList<>();
-        bird = query.get(0);
-        birdVals.add(bird.getId());
-        birdVals.add(bird.getName());
-        birdVals.add(bird.getExperiment());
-        if(bird.getBirthDate() != null)
-        {
-            birdVals.add(String.valueOf(bird.getBirthDate().getTimeInMillis()));
-        }
-        else
-        {
-            birdVals.add("");
-        }
-        if(bird.getDeathDate()!= null)
-        {
-            birdVals.add(String.valueOf(bird.getDeathDate().getTimeInMillis()));
-        }
-        else {
-            birdVals.add("");
-        }
-        birdVals.add(bird.getSex());
-        if(bird.getStatus())
-        {
-            birdVals.add("true");
-        }
-        else
-        {
-            birdVals.add("false");
-        }
-        birdVals.add(bird.getMedicalHistory().toString());
+        if(query.size() > 0) {
+            bird = query.get(0);
+            birdVals.add(bird.getId());
+            birdVals.add(bird.getName());
+            birdVals.add(bird.getExperiment());
+            if (bird.getBirthDate() != null) {
+                birdVals.add(String.valueOf(bird.getBirthDate().getTimeInMillis()));
+            } else {
+                birdVals.add("");
+            }
+            if (bird.getDeathDate() != null) {
+                birdVals.add(String.valueOf(bird.getDeathDate().getTimeInMillis()));
+            } else {
+                birdVals.add("");
+            }
+            birdVals.add(bird.getSex());
+            if (bird.getStatus()) {
+                birdVals.add("true");
+            } else {
+                birdVals.add("false");
+            }
+            birdVals.add(bird.getMedicalHistory().toString());
 
-        intentView.putStringArrayListExtra("bird", birdVals);
-
+            intentView.putStringArrayListExtra("bird", birdVals);
+        }
         adapt.setIntent(intentView);
         listView.setAdapter(adapt);
     }

@@ -240,7 +240,11 @@ public class DatabaseManager {
         }
         else
         {
-            currBird = findBird(birdId);
+            try {
+                currBird = findBird(birdId);
+            } catch (Exception e) {
+                currBird = null;
+            }
             if(currBird != null) {
                 relatives.add(currBird);
 
