@@ -76,7 +76,7 @@ public class DatabaseManager {
      */
     public static Bird findBird(String id)
     {
-        return dbStub.findBird(id);
+        return dbSQL.findBird(id);
     }
 
     /**
@@ -94,15 +94,15 @@ public class DatabaseManager {
      */
     public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate, String status)
     {
-        return dbStub.searchBirds(id, name, sex, birthDate, deathDate,status);
+        return dbSQL.searchBirds(id, name, sex, birthDate, deathDate,status);
     }
 
     public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate)
     {
-        return dbStub.searchBirds(id, name, sex, birthDate, deathDate);
+        return dbSQL.searchBirds(id, name, sex, birthDate, deathDate);
     }
     public ArrayList<Bird> searchBirds(Bird inputBird) {
-        return dbStub.searchBirds(inputBird);
+        return dbSQL.searchBirds(inputBird);
     }
 
     /**

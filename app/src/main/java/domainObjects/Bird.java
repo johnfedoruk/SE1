@@ -75,11 +75,7 @@ public class Bird implements Serializable {
             dDate.setTimeInMillis(Long.parseLong(deathDate));
         }
 
-<<<<<<< Updated upstream
-        birthDate = getDateString(bDate);
-        deathDate = getDateString(dDate);
-=======
->>>>>>> Stashed changes
+
         this.sex = sex;
         this.history = null;
         this.status = true;
