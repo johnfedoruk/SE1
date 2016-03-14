@@ -40,6 +40,8 @@ public final class BirdDatabase {
         public static final String BIRD_STATUS = "status";
         public static final String BIRD_MED = "medical_history";
         public static final String DB_NAME = "bird_data";
+        public static final String BIRD_DAD = "bird_dad";
+        public static final String BIRD_MOM = "bird_mom";
     }
 
     //Common SQL keywords
@@ -62,7 +64,9 @@ public final class BirdDatabase {
             BirdEntry.BIRD_BDAY + TYPE_TEXT + COMMA +
             BirdEntry.BIRD_DDAY + TYPE_TEXT + COMMA +
             BirdEntry.BIRD_STATUS + TYPE_TEXT + COMMA +
-            BirdEntry.BIRD_MED + TYPE_TEXT +
+            BirdEntry.BIRD_MED + TYPE_TEXT + COMMA +
+            BirdEntry.BIRD_DAD + TYPE_TEXT + COMMA +
+            BirdEntry.BIRD_MOM + TYPE_TEXT + COMMA +
             " );";
 
     public ArrayList<Bird> getBird(){
@@ -75,7 +79,7 @@ public final class BirdDatabase {
         if(c.getCount() > 0) {
             c.moveToFirst();
             do{
-                addThisBird = new Bird(c.getString(1), c.getString(0), c.getString(3), c.getString(4), c.getString(5), c.getString(2), c.getString(6));
+                addThisBird = new Bird(c.getString(1), c.getString(0), c.getString(3), c.getString(4), c.getString(5), c.getString(2), c.getString(6), c.getString(7), c.getString(8));
                 addThisBird.setMedicalHistory(new MedicalHistory(c.getString(7)));
                 queryResult.add(addThisBird);
             }while(c.moveToNext());

@@ -19,7 +19,7 @@ public class Bird implements Serializable {
     Calendar birthDate, deathDate;
     MedicalHistory history;
     boolean status;
-    public Bird(String id, String name, String experiment, Calendar birthDate, Calendar deathDate, String sex,MedicalHistory history,boolean status)
+    public Bird(String id, String name, String experiment, Calendar birthDate, Calendar deathDate, String sex, MedicalHistory history, boolean status)
     {
         this.id = id;
         this.name = name;
@@ -29,8 +29,37 @@ public class Bird implements Serializable {
         this.sex = sex;
         this.history = history;
         this.status = status;
-
     }
+
+    public Bird(String id, String name, String experiment, Calendar birthDate, Calendar deathDate, String sex, MedicalHistory history, boolean status, String mom, String dad)
+    {
+        this.id = id;
+        this.name = name;
+        this.experiment = experiment;
+        this.birthDate = birthDate;
+        this.deathDate = deathDate;
+        this.sex = sex;
+        this.history = history;
+        this.status = status;
+        this.mom = mom;
+        this.dad = dad;
+    }
+
+    public Bird(String id, String name, String experiment, String birthDate, String deathDate, String sex, String status, String mom, String dad)
+    {
+        this(id, name, experiment, birthDate, deathDate, sex, status);
+
+        if(dad == null)
+            this.dad = "";
+        else
+            this.dad = dad;
+
+        if(mom == null)
+            this.mom = "";
+        else
+            this.mom = mom;
+    }
+
 
     public Bird(String id, String name, String experiment, String birthDate, String deathDate, String sex, String status)
     {
@@ -147,7 +176,10 @@ public class Bird implements Serializable {
         this.sex = sex;
     }
 
-     public void setMedicalHistory(MedicalHistory history){this.history = history;}
+    public void setMom(String mom) { this.mom = mom; }
+    public void setDad(String dad) { this.dad = dad; }
+
+    public void setMedicalHistory(MedicalHistory history){this.history = history;}
     public void setStatus(boolean status){this.status = status;}
 
     public Boolean equals(Bird comp)
