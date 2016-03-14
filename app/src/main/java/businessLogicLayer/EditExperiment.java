@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import databaseLayer.DatabaseManager;
+import domainObjects.Experiment;
 
 /**
  * Kevin
@@ -26,6 +27,7 @@ public class EditExperiment extends AppCompatActivity implements View.OnClickLis
 
     DatabaseManager db = new DatabaseManager();
     Button btEditExperiment;
+    public static Experiment currentExperiment = null;
 
     EditText txtStudyTitle, txtStudyType, txtGroupWithinExperiment, txtStartDate, txtEndDate, txtExperimenters, txtNotes;
 
@@ -36,7 +38,8 @@ public class EditExperiment extends AppCompatActivity implements View.OnClickLis
         btEditExperiment= (Button) findViewById(R.id.btEditExperiment);
 
         Intent intent = getIntent();
-        String experimentTitle = intent.getStringExtra(ViewExperiment.EXTRA_MESSAGE);
+        Bundle bundle = intent.getExtras();
+        this.currentExperiment = (Experiment)bundle.getSerializable("experiment");
 
         txtStudyTitle = ((EditText) findViewById(R.id.txtStudyTitle));
         txtStudyType = ((EditText) findViewById(R.id.txtStudyType));
@@ -46,14 +49,15 @@ public class EditExperiment extends AppCompatActivity implements View.OnClickLis
         txtExperimenters = ((EditText) findViewById(R.id.txtExperimenters));
         txtNotes = ((EditText) findViewById(R.id.txtNotes));
 
-        //Set EditText box text to that of the selected experiment
-        txtStudyTitle.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getStudyTitle());
-        txtStudyType.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getStudyType());
-        txtGroupWithinExperiment.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getGroupWithinExperiment());
-        txtStartDate.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getDateString(MainActivity.db.getExperiment().get(0).getStartDate()));
-        txtEndDate.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getDateString(MainActivity.db.getExperiment().get(0).getEndDate()));
-        txtExperimenters.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getExperimenters());
-        txtNotes.setText(MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getNotes());
+
+        txtStudyTitle.setText(currentExperiment.getStudyTitle());
+        txtStudyType.setText(currentExperiment.getStudyType());
+        txtGroupWithinExperiment.setText(currentExperiment.getGroupWithinExperiment());
+        txtStartDate.setText(currentExperiment.getDateString(currentExperiment.getStartDate()));
+        txtEndDate.setText(currentExperiment.getDateString(currentExperiment.getEndDate()));
+        txtExperimenters.setText(currentExperiment.getExperimenters());
+        txtNotes.setText(currentExperiment.getNotes());
+
 
         btEditExperiment = (Button) findViewById(R.id.btEditExperiment);
 
