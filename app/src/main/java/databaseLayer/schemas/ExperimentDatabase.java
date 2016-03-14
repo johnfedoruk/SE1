@@ -1,7 +1,12 @@
 package databaseLayer.schemas;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
+
+import java.util.ArrayList;
 
 import domainObjects.Experiment;
 
@@ -26,7 +31,6 @@ public class ExperimentDatabase {
         public static final String EXP_TERS = "experimenters";
         public static final String EXP_NOTES = "notes";
         public static final String EXP_STAT = "status";
-        public static final String DB_NAME = "exp_data";
     }
 
     //Common SQL keywords
@@ -35,6 +39,8 @@ public class ExperimentDatabase {
     public static final String KEY = "PRIMARY KEY AUTOINCREMENT";
     public static final String AND = " AND ";
     public static final String ISTHERE = " = ?";
+
+    public static final String DELETE_ENTRIES = "DROP TABLE IF EXISTS " + ExpEntry.TABLE_LABEL+";";
 
     public static final String CREATE_ENTRIES = "CREATE TABLE " + ExpEntry.TABLE_LABEL + " (" +
             ExpEntry.EXP_TITLE + TYPE_TEXT + COMMA +
@@ -46,6 +52,71 @@ public class ExperimentDatabase {
             ExpEntry.EXP_NOTES + TYPE_TEXT + COMMA +
             ExpEntry.EXP_STAT + TYPE_TEXT +
             " );";
+    
+    public void insert(Experiment input) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
+        String stat = "";   
+        ContentValues inputVal = new ContentValues();
+        if (input.getStudyTitle() != null && !input.getStudyTitle().equals("")) {
+            inputVal.put(ExpEntry.EXP_TITLE, input.getStudyTitle());
+        } else {
+            inputVal.put(ExpEntry.EXP_TITLE, "");
+        }
 
+        if (input.getStudyType() != null && !input.getStudyType().equals("")) {
+            inputVal.put(ExpEntry.EXP_TYPE, input.getStudyType());
+        } else {
+            inputVal.put(ExpEntry.EXP_TYPE, "");
+        }
+
+        if (input.getGroupWithinExperiment() != null && !input.getGroupWithinExperiment().equals("")) {
+            inputVal.put(ExpEntry.EXP_GROUP, input.getGroupWithinExperiment());
+        } else {
+            inputVal.put(ExpEntry.EXP_GROUP, "");
+        }
+
+        if (input.getStartDate() != null) {
+            inputVal.put(ExpEntry.EXP_START, String.valueOf(input.getStartDate().getTimeInMillis()));
+        } else {
+             inputVal.put(ExpEntry.EXP_START, "");
+        }
+
+        if (input.getEndDate() != null) {
+            inputVal.put(ExpEntry.EXP_END, String.valueOf(input.getEndDate().getTimeInMillis()));
+        } else {
+            inputVal.put(ExpEntry.EXP_END, "");
+         }
+
+        if (input.getStatus()) {
+            inputVal.put(ExpEntry.EXP_STAT, "true");
+        } else {
+            inputVal.put(ExpEntry.EXP_STAT, "false");
+        }
+
+    long newRowId;
+    newRowId = db.insert(ExpEntry.TABLE_LABEL, null, inputVal);
+
+    db.close();
+
+    }
+
+    public ArrayList<Experiment> getExperiment()
+    {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String query = "SELECT * FROM " + ExpEntry.TABLE_LABEL;
+        ArrayList<Experiment> queryResult = new ArrayList<>();
+        Experiment addThisExp;
+        Cursor c = db.rawQuery(query, null);
+
+        if(c.getCount() > 0) {
+            c.moveToFirst();
+            do{
+                addThisExp = new Experiment(c.getString(0), c.getString(1), c.getString(2), c.getString(3), c.getString(4), c.getString(5), c.getString(6), c.getString(7));
+                queryResult.add(addThisExp);
+            }while(c.moveToNext());
+        }
+        return queryResult;
+
+    }
 }

@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import databaseLayer.schemas.BirdDatabase;
+import databaseLayer.schemas.ExperimentDatabase;
+import domainObjects.Experiment;
 
 /**
  * Created by Kaj on 3/12/2016.
@@ -21,11 +23,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(BirdDatabase.CREATE_ENTRIES);
+        db.execSQL(ExperimentDatabase.CREATE_ENTRIES);
     }
 
     public void onUpgrade(SQLiteDatabase db, int currVersion, int newVersion)
     {
         db.execSQL(BirdDatabase.DELETE_ENTRIES);
+        db.execSQL(ExperimentDatabase.DELETE_ENTRIES);
         onCreate(db);
     }
 }

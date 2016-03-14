@@ -11,6 +11,7 @@ import java.util.Calendar;
 
 import businessLogicLayer.MainActivity;
 import databaseLayer.schemas.BirdDatabase;
+import databaseLayer.schemas.ExperimentDatabase;
 import domainObjects.Bird;
 import domainObjects.Experiment;
 
@@ -22,6 +23,7 @@ import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
 public class DatabaseSQL{
 
     static BirdDatabase birdTable;
+    static ExperimentDatabase expTable;
     private Calendar cal;
     private SQLiteOpenHelper helpThisGuy;
 
@@ -29,6 +31,7 @@ public class DatabaseSQL{
     public DatabaseSQL(SQLiteOpenHelper helpPleaseSomebody)
     {
         birdTable = new BirdDatabase(helpPleaseSomebody);
+        expTable = new ExperimentDatabase(helpPleaseSomebody);
         helpThisGuy = helpPleaseSomebody;
     }
 
@@ -37,6 +40,7 @@ public class DatabaseSQL{
     {
         SQLiteDatabase dirtyDB = helpThisGuy.getWritableDatabase();
         dirtyDB.execSQL(BirdDatabase.DELETE_ENTRIES);
+        dirtyDB.execSQL(ExperimentDatabase.DELETE_ENTRIES);
     }
 
     public void addBird(Bird values)
@@ -54,6 +58,7 @@ public class DatabaseSQL{
      * @param exp the experiment to be added
      */
     public void addExperiment(Experiment exp) {
+        expTable.insert(exp);
     }
 
     /**
@@ -128,7 +133,7 @@ public class DatabaseSQL{
      * @return experimentList
      */
     public ArrayList<Experiment> getExperiment(){
-        return null;
+        return expTable.getExperiment();
     }
 
     /**
