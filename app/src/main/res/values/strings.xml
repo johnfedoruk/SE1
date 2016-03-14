@@ -19,6 +19,7 @@
     <string name="title_activity_exp_add_success">ExpAddSuccess</string>
     <string name="title_activity_add_bird_success">AddBirdSuccess</string>
     <string name="title_activity_edit_bird_success">AddBirdSuccess</string>
+    <string name="title_activity_view_relatives">ViewRelatives</string>
     <string name="search">Search</string>
     <string name="edit">Edit</string>
     <string name="legbandID">LegBandID</string>

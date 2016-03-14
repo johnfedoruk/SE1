@@ -65,13 +65,14 @@
             android:label="@string/title_activity_edit_bird_success"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-
         <activity
             android:name="businessLogicLayer.AddBirdSuccess"
             android:label="@string/title_activity_add_bird_success"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name="businessLogicLayer.ViewRelatives"
+            android:label="@string/title_activity_view_relatives"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="businessLogicLayer.AddMedicalHistory"
