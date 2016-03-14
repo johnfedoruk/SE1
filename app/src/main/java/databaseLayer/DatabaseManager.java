@@ -226,9 +226,9 @@ public class DatabaseManager {
         }
     }
 
-    public ArrayList<String> generateRelatives(String birdId)
+    public ArrayList<Bird> generateRelatives(String birdId)
     {
-        ArrayList<String> relatives = new ArrayList<String>();
+        ArrayList<Bird> relatives = new ArrayList<Bird>();
 
         String mom, dad;
 
@@ -240,17 +240,20 @@ public class DatabaseManager {
         }
         else
         {
-            relatives.add(birdId);
+            currBird = findBird(birdId);
+            if(currBird != null) {
+                relatives.add(currBird);
 
-            currBird = dbSQL.findBird(birdId);
+                mom = currBird.getMom();
+                dad = currBird.getDad();
 
-            mom = currBird.getMom();
-            dad = currBird.getDad();
+                relatives.addAll(generateRelatives(mom));
+                relatives.addAll(generateRelatives(dad));
 
-            relatives.addAll(generateRelatives(mom));
-            relatives.addAll(generateRelatives(dad));
-
-            return relatives;
+                return relatives;
+            }
+            else
+                return relatives;
         }
     }
 }

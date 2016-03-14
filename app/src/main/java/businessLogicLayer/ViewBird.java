@@ -176,6 +176,20 @@ public class ViewBird extends AppCompatActivity {
         return true;
     }
 
+    public void openGetRelatives(View v)
+    {
+        if(this.currentBird!=null) {
+            Intent intent = new Intent(this,ViewRelatives.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("bird", this.currentBird);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+        else {
+            Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

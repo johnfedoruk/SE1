@@ -357,14 +357,14 @@ public final class BirdDatabase {
         else
         {
             if(whereClause.size() == 1) {
-                query += whereClause.get(0);
+                query += whereClause.get(0) + " = " + "'" + values[0] + "'";
 
                 //queryD = "SELECT * FROM " + BirdEntry.TABLE_LABEL + " WHERE " + query + " = " + "'" + values[0] + "'";
             }
         }
         //Cursor c = db.rawQuery(query, values);
 
-        if(!query.equals("SELECT * FROM " + BirdEntry.TABLE_LABEL + " WHERE ")) {
+        if(whereClause.size() > 0 && !query.equals("SELECT * FROM " + BirdEntry.TABLE_LABEL + " WHERE ")) {
             Cursor c = db.rawQuery(query, null);
             if (c.getCount() > 0) {
                 c.moveToFirst();

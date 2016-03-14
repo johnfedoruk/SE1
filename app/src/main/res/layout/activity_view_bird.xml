@@ -88,4 +88,15 @@
         android:layout_alignLeft="@+id/retireBird"
         android:layout_alignStart="@+id/retireBird" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativesButton"
+        android:text="@string/relatives"
+        android:onClick="openGetRelatives"
+        android:layout_above="@+id/editBird"
+        android:layout_alignLeft="@+id/editBird"
+        android:layout_alignStart="@+id/editBird"
+        android:nestedScrollingEnabled="false" />
+
 </RelativeLayout>
