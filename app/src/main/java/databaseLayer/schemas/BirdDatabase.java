@@ -47,7 +47,7 @@ public final class BirdDatabase {
     public static final String COMMA = ", ";
     public static final String KEY = "PRIMARY KEY AUTOINCREMENT";
     public static final String AND = " AND ";
-    public static final String ISTHERE = "=?";
+    public static final String ISTHERE = " = ?";
 
 
     /*
@@ -110,18 +110,18 @@ public final class BirdDatabase {
             inputVal.put(BirdEntry.BIRD_EXP, "");
         }
 
-        if(input.getBirthDate() != null && !input.getBirthDate().getTime().toString().equals(""))
+        if(input.getBirthDate() != null)
         {
-            inputVal.put(BirdEntry.BIRD_BDAY, input.getBirthDate().getTime().toString());
+            inputVal.put(BirdEntry.BIRD_BDAY, String.valueOf(input.getBirthDate().getTimeInMillis()));
         }
         else
         {
             inputVal.put(BirdEntry.BIRD_BDAY, "");
         }
 
-        if(input.getDeathDate() != null && !input.getDeathDate().getTime().toString().equals(""))
+        if(input.getDeathDate() != null)
         {
-            inputVal.put(BirdEntry.BIRD_DDAY, input.getDeathDate().getTime().toString());
+            inputVal.put(BirdEntry.BIRD_DDAY, String.valueOf(input.getDeathDate().getTimeInMillis()));
         }
         else
         {
@@ -129,7 +129,7 @@ public final class BirdDatabase {
         }
 
         //Convert Boolean to String
-        if(input.getStatus() == true)
+        if(input.getStatus())
         {
             stat = "true";
         }
@@ -175,7 +175,7 @@ public final class BirdDatabase {
         return result;
     }
 
-    private String getWhereClause(Bird params)
+    private ArrayList<String> getWhereClause(Bird params)
     {
         String clause = "";
         ArrayList<String> clauseElements = new ArrayList<>();
@@ -214,17 +214,8 @@ public final class BirdDatabase {
             clauseElements.add(BirdEntry.BIRD_DDAY);
         }
 
-        clauseElements.add(BirdEntry.BIRD_STATUS);
 
-        int i = 0;
-        while(i+1 < clauseElements.size())
-        {
-            clause += clauseElements.get(i) + ISTHERE + AND;
-            i++;
-        }
-        clause+= clauseElements.get(i) + ISTHERE;
-
-        return clause;
+        return clauseElements;
     }
 
     private String [] getSearchPara(Bird params)
@@ -265,14 +256,14 @@ public final class BirdDatabase {
             tempArray.add(String.valueOf(params.getDeathDate().getTimeInMillis()));
         }
 
-        if(params.getStatus())
+       /* if(params.getStatus())
         {
             tempArray.add("true");
         }
         else
         {
             tempArray.add("false");
-        }
+        }*/
 
         String [] returnArr = new String[tempArray.size()];
         returnArr = tempArray.toArray(returnArr);
@@ -292,28 +283,50 @@ public final class BirdDatabase {
         String name = "";
         String exp = "";
         String stat = "";
+        params.setStatus(true);
 
         //Queries each data elem in params: BIRD_NAME =? AND BIRD_ID =? AND...
-        String whereClause  = getWhereClause(params);
+        ArrayList<String> whereClause  = getWhereClause(params);
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        String [] row = BIRD_ROW;
         String [] values = getSearchPara(params);
-        Cursor c = db.query(BirdEntry.TABLE_LABEL, row, whereClause,values, null, null, null, null);
+        String query = "SELECT * FROM " + BirdEntry.TABLE_LABEL + " WHERE ";
 
-        if(c.moveToFirst()) {
+        for(int i = 0; i < whereClause.size()-1; i++)
+        {
+            query += whereClause.get(i) + " = " + "'" + values[i]+ "'" + AND;
+        }
+            query += whereClause.get(whereClause.size()-1) + " = " + "'" + values[values.length-1] + "'" ;
+
+       String queryD = "SELECT * FROM " + BirdEntry.TABLE_LABEL + " WHERE " + whereClause.get(1) + " = " + "'" +values[1] + "'" + " AND " + whereClause.get(0) + " = '" + values[0] + "'";
+
+        //Cursor c = db.rawQuery(query, values);
+
+        Cursor c = db.rawQuery(query, null);
+        c = db.rawQuery(queryD, null);
+        if(c.getCount() > 0) {
+            c.moveToFirst();
             do{
-                addThisBird = new Bird(c.getString(0), c.getString(1), c.getString(2), c.getString(3), c.getString(4), c.getString(5), c.getString(6));
+                name=c.getString(0);
+                id= c.getString(1);
+                sex=c.getString(2);
+                exp=c.getString(3);
+                bDayString=c.getString(4);
+                dDayString=c.getString(5);
+                stat=c.getString(6);
+                addThisBird = new Bird(id, name, exp, bDayString, dDayString, sex, stat);
                 addThisBird.setMedicalHistory(new MedicalHistory(c.getString(7)));
                 queryResult.add(addThisBird);
             }while(c.moveToNext());
         }
 
+
         db.close();
         return queryResult;
     }
     public static final String DELETE_ENTRIES = "DROP TABLE IF EXISTS " + BirdEntry.TABLE_LABEL+";";
+    public static final String ADD_ENTRIES = "INSERT INTO " + BirdEntry.TABLE_LABEL+ " VALUES (";
     public static final String[] BIRD_ROW = {
             BirdEntry.BIRD_NAME,
             BirdEntry.BIRD_ID,
