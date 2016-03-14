@@ -65,19 +65,35 @@ public class Bird implements Serializable {
         Calendar bDate = Calendar.getInstance();
         Calendar dDate = Calendar.getInstance();
 
-        if(birthDate != null && !deathDate.equals(""))
+        if(birthDate != null && !birthDate.equals(""))
         {
             bDate.setTimeInMillis(Long.parseLong(birthDate));
+            this.birthDate = bDate;
+        }
+        else {
+            this.birthDate = null;
         }
 
         if(deathDate != null && !deathDate.equals(""))
         {
             dDate.setTimeInMillis(Long.parseLong(deathDate));
+            this.deathDate = dDate;
         }
-        
+        else
+        {
+            this.deathDate = null;
+        }
+
         this.sex = sex;
         this.history = null;
-        this.status = true;
+        if(status.equals("true"))
+        {
+            this.status = true;
+        }
+        else
+        {
+            this.status = false;
+        }
     }
 
     public String getName()
