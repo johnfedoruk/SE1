@@ -75,6 +75,9 @@ public class ViewBirds extends ActionBarActivity {
         }
         birdVals.add(bird.getMedicalHistory().toString());
 
+        birdVals.add(bird.getMom());
+        birdVals.add(bird.getDad());
+
         intentView.putStringArrayListExtra("bird", birdVals);
 
         adapt.setIntent(intentView);

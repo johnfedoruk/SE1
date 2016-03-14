@@ -15,4 +15,12 @@ class ListItem {
         this.status = status;
         this.statusinfo = statusinfo;
     }
+
+    public ListItem(String titlePrefix, String title, String infoPrefix, String info)
+    {
+        this.titlePrefix = titlePrefix;
+        this.title = title;
+        this.infoPrefix = infoPrefix;
+        this.info = info;
+    }
 }

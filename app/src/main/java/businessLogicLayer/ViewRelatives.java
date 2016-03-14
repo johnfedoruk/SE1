@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import java.io.Serializable;
+
 import net.javacrypt.se1.R;
 
 import java.util.ArrayList;
@@ -31,26 +33,24 @@ public class ViewRelatives extends AppCompatActivity implements View.OnClickList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Bundle bundle = new Bundle();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_birds);
+        setContentView(R.layout.activity_view_relatives);
         this.context = getApplicationContext();
         Bird bird;
         Intent intent = getIntent();
-        String[] searchInfo = intent.getStringArrayExtra(SearchBird.EXTRA_MESSAGE);
-        String id = searchInfo[0];
+        Bird birdExtra = (Bird)intent.getSerializableExtra("bird");
+        String id = birdExtra.getId();
         String Active;
         ArrayList<Bird> query = db.generateRelatives(id);
-        ListView listView = (ListView)this.findViewById(R.id.listView);
+        ListView listView = (ListView)this.findViewById(R.id.listView2);
         ArrayList<ListItem> items = new ArrayList<>();
         for(int i=0;i<query.size();i++) {
             bird = query.get(i);
-            if(bird.getStatus()==true){Active = "active";}
-            else{Active="inactive";}
-            items.add(new ListItem("ID: ",bird.getId(),"Name: ",bird.getName(),"Status: ", Active));
+            items.add(new ListItem("ID: ",bird.getId(),"Name: ",bird.getName()));
         }
         ListAdapter adapt = new ListAdapter(this, R.layout.item, items);
         Intent intentView = new Intent(this,ViewBird.class);
-        Bundle bundle = new Bundle();
         ArrayList<String> birdVals = new ArrayList<>();
         bird = query.get(0);
         birdVals.add(bird.getId());
