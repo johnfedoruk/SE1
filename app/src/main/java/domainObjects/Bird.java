@@ -74,8 +74,7 @@ public class Bird implements Serializable {
         {
             dDate.setTimeInMillis(Long.parseLong(deathDate));
         }
-
-
+        
         this.sex = sex;
         this.history = null;
         this.status = true;

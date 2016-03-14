@@ -1,3 +1,14 @@
+----- Group members and Information -----
+			Account Name
+John 			johnfedoruk
+Jose			iskomt or matundjf
+Kaj			kajmoroz
+Kevin			kevinleonard
+Landon			ratstache
+Zili			xiezilli
+
+-----------------------------------------
+
 --Iteration 1--
 2016/01/29
 -How does everyone feel about Android?
@@ -136,4 +147,18 @@ Kaj Moroz 2016/03/11
 -searchBird was refactored to handle status in the DatbaseStub.
 -Talking about refactoring all of the old intents to pass birds.
 >Meeting Length 40 minutes
+
+-----------Time spent on tasks for iteration 2----------------
+
+Account Name:
+matundjf or iskomt (Jose)		Retire birds - 3 hours
+					End experiment - 1 hour
+					Input validation - 5 hours
+					Refactoring - 18 hours
+
+
+
+
+
+
 
