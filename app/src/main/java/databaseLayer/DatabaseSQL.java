@@ -113,17 +113,18 @@ public class DatabaseSQL{
      *                 it will have a length of zero.
      * @return The query results
      */
-    public static ArrayList<Experiment> searchExperiments(String studyTitle, String studyType, String
+    public ArrayList<Experiment> searchExperiments(String studyTitle, String studyType, String
             groupWithinExperiment, String startDate,
                                                           String endDate) {
-        ArrayList<Experiment> queryResult = new ArrayList<>();
 
-        return queryResult;
+
+        return searchExperiments(new Experiment(studyTitle,studyType,groupWithinExperiment, startDate, endDate, "", "", "true"));
+
     }
 
     public ArrayList<Experiment> searchExperiments(Experiment experiment)
     {
-        return searchExperiments(experiment.getStudyTitle(), experiment.getStudyType(), experiment.getGroupWithinExperiment(), experiment.getDateString(experiment.getStartDate()), experiment.getDateString(experiment.getEndDate()));
+        return expTable.searchBirds(experiment);
     }
 
 

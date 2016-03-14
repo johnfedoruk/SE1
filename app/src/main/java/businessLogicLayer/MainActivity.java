@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         this.dbHelper = new DatabaseHelper(getApplicationContext());
        this.db = new DatabaseManager();
+        this.db.switchDatabases();
         this.db.generateDatabase(dbHelper);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

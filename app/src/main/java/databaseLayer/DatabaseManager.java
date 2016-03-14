@@ -20,6 +20,7 @@ import databaseLayer.DatabaseStub;
  */
 public class DatabaseManager {
 
+    private boolean SQL_ON = false;
     private static DatabaseStub dbStub;
     private static DatabaseSQL dbSQL = null;
 
@@ -37,13 +38,22 @@ public class DatabaseManager {
     {
         this.dbSQL = new DatabaseSQL(helpMe);
     }
+
+    public void switchDatabases()
+    {
+        SQL_ON = !SQL_ON;
+    }
     /**
      * clearDatabases
      * clears the array lists, for testing purposes only
      */
     public void clearDatabases()
     {
-        dbStub.clearDatabases();
+        if(SQL_ON) {
+            dbSQL.clearDatabases();
+        }
+        else
+            dbStub.clearDatabases();
     }
 
     /**
@@ -52,11 +62,21 @@ public class DatabaseManager {
      * @param bird the bird to be added
      */
     public void addBird(Bird bird){
-        dbStub.addBird(bird);
-        dbSQL.addBird(bird);
+        if(SQL_ON)
+        {
+            dbSQL.addBird(bird);
+        }
+        else
+        {
+            dbStub.addBird(bird);
+        }
     }
     public void removeBird(String id){
-        dbStub.removeBird(id);
+        if (SQL_ON) {
+            dbSQL.removeBird(id);
+        }
+        else
+            dbStub.removeBird(id);
     }
 
     /**
@@ -65,7 +85,7 @@ public class DatabaseManager {
      * @param exp the experiment to be added
      */
     public void addExperiment(Experiment exp) {
-        dbStub.addExperiment(exp);
+            dbStub.addExperiment(exp);
     }
 
     /**
@@ -74,9 +94,16 @@ public class DatabaseManager {
      * @param id the id of the bird to be found
      * @return either null (when bird is not found) or the Bird
      */
-    public static Bird findBird(String id)
+    public Bird findBird(String id)
     {
-        return dbSQL.findBird(id);
+        if(SQL_ON)
+        {
+            return dbSQL.findBird(id);
+        }
+        else
+        {
+            return dbStub.findBird(id);
+        }
     }
 
     /**
@@ -94,15 +121,34 @@ public class DatabaseManager {
      */
     public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate, String status)
     {
-        return dbSQL.searchBirds(id, name, sex, birthDate, deathDate,status);
+        if(SQL_ON)
+        {
+            return dbSQL.searchBirds(id, name, sex, birthDate, deathDate, status);
+        }
+        else
+        {
+            return dbStub.searchBirds(id, name, sex, birthDate, deathDate, status);
+        }
     }
 
     public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate)
     {
-        return dbSQL.searchBirds(id, name, sex, birthDate, deathDate);
+        if(SQL_ON)
+        {
+            return dbSQL.searchBirds(id, name, sex, birthDate, deathDate);
+        }
+        else {
+            return dbStub.searchBirds(id, name, sex, birthDate, deathDate);
+        }
     }
+
     public ArrayList<Bird> searchBirds(Bird inputBird) {
-        return dbSQL.searchBirds(inputBird);
+
+        if (SQL_ON) {
+            return dbSQL.searchBirds(inputBird);
+        } else {
+            return dbStub.searchBirds(inputBird);
+        }
     }
 
     /**
@@ -118,15 +164,18 @@ public class DatabaseManager {
      *                 it will have a length of zero.
      * @return The query results
      */
-    public static ArrayList<Experiment> searchExperiments(String studyTitle, String studyType, String
+    public ArrayList<Experiment> searchExperiments(String studyTitle, String studyType, String
                                                           groupWithinExperiment, String startDate,
                                                           String endDate) {
-       return dbStub.searchExperiments(studyTitle, studyType, groupWithinExperiment, startDate, endDate);
+
+            return dbStub.searchExperiments(studyTitle, studyType, groupWithinExperiment, startDate, endDate);
+
     }
 
-    public static ArrayList<Experiment> searchExperiments(Experiment experiment)
+    public ArrayList<Experiment> searchExperiments(Experiment experiment)
     {
         return dbStub.searchExperiments(experiment);
+
     }
 
 
@@ -136,7 +185,9 @@ public class DatabaseManager {
      * @return experimentList
      */
     public ArrayList<Experiment> getExperiment(){
+
         return dbStub.getExperiment();
+
     }
 
     /**
@@ -148,7 +199,14 @@ public class DatabaseManager {
      * @return the calendar generated
      */
     public Calendar getCalendar(int yyyy,int m, int dd){
-        return dbStub.getCalendar(yyyy, m, dd);
+        if(SQL_ON)
+        {
+            return dbSQL.getCalendar(yyyy, m, dd);
+        }
+        else
+        {
+            return dbStub.getCalendar(yyyy, m, dd);
+        }
     }
 
     /**
@@ -157,6 +215,14 @@ public class DatabaseManager {
      * @return birdList
      */
     public ArrayList<Bird> getBird(){
-        return dbStub.getBird();
+
+        if(SQL_ON)
+        {
+            return dbSQL.getBird();
+        }
+        else
+        {
+            return dbStub.getBird();
+        }
     }
 }

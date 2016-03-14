@@ -38,8 +38,6 @@ public class Experiment implements Serializable {
         EndDate = getDateString(eDate);
 
         this.status = true;
-
-
     }
 
 

@@ -53,6 +53,157 @@ public class ExperimentDatabase {
             ExpEntry.EXP_STAT + TYPE_TEXT +
             " );";
     
+    private ArrayList<String> getWhereClause(Experiment params)
+    {
+        ArrayList<String> clauseElements = new ArrayList<>();
+
+        if(params.getStudyTitle() != null && !params.getStudyTitle().equals(""))
+        {
+            clauseElements.add(ExpEntry.EXP_TITLE);
+        }
+        if(params.getStudyType() != null && !params.getStudyType().equals(""))
+        {
+            clauseElements.add(ExpEntry.EXP_TYPE);
+        }
+
+        if(params.getGroupWithinExperiment() != null && !params.getGroupWithinExperiment().equals(""))
+        {
+            clauseElements.add(ExpEntry.EXP_GROUP);
+        }
+
+        if(params.getStartDate() != null)
+        {
+            clauseElements.add(ExpEntry.EXP_START);
+        }
+
+        if(params.getEndDate() != null)
+        {
+            clauseElements.add(ExpEntry.EXP_END);
+        }
+
+        if(params.getExperimenters() != null && !params.getExperimenters().equals(""))
+        {
+            clauseElements.add(ExpEntry.EXP_TERS);
+        }
+
+        if(params.getNotes() != null && !params.getNotes().equals(""))
+        {
+            clauseElements.add(ExpEntry.EXP_NOTES);
+        }
+
+        clauseElements.add(ExpEntry.EXP_STAT);
+        return clauseElements;
+    }
+
+    private String [] getSearchPara(Experiment params)
+    {
+        ArrayList<String> tempArray = new ArrayList<>();
+
+
+        if(params.getStudyTitle() != null && !params.getStudyTitle().equals(""))
+        {
+            tempArray.add(params.getStudyTitle());
+        }
+        if(params.getStudyType() != null && !params.getStudyType().equals(""))
+        {
+            tempArray.add(params.getStudyType());
+        }
+
+        if(params.getGroupWithinExperiment() != null && !params.getGroupWithinExperiment().equals(""))
+        {
+            tempArray.add(params.getGroupWithinExperiment());
+        }
+
+        if(params.getStartDate() != null)
+        {
+            tempArray.add(String.valueOf(params.getStartDate().getTimeInMillis()));
+        }
+
+        if(params.getEndDate() != null)
+        {
+            tempArray.add(String.valueOf(params.getEndDate().getTimeInMillis()));
+        }
+
+        if(params.getExperimenters() != null && !params.getExperimenters().equals(""))
+        {
+            tempArray.add(params.getExperimenters());
+        }
+
+        if(params.getNotes() != null && !params.getNotes().equals(""))
+        {
+            tempArray.add(params.getNotes());
+        }
+
+        if(params.getStatus())
+        {
+            tempArray.add("true");
+        }
+        else
+        {
+            tempArray.add("false");
+        }
+
+        String [] returnArr = new String[tempArray.size()];
+        returnArr = tempArray.toArray(returnArr);
+
+        return returnArr;
+    }
+
+    public ArrayList<Experiment> searchBirds(Experiment params)
+    {
+        Experiment addThisExp;
+        ArrayList<Experiment> queryResult = new ArrayList<>();
+        String title = "";
+        String type = "";
+        String group = "";
+        String start = "";
+        String end = "";
+        String experts = "";
+        String notes = "";
+        String stat = "";
+        params.setStatus(true);
+
+        //Queries each data elem in params: BIRD_NAME =? AND BIRD_ID =? AND...
+        ArrayList<String> whereClause  = getWhereClause(params);
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        String [] values = getSearchPara(params);
+        String query = "SELECT * FROM " + ExpEntry.TABLE_LABEL + " WHERE ";
+
+        for(int i = 0; i < whereClause.size()-1; i++)
+        {
+            query += whereClause.get(i) + " = " + "'" + values[i]+ "'" + AND;
+        }
+        query += whereClause.get(whereClause.size()-1) + " = " + "'" + values[values.length-1] + "'" ;
+
+        String queryD = "SELECT * FROM " + ExpEntry.TABLE_LABEL + " WHERE " + whereClause.get(0) + " = " + "'" +values[0] + "'" + " AND " + whereClause.get(1) + " = '" + values[1] + "'";
+
+        //Cursor c = db.rawQuery(query, values);
+
+        Cursor c = db.rawQuery(query, null);
+        c = db.rawQuery(queryD, null);
+        if(c.getCount() > 0) {
+            c.moveToFirst();
+            do{
+                title=c.getString(0);
+                type= c.getString(1);
+                group=c.getString(2);
+                start=c.getString(3);
+                end=c.getString(4);
+                experts=c.getString(5);
+                notes=c.getString(6);
+                stat=c.getString(7);
+                addThisExp = new Experiment(title, type, group, start, end, experts, notes, stat);
+                queryResult.add(addThisExp);
+            }while(c.moveToNext());
+        }
+
+
+        db.close();
+        return queryResult;
+    }
+    
     public void insert(Experiment input) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
