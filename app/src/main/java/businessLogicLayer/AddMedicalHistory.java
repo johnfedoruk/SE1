@@ -7,16 +7,12 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import net.javacrypt.se1.R;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import domainObjects.DateParser;
 import domainObjects.MedicalHistory;
 
 public class AddMedicalHistory extends AppCompatActivity implements View.OnClickListener {

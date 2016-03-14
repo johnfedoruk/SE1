@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,13 +20,10 @@ import android.widget.Toast;
 
 import net.javacrypt.se1.R;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
 import domainObjects.Bird;
-import domainObjects.DateParser;
 import domainObjects.MedicalHistory;
 
 

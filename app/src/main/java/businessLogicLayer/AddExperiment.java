@@ -12,17 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import net.javacrypt.se1.R;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import databaseLayer.DatabaseManager;
-import domainObjects.DateParser;
 import domainObjects.Experiment;
 
 /*============================JOSE============================*/

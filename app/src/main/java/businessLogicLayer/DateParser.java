@@ -1,4 +1,4 @@
-package domainObjects;
+package businessLogicLayer;
 
 import android.util.Log;
 
