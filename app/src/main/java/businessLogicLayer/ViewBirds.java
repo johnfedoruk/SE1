@@ -42,7 +42,42 @@ public class ViewBirds extends ActionBarActivity {
             items.add(new ListItem("ID: ",bird.getId(),"Name: ",bird.getName(),"Status: ", Active));
         }
         ListAdapter adapt = new ListAdapter(this, R.layout.item, items);
-        adapt.setIntent(new Intent(this,ViewBird.class));
+        Intent intentView = new Intent(this,ViewBird.class);
+        Bundle bundle = new Bundle();
+        ArrayList<String> birdVals = new ArrayList<>();
+        bird = query.get(0);
+        birdVals.add(bird.getId());
+        birdVals.add(bird.getName());
+        birdVals.add(bird.getExperiment());
+        if(bird.getBirthDate() != null)
+        {
+            birdVals.add(String.valueOf(bird.getBirthDate().getTimeInMillis()));
+        }
+        else
+        {
+            birdVals.add("");
+        }
+        if(bird.getDeathDate()!= null)
+        {
+            birdVals.add(String.valueOf(bird.getDeathDate().getTimeInMillis()));
+        }
+        else {
+            birdVals.add("");
+        }
+        birdVals.add(bird.getSex());
+        if(bird.getStatus())
+        {
+            birdVals.add("true");
+        }
+        else
+        {
+            birdVals.add("false");
+        }
+        birdVals.add(bird.getMedicalHistory().toString());
+
+        intentView.putStringArrayListExtra("bird", birdVals);
+
+        adapt.setIntent(intentView);
         listView.setAdapter(adapt);
     }
     @Override

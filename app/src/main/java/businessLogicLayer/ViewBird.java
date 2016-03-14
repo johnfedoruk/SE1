@@ -16,6 +16,7 @@ import android.widget.Toast;
 import net.javacrypt.se1.R;
 
 
+import java.util.ArrayList;
 
 import databaseLayer.DatabaseManager;
 import domainObjects.Bird;
@@ -28,8 +29,8 @@ import domainObjects.MedicalHistory;
 public class ViewBird extends AppCompatActivity {
 
     static int id = 1;
-
     private Bird currentBird = null;
+
     @Override
     /*
      * When onCreate is called, it requires a Bird's ID tag to be passed into ViewBird.
@@ -44,42 +45,42 @@ public class ViewBird extends AppCompatActivity {
          * Get the bird ID from the Database
          *
          */
+        Intent i = getIntent();
+        ArrayList<String> birdProp = i.getStringArrayListExtra("bird");
 
-        Intent intent = getIntent();
-        String birdId = intent.getStringExtra(SearchBird.EXTRA_MESSAGE);
+        Bird cBird = new Bird(birdProp.get(0), birdProp.get(1), birdProp.get(2), birdProp.get(3), birdProp.get(4), birdProp.get(5), birdProp.get(6));
+        cBird.setMedicalHistory(new MedicalHistory(birdProp.get(7)));
+        currentBird = cBird;
 
         /**
          * Append Bird's Info to xml elements
          */
-        if(birdId != null)
+        if(cBird != null && cBird.getId() != null)
         {
-
-            this.currentBird = db.searchBirds(new Bird(birdId, "", "", "", "", "","")).get(0); //Bird IDs are unique
-
-            try {
-                this.currentBird =
-                        db.searchBirds(new Bird(birdId,"","",null,null,"",null)).get(0); //Bird IDs are unique
+           /* try {
+                this.cBird =
+                       db.searchBirds(new Bird(birdId, birdName,"",null,null,"",null)).get(0); //Bird IDs are unique
             }
-            catch(Exception e) {this.currentBird=null;}
+            catch(Exception e) {this.cBird=null;}*/
 
-            if (currentBird != null)
+            if (cBird != null)
             {
                 TextView curr = (TextView) findViewById(R.id.birdName);
-                curr.append(currentBird.getName());
+                curr.append(cBird.getName());
 
                 curr = (TextView) findViewById(R.id.birdID);
-                curr.append(currentBird.getId());
+                curr.append(cBird.getId());
 
                 curr = (TextView) findViewById(R.id.birdBirthdate);
-                curr.append(currentBird.getDateString(currentBird.getBirthDate()));
+                curr.append(cBird.getDateString(cBird.getBirthDate()));
 
                 curr = (TextView) findViewById(R.id.birdDeathdate);
-                curr.append(currentBird.getDateString(currentBird.getDeathDate()));
+                curr.append(cBird.getDateString(cBird.getDeathDate()));
 
                 curr = (TextView) findViewById(R.id.birdSex);
-                curr.append(currentBird.getSex());
+                curr.append(cBird.getSex());
 
-                MedicalHistory medicalHistory = currentBird.getMedicalHistory();
+                MedicalHistory medicalHistory = cBird.getMedicalHistory();
                 if(medicalHistory!=null&&medicalHistory.getHealthIssue().length()>0) {
                     RelativeLayout layout = (RelativeLayout)findViewById(R.id.contentWrapper);
                     RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
