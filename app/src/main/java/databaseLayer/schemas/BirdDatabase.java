@@ -65,6 +65,29 @@ public final class BirdDatabase {
             BirdEntry.BIRD_MED + TYPE_TEXT +
             " );";
 
+    public ArrayList<Bird> getBird(){
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String query = "SELECT * FROM " + BirdEntry.TABLE_LABEL;
+        ArrayList<Bird> queryResult = new ArrayList<>();
+        Bird addThisBird;
+        Cursor c = db.rawQuery(query, null);
+
+        if(c.getCount() > 0) {
+            c.moveToFirst();
+            do{
+                addThisBird = new Bird(c.getString(1), c.getString(0), c.getString(3), c.getString(4), c.getString(5), c.getString(2), c.getString(6));
+                addThisBird.setMedicalHistory(new MedicalHistory(c.getString(7)));
+                queryResult.add(addThisBird);
+            }while(c.moveToNext());
+        }
+        return queryResult;
+    }
+
+    public void removeBird(String id)
+    {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.execSQL("DELETE FROM " + BirdEntry.TABLE_LABEL + " WHERE " + BirdEntry.BIRD_ID + " = '" + id + "'");
+    }
     /*
      *
      */

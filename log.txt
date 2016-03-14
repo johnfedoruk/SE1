@@ -147,7 +147,6 @@ Kaj Moroz 2016/03/11
 -searchBird was refactored to handle status in the DatbaseStub.
 -Talking about refactoring all of the old intents to pass birds.
 >Meeting Length 40 minutes
-
 -----------Time spent on tasks for iteration 2----------------
 
 Account Name:
@@ -156,7 +155,13 @@ matundjf or iskomt (Jose)		Retire birds - 3 hours
 					Input validation - 5 hours
 					Refactoring - 18 hours
 
-
+kajmoroz	   (Kaj)		ViewBird 	- 3 Hours			
+					SearchBirdSQL	- 10 Hours
+					BirdTable	-13 Hours
+					DatabaseManager -3 Hours
+					DatabaseSQL	-3 Hours
+					DatabaseHelper	-6 Hours
+					ExperimentDatabase -3 Hours
 
 
 

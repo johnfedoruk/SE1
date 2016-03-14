@@ -45,7 +45,7 @@ public class DatabaseSQL{
     }
 
     public void removeBird(String id){
-
+        birdTable.removeBird(id);
     }
 
     /**
@@ -151,7 +151,7 @@ public class DatabaseSQL{
      * @return birdList
      */
     public ArrayList<Bird> getBird(){
-        return null;
+        return birdTable.getBird();
     }
 
 }
