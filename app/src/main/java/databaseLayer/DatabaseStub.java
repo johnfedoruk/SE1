@@ -1,8 +1,12 @@
 package databaseLayer;
 
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import businessLogicLayer.ViewExperiment;
+import businessLogicLayer.ViewExperiments;
 import domainObjects.Bird;
 import domainObjects.Experiment;
 import domainObjects.MedicalHistory;
@@ -133,10 +137,10 @@ public class DatabaseStub {
         String id = (inputBird.getId()!=null)?(inputBird.getId().trim().toLowerCase()):(null);
         String name = (inputBird.getName()!=null)?(inputBird.getName().trim().toLowerCase()):(null);
         String sex = (inputBird.getSex()!=null)?(inputBird.getSex().trim().toLowerCase()):(null);
-        //String birthDate = (inputBird.getBirthDate()!=null)?(inputBird.getDateString(inputBird.getBirthDate()).trim().toLowerCase()):(null);
-        //String deathDate = (inputBird.getDeathDate()!=null)?(inputBird.getDateString(inputBird.getDeathDate()).trim().toLowerCase()):(null);
-        Calendar birthDate = (inputBird.getBirthDate()!=null)?(inputBird.getBirthDate()):(null);
-        Calendar deathDate = (inputBird.getDeathDate()!=null)?(inputBird.getDeathDate()):(null);
+        String birthDate = (inputBird.getBirthDate()!=null)?(inputBird.getDateString(inputBird.getBirthDate())):(null);
+        String deathDate = (inputBird.getDeathDate()!=null)?(inputBird.getDateString(inputBird.getDeathDate())):(null);
+        //Calendar birthDate = (inputBird.getBirthDate()!=null)?(inputBird.getBirthDate()):(null);
+        //Calendar deathDate = (inputBird.getDeathDate()!=null)?(inputBird.getDeathDate()):(null);
 
         /**This will be replaced with a simple sql statement**/
         for(int i=queryResult.size()-1;i>=0;i--) {
@@ -156,30 +160,33 @@ public class DatabaseStub {
                 continue;
             }
 
-            /*
-            if(birthDate!=null&&birthDate.length()>0&& queryResult.get(i).getBirthDate() != null &&
+            if((birthDate!=null&&queryResult.get(i).getBirthDate()==null)||(birthDate!=null&&
                     !queryResult.get(i).getDateString(queryResult.get(i).getBirthDate())
-                            .equals(birthDate)) {
+                    .equals(birthDate))) {
+                //Toast.makeText(,queryResult.get(i).getDateString(queryResult.get(i).getBirthDate())+ " "+birthDate,Toast.LENGTH_SHORT).show();
                 queryResult.remove(i);
                 continue;
             }
-            if(deathDate!=null&&deathDate.length()>0&& queryResult.get(i).getDeathDate() != null &&
+            if((deathDate!=null&&queryResult.get(i).getDeathDate()==null)||(deathDate!=null&&
                     !queryResult.get(i).getDateString(queryResult.get(i).getDeathDate())
-                            .equals(deathDate)) {
+                    .equals(deathDate))) {
+                queryResult.remove(i);
+                continue;
+            }
+            /*
+            if((birthDate!=null&&queryResult.get(i).getBirthDate()==null)||(
+                    birthDate!=null&& queryResult.get(i).getBirthDate() != null &&
+                    queryResult.get(i).getBirthDate().equals(birthDate))) {
+                queryResult.remove(i);
+                continue;
+            }
+            if((deathDate!=null&&queryResult.get(i).getDeathDate()==null)||(
+                    deathDate!=null&& queryResult.get(i).getDeathDate() != null &&
+                    !queryResult.get(i).getDeathDate().equals(deathDate))) {
                 queryResult.remove(i);
                 continue;
             }
             */
-            if(birthDate!=null&& queryResult.get(i).getBirthDate() != null &&
-                    queryResult.get(i).getBirthDate().equals(birthDate)) {
-                queryResult.remove(i);
-                continue;
-            }
-            if(deathDate!=null&& queryResult.get(i).getDeathDate() != null &&
-                    !queryResult.get(i).getDeathDate().equals(deathDate)) {
-                queryResult.remove(i);
-                continue;
-            }
         }
         queryResult.trimToSize();
         return queryResult;
