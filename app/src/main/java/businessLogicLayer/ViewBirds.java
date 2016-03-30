@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import net.javacrypt.se1.R;
 import java.util.ArrayList;
@@ -30,10 +31,13 @@ public class ViewBirds extends ActionBarActivity {
         String id = searchInfo[0];
         String name = searchInfo[1];
         String sex = searchInfo[2];
-        String birdDate = searchInfo[3];
+        String birthDate = searchInfo[3];
         String deathDate = searchInfo[4];
+        Toast.makeText(this, "Birth: " + birthDate, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Death: "+deathDate,Toast.LENGTH_SHORT).show();
+
         String Active;
-        ArrayList<Bird> query = db.searchBirds(new Bird(id,name,birdDate,deathDate,sex,null,""));
+        ArrayList<Bird> query = db.searchBirds(new Bird(id,name,null,birthDate,deathDate,sex,null));
         ListView listView = (ListView)this.findViewById(R.id.listView);
         ArrayList<ListItem> items = new ArrayList<>();
         if(query.size()==0)

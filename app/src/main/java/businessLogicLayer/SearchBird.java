@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import net.javacrypt.se1.R;
 
@@ -89,7 +90,7 @@ public class SearchBird extends AppCompatActivity {
                     dateFormat.format(new Date(dp.getYear()-1900,dp.getMonth(),dp.getDayOfMonth()));
         }
         String[] searchParameters = {birdId,birdName,birdSex,birdBirth,birdDeath};
-        intent.putExtra(EXTRA_MESSAGE,searchParameters);
+        intent.putExtra(EXTRA_MESSAGE, searchParameters);
         startActivity(intent);
     }
 }

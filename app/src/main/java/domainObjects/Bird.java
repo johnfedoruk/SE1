@@ -96,8 +96,11 @@ public class Bird implements Serializable {
 
         if(birthDate != null && !birthDate.equals(""))
         {
-            bDate.setTimeInMillis(Long.parseLong(birthDate));
-            this.birthDate = bDate;
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.CANADA);
+                this.deathDate = Calendar.getInstance();
+                this.deathDate.setTime(sdf.parse(deathDate));
+            } catch(Exception e){this.birthDate = null;};
         }
         else {
             this.birthDate = null;
@@ -105,8 +108,11 @@ public class Bird implements Serializable {
 
         if(deathDate != null && !deathDate.equals(""))
         {
-            dDate.setTimeInMillis(Long.parseLong(deathDate));
-            this.deathDate = dDate;
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.CANADA);
+                this.deathDate = Calendar.getInstance();
+                this.deathDate.setTime(sdf.parse(deathDate));
+            } catch(Exception e){this.deathDate = null;};
         }
         else
         {
@@ -115,7 +121,7 @@ public class Bird implements Serializable {
 
         this.sex = sex;
         this.history = null;
-        if(status.equals("true"))
+        if(status!=null&&status.equals("true"))
         {
             this.status = true;
         }

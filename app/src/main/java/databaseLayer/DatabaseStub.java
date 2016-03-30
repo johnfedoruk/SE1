@@ -101,7 +101,7 @@ public class DatabaseStub {
      *                  it will have a length of zero.
      * @return The query results
      */
-    public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate, String status)
+    private ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate, String status)
     {
 
         return searchBirds(new Bird(id, name, "", birthDate, deathDate, sex, status));
@@ -133,35 +133,50 @@ public class DatabaseStub {
         String id = (inputBird.getId()!=null)?(inputBird.getId().trim().toLowerCase()):(null);
         String name = (inputBird.getName()!=null)?(inputBird.getName().trim().toLowerCase()):(null);
         String sex = (inputBird.getSex()!=null)?(inputBird.getSex().trim().toLowerCase()):(null);
-        String birthDate = (inputBird.getBirthDate()!=null)?(inputBird.getDateString(inputBird.getBirthDate()).trim().toLowerCase()):(null);
-        String deathDate = (inputBird.getDeathDate()!=null)?(inputBird.getDateString(inputBird.getDeathDate()).trim().toLowerCase()):(null);
+        //String birthDate = (inputBird.getBirthDate()!=null)?(inputBird.getDateString(inputBird.getBirthDate()).trim().toLowerCase()):(null);
+        //String deathDate = (inputBird.getDeathDate()!=null)?(inputBird.getDateString(inputBird.getDeathDate()).trim().toLowerCase()):(null);
+        Calendar birthDate = (inputBird.getBirthDate()!=null)?(inputBird.getBirthDate()):(null);
+        Calendar deathDate = (inputBird.getDeathDate()!=null)?(inputBird.getDeathDate()):(null);
 
         /**This will be replaced with a simple sql statement**/
         for(int i=queryResult.size()-1;i>=0;i--) {
-            if(id!=null&&id.length()>0&&
+            if(id!=null&&id.length()>0&& queryResult.get(i).getId() != null &&
                     !queryResult.get(i).getId().trim().toLowerCase().equals(id)) {
                 queryResult.remove(i);
                 continue;
             }
-            if(name!=null&&name.length()>0&&
+            if(name!=null&&name.length()>0&& queryResult.get(i).getName() != null &&
                     !queryResult.get(i).getName().trim().toLowerCase().equals(name)) {
                 queryResult.remove(i);
                 continue;
             }
-            if(sex!=null&&sex.length()>0&&
+            if(sex!=null&&sex.length()>0&& queryResult.get(i).getSex() != null &&
                     !queryResult.get(i).getSex().trim().toLowerCase().equals(sex)) {
                 queryResult.remove(i);
                 continue;
             }
-            if(birthDate!=null&&birthDate.length()>0&&
+
+            /*
+            if(birthDate!=null&&birthDate.length()>0&& queryResult.get(i).getBirthDate() != null &&
                     !queryResult.get(i).getDateString(queryResult.get(i).getBirthDate())
                             .equals(birthDate)) {
                 queryResult.remove(i);
                 continue;
             }
-            if(deathDate!=null&&deathDate.length()>0&&
+            if(deathDate!=null&&deathDate.length()>0&& queryResult.get(i).getDeathDate() != null &&
                     !queryResult.get(i).getDateString(queryResult.get(i).getDeathDate())
                             .equals(deathDate)) {
+                queryResult.remove(i);
+                continue;
+            }
+            */
+            if(birthDate!=null&& queryResult.get(i).getBirthDate() != null &&
+                    queryResult.get(i).getBirthDate().equals(birthDate)) {
+                queryResult.remove(i);
+                continue;
+            }
+            if(deathDate!=null&& queryResult.get(i).getDeathDate() != null &&
+                    !queryResult.get(i).getDeathDate().equals(deathDate)) {
                 queryResult.remove(i);
                 continue;
             }
@@ -183,6 +198,7 @@ public class DatabaseStub {
      *                 it will have a length of zero.
      * @return The query results
      */
+
     public static ArrayList<Experiment> searchExperiments(String studyTitle, String studyType, String
             groupWithinExperiment, String startDate,
                                                           String endDate) {
@@ -198,14 +214,14 @@ public class DatabaseStub {
             add = true;
             tempExperiment = experimentList.get(i);
 
-            if(!studyTitle.equals("") && !tempExperiment.getStudyTitle().toLowerCase()
-                    .contains(studyTitle.toLowerCase()))
+            if(!studyTitle.equals("") && studyTitle != null && tempExperiment.getStudyTitle() != null
+                && !tempExperiment.getStudyTitle().toLowerCase().contains(studyTitle.toLowerCase()))
                 add = false;
-            if(!studyType.equals("") && !tempExperiment.getStudyType().toLowerCase()
-                    .contains(studyType.toLowerCase()))
+            if(!studyType.equals("") && studyType != null && tempExperiment.getStudyType() != null
+                    && !tempExperiment.getStudyType().toLowerCase().contains(studyType.toLowerCase()))
                 add = false;
-            if(!groupWithinExperiment.equals("") && !tempExperiment.getGroupWithinExperiment()
-                    .toLowerCase().contains(groupWithinExperiment.toLowerCase()))
+            if(!groupWithinExperiment.equals("")
+                    && !tempExperiment.getGroupWithinExperiment().toLowerCase().contains(groupWithinExperiment.toLowerCase()))
                 add = false;
             if(!startDate.equals("") && !tempExperiment.getDateString(tempExperiment.getStartDate())
                     .equals(startDate))
@@ -213,10 +229,8 @@ public class DatabaseStub {
             if(!endDate.equals("") && !tempExperiment.getDateString(tempExperiment.getEndDate())
                     .equals(endDate))
                 add = false;
-
             if(add)
                 queryResult.add(tempExperiment);
-
         }
 
         return queryResult;

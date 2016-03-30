@@ -119,25 +119,29 @@ public class DatabaseManager {
      *                  it will have a length of zero.
      * @return The query results
      */
-    public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate, String status)
+    private ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate, String status)
     {
         if(SQL_ON)
         {
-            return dbSQL.searchBirds(id, name, sex, birthDate, deathDate, status);
+            return null;
+            //return dbSQL.searchBirds(id, name, sex, birthDate, deathDate, status);
         }
         else
         {
-            return dbStub.searchBirds(id, name, sex, birthDate, deathDate, status);
+            return null;
+            //return dbStub.searchBirds(id, name, sex, birthDate, deathDate, status);
         }
     }
-    public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate)
+    private ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate)
     {
         if(SQL_ON)
         {
-            return dbSQL.searchBirds(id, name, sex, birthDate, deathDate);
+            return null;
+            //return dbSQL.searchBirds(id, name, sex, birthDate, deathDate);
         }
         else {
-            return dbStub.searchBirds(id, name, sex, birthDate, deathDate);
+            return null;
+            //return dbStub.searchBirds(id, name, sex, birthDate, deathDate);
         }
     }
     public ArrayList<Bird> searchBirds(Bird inputBird) {
