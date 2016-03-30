@@ -33,8 +33,6 @@ public class ViewBirds extends ActionBarActivity {
         String sex = searchInfo[2];
         String birthDate = searchInfo[3];
         String deathDate = searchInfo[4];
-        Toast.makeText(this, "Birth: " + birthDate, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this,"Death: "+deathDate,Toast.LENGTH_SHORT).show();
 
         String Active;
         ArrayList<Bird> query = db.searchBirds(new Bird(id,name,null,birthDate,deathDate,sex,null));
