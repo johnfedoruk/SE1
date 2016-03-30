@@ -130,7 +130,6 @@ public class DatabaseManager {
             return dbStub.searchBirds(id, name, sex, birthDate, deathDate, status);
         }
     }
-
     public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate)
     {
         if(SQL_ON)

@@ -12,6 +12,7 @@ import net.javacrypt.se1.R;
 import java.util.ArrayList;
 import domainObjects.Bird;
 import databaseLayer.DatabaseManager;
+import domainObjects.MedicalHistory;
 
 
 @SuppressWarnings("all")
@@ -32,9 +33,11 @@ public class ViewBirds extends ActionBarActivity {
         String birdDate = searchInfo[3];
         String deathDate = searchInfo[4];
         String Active;
-        ArrayList<Bird> query = db.searchBirds(id,name,sex,birdDate,deathDate,"");
+        ArrayList<Bird> query = db.searchBirds(new Bird(id,name,birdDate,deathDate,sex,null,""));
         ListView listView = (ListView)this.findViewById(R.id.listView);
         ArrayList<ListItem> items = new ArrayList<>();
+        if(query.size()==0)
+            return;
         for(int i=0;i<query.size();i++) {
             bird = query.get(i);
             if(bird.getStatus()==true){Active = "active";}
