@@ -140,7 +140,6 @@ public class DatabaseManager {
             return dbStub.searchBirds(id, name, sex, birthDate, deathDate);
         }
     }
-
     public ArrayList<Bird> searchBirds(Bird inputBird) {
 
         if (SQL_ON) {
@@ -149,7 +148,6 @@ public class DatabaseManager {
             return dbStub.searchBirds(inputBird);
         }
     }
-
     /**
      * searchExperiments
      *  Queries the experimentList and returns all birds that match the definitions

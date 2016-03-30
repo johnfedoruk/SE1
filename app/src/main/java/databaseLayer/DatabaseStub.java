@@ -130,11 +130,11 @@ public class DatabaseStub {
     public ArrayList<Bird> searchBirds(Bird inputBird) {
 
         ArrayList<Bird> queryResult = new ArrayList<>(this.birdList);
-        String id = inputBird.getId().trim().toLowerCase();
-        String name = inputBird.getName().trim().toLowerCase();
-        String sex = inputBird.getSex().trim().toLowerCase();
-        String birthDate = inputBird.getDateString(inputBird.getBirthDate()).trim().toLowerCase();
-        String deathDate = inputBird.getDateString(inputBird.getDeathDate()).trim().toLowerCase();
+        String id = (inputBird.getId()!=null)?(inputBird.getId().trim().toLowerCase()):(null);
+        String name = (inputBird.getName()!=null)?(inputBird.getName().trim().toLowerCase()):(null);
+        String sex = (inputBird.getSex()!=null)?(inputBird.getSex().trim().toLowerCase()):(null);
+        String birthDate = (inputBird.getBirthDate()!=null)?(inputBird.getDateString(inputBird.getBirthDate()).trim().toLowerCase()):(null);
+        String deathDate = (inputBird.getDeathDate()!=null)?(inputBird.getDateString(inputBird.getDeathDate()).trim().toLowerCase()):(null);
 
         /**This will be replaced with a simple sql statement**/
         for(int i=queryResult.size()-1;i>=0;i--) {
