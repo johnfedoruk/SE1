@@ -16,6 +16,8 @@ import net.javacrypt.se1.R;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import domainObjects.Bird;
+
 
 public class SearchBird extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "net.javacrypt.se1.MESSAGE";
@@ -66,7 +68,7 @@ public class SearchBird extends AppCompatActivity {
 
     @SuppressWarnings("all")
     public void openViewBirds(View view) {
-        Intent intent = new Intent(this,ViewBirds.class);
+        //Intent intent = new Intent(this,ViewBirds.class);
         String birdId = ((EditText)findViewById(R.id.legBandId)).getText().toString();
         String birdName = ((EditText)findViewById(R.id.birdName)).getText().toString();
         String birdSex = "";
@@ -89,8 +91,15 @@ public class SearchBird extends AppCompatActivity {
             birdDeath =
                     dateFormat.format(new Date(dp.getYear()-1900,dp.getMonth(),dp.getDayOfMonth()));
         }
+        /*
         String[] searchParameters = {birdId,birdName,birdSex,birdBirth,birdDeath};
         intent.putExtra(EXTRA_MESSAGE, searchParameters);
+        */
+
+        Intent intent = new Intent(this,ViewBirds.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("bird", new Bird(birdId,birdName,null,birdBirth,birdDeath,birdSex,null));
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 }

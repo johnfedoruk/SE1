@@ -18,6 +18,7 @@ import domainObjects.MedicalHistory;
 
 @SuppressWarnings("all")
 public class ViewBirds extends ActionBarActivity {
+    private Bird currentBird = null;
     DatabaseManager db = MainActivity.db;
     public Context context;
     @Override
@@ -26,15 +27,22 @@ public class ViewBirds extends ActionBarActivity {
         setContentView(R.layout.activity_view_birds);
         this.context = getApplicationContext();
         Bird bird;
-        Intent intent = getIntent();
+        //Intent intent = getIntent();
+        /*
         String[] searchInfo = intent.getStringArrayExtra(SearchBird.EXTRA_MESSAGE);
         String id = searchInfo[0];
         String name = searchInfo[1];
         String sex = searchInfo[2];
         String birthDate = searchInfo[3];
         String deathDate = searchInfo[4];
+        */
         String Active;
-        ArrayList<Bird> query = db.searchBirds(new Bird(id,name,null,birthDate,deathDate,sex,null));
+        Intent intent = this.getIntent();
+        Bundle b = intent.getExtras();
+        Bird searchBird = (Bird)b.getSerializable("bird");
+
+        //ArrayList<Bird> query = db.searchBirds(new Bird(id,name,null,birthDate,deathDate,sex,null));
+        ArrayList<Bird> query = db.searchBirds(searchBird);
         ListView listView = (ListView)this.findViewById(R.id.listView);
         ArrayList<ListItem> items = new ArrayList<>();
         if(query.size()==0)
@@ -45,9 +53,10 @@ public class ViewBirds extends ActionBarActivity {
             else{Active="inactive";}
             items.add(new ListItem("ID: ",bird.getId(),"Name: ",bird.getName(),"Status: ", Active));
         }
+        ListAdapter adapt = new ListAdapter(this, R.layout.item, items);
         for(int i=0;i<query.size();i++) {
-            ListAdapter adapt = new ListAdapter(this, R.layout.item, items);
-            ArrayList<String> birdVals = new ArrayList<>();
+            //ArrayList<String> birdVals = new ArrayList<>();
+            /*
             Intent intentView = new Intent(this,ViewBird.class);
             Bundle bundle = new Bundle();
             bird = query.get(i);
@@ -83,7 +92,18 @@ public class ViewBirds extends ActionBarActivity {
             birdVals.add(bird.getMom());
             birdVals.add(bird.getDad());
 
-            intentView.putStringArrayListExtra("bird", birdVals);
+            */
+            Intent intentView = new Intent(this,ViewBird.class);
+            Bundle bundle = new Bundle();
+
+
+            bird = query.get(i);
+            bundle.putSerializable("bird",bird);
+            intentView.putExtras(bundle);
+
+            //startActivity(intent);
+
+            //intentView.putStringArrayListExtra("bird", birdVals);
 
             adapt.setIntent(intentView);
             listView.setAdapter(adapt);

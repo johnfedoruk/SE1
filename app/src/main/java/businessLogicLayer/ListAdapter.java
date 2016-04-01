@@ -15,14 +15,15 @@ import java.util.ArrayList;
 class ListAdapter extends ArrayAdapter<ListItem> {
     private ArrayList<ListItem> items;
     private Context ctx;
-    private Intent intent;
+    private ArrayList<Intent> intents;
     public ListAdapter(Context context, int textViewResourceId, ArrayList<ListItem> objects) {
         super(context, textViewResourceId, objects);
         this.items = objects;
         this.ctx = context;
+        this.intents = new ArrayList<>();
     }
     public void setIntent(Intent intent) {
-        this.intent = intent;
+        this.intents.add(intent);
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -56,7 +57,7 @@ class ListAdapter extends ArrayAdapter<ListItem> {
             }
 
             RelativeLayout layout = (RelativeLayout)v.findViewById(R.id.item);
-            final Intent intent = this.intent;
+            final Intent intent = this.intents.get(position);
             final String param = m.title;
             layout.setOnClickListener(new SelectQuery(ctx,intent,param));
         }

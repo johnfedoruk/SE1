@@ -45,10 +45,11 @@ public class ViewBird extends AppCompatActivity {
          * Get the bird ID from the Database
          *
          */
+
         Intent i = getIntent();
         ArrayList<String> birdProp = i.getStringArrayListExtra("bird");
         Bird cBird ;
-
+/*
         if(birdProp.size() == 10)
             cBird = new Bird(birdProp.get(0), birdProp.get(1), birdProp.get(2), birdProp.get(3), birdProp.get(4), birdProp.get(5), birdProp.get(6), birdProp.get(8), birdProp.get(9));
         else
@@ -56,11 +57,16 @@ public class ViewBird extends AppCompatActivity {
 
         cBird.setMedicalHistory(new MedicalHistory(birdProp.get(7)));
         currentBird = cBird;
+*/
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        this.currentBird = (Bird)bundle.getSerializable("bird");
 
         /**
          * Append Bird's Info to xml elements
          */
-        if(cBird != null && cBird.getId() != null)
+        if(currentBird != null && currentBird.getId() != null)
         {
            /* try {
                 this.cBird =
@@ -68,24 +74,24 @@ public class ViewBird extends AppCompatActivity {
             }
             catch(Exception e) {this.cBird=null;}*/
 
-            if (cBird != null)
+            if (currentBird != null)
             {
                 TextView curr = (TextView) findViewById(R.id.birdName);
-                curr.append(cBird.getName());
+                curr.append(currentBird.getName());
 
                 curr = (TextView) findViewById(R.id.birdID);
-                curr.append(cBird.getId());
+                curr.append(currentBird.getId());
 
                 curr = (TextView) findViewById(R.id.birdBirthdate);
-                curr.append(cBird.getDateString(cBird.getBirthDate()));
+                curr.append(currentBird.getDateString(currentBird.getBirthDate()));
 
                 curr = (TextView) findViewById(R.id.birdDeathdate);
-                curr.append(cBird.getDateString(cBird.getDeathDate()));
+                curr.append(currentBird.getDateString(currentBird.getDeathDate()));
 
                 curr = (TextView) findViewById(R.id.birdSex);
-                curr.append(cBird.getSex());
+                curr.append(currentBird.getSex());
 
-                MedicalHistory medicalHistory = cBird.getMedicalHistory();
+                MedicalHistory medicalHistory = currentBird.getMedicalHistory();
                 if(medicalHistory!=null&&medicalHistory.getHealthIssue().length()>0) {
                     RelativeLayout layout = (RelativeLayout)findViewById(R.id.medHistoryWrapper);
                     RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
