@@ -24,7 +24,7 @@ import domainObjects.Experiment;
 /*============================JOSE============================*/
 public class AddExperiment extends AppCompatActivity implements View.OnClickListener {
 
-    DatabaseManager db = new DatabaseManager();
+    DatabaseManager db = MainActivity.db;
     Button btCreateExperiment;
     public static DateParser dateParser = new DateParser();
     EditText txtStudyTitle, txtStudyType, txtGroupWithinExperiment, txtStartDate, txtEndDate, txtExperimenters, txtNotes;

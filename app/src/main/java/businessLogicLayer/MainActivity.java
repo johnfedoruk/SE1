@@ -20,15 +20,13 @@ public class MainActivity extends AppCompatActivity {
     public DatabaseHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        this.dbHelper = new DatabaseHelper(getApplicationContext());
-       this.db = new DatabaseManager();
+        //this.dbHelper = new DatabaseHelper(getApplicationContext());
+        this.db = new DatabaseManager(new DatabaseHelper(getApplicationContext()));
         //this.db.switchDatabases();
         //this.db.generateDatabase(dbHelper);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-           }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

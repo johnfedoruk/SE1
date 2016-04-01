@@ -28,11 +28,13 @@ public class DatabaseManager {
      * DatabaseManager
      * default constructor
      */
-    public DatabaseManager()
+    public DatabaseManager(DatabaseHelper helpMe)
     {
-        this.dbStub = new DatabaseStub();
+        if(SQL_ON)
+            this.dbSQL = new DatabaseSQL(helpMe);
+        else
+            this.dbStub = new DatabaseStub();
     }
-
 
     public void generateDatabase(SQLiteOpenHelper helpMe)
     {

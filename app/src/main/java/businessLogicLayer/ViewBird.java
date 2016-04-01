@@ -88,7 +88,7 @@ public class ViewBird extends AppCompatActivity {
 
                 MedicalHistory medicalHistory = cBird.getMedicalHistory();
                 if(medicalHistory!=null&&medicalHistory.getHealthIssue().length()>0) {
-                    RelativeLayout layout = (RelativeLayout)findViewById(R.id.contentWrapper);
+                    RelativeLayout layout = (RelativeLayout)findViewById(R.id.medHistoryWrapper);
                     RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                             RelativeLayout.LayoutParams.WRAP_CONTENT,
                             RelativeLayout.LayoutParams.WRAP_CONTENT );

@@ -61,42 +61,41 @@
                 android:layout_below="@+id/birdDeathdate"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
+            <RelativeLayout
+                android:id="@+id/medHistoryWrapper"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/birdSex"
+             />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/retireBird"
+                android:text="Retire"
+                android:onClick="retireBird"
+                android:layout_below="@+id/medHistoryWrapper"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="24px"/>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editBird"
+                android:text="@string/editBird"
+                android:onClick="editBird"
+                android:layout_below="@+id/retireBird"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="24px" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/relativesButton"
+                android:text="@string/relatives"
+                android:onClick="openGetRelatives"
+                android:layout_below="@+id/editBird"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="24px"/>
         </RelativeLayout>
     </ScrollView>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/retireBird"
-        android:text="Retire"
-        android:onClick="retireBird"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/scrollView"
-        android:layout_alignEnd="@+id/scrollView"
-        android:layout_marginRight="41dp"
-        android:layout_marginEnd="41dp"
-        android:layout_marginBottom="45dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editBird"
-        android:text="@string/editBird"
-        android:onClick="editBird"
-        android:layout_above="@+id/retireBird"
-        android:layout_alignLeft="@+id/retireBird"
-        android:layout_alignStart="@+id/retireBird" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/relativesButton"
-        android:text="@string/relatives"
-        android:onClick="openGetRelatives"
-        android:layout_above="@+id/editBird"
-        android:layout_alignLeft="@+id/editBird"
-        android:layout_alignStart="@+id/editBird"
-        android:nestedScrollingEnabled="false" />
-
 </RelativeLayout>

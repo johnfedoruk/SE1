@@ -71,7 +71,6 @@ public class DatabaseSQL{
     {
         return birdTable.findBird(id);
     }
-
     /**
      * searchBirds
      *  Queries the birdList and returns all birds that match the definitions

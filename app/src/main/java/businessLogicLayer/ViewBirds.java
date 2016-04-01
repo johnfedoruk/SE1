@@ -33,7 +33,6 @@ public class ViewBirds extends ActionBarActivity {
         String sex = searchInfo[2];
         String birthDate = searchInfo[3];
         String deathDate = searchInfo[4];
-
         String Active;
         ArrayList<Bird> query = db.searchBirds(new Bird(id,name,null,birthDate,deathDate,sex,null));
         ListView listView = (ListView)this.findViewById(R.id.listView);

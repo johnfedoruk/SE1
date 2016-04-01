@@ -25,7 +25,7 @@ import domainObjects.Experiment;
  */
 public class EditExperiment extends AppCompatActivity implements View.OnClickListener {
 
-    DatabaseManager db = new DatabaseManager();
+    DatabaseManager db = MainActivity.db;
     Button btEditExperiment;
     public static Experiment currentExperiment = null;
 
