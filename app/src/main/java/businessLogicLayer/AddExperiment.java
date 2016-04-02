@@ -1,5 +1,6 @@
 package businessLogicLayer;
 
+import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -9,7 +10,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,7 +25,7 @@ import databaseLayer.DatabaseManager;
 import domainObjects.Experiment;
 
 /*============================JOSE============================*/
-public class AddExperiment extends AppCompatActivity implements View.OnClickListener {
+public class AddExperiment extends AppCompatActivity implements View.OnClickListener,View.OnTouchListener,View.OnFocusChangeListener {
 
     DatabaseManager db = MainActivity.db;
     Button btCreateExperiment;
@@ -33,6 +36,7 @@ public class AddExperiment extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        View view = this.getCurrentFocus();
         setContentView(R.layout.activity_add_experiment);
 
 
@@ -196,6 +200,40 @@ public class AddExperiment extends AppCompatActivity implements View.OnClickList
         if (!InputValidation.isDate(txtEndDate, false)) ret = false;
         return ret;
     }
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        View v = getCurrentFocus();
 
+        if (v != null &&
+                (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) &&
+                v instanceof EditText &&
+                !v.getClass().getName().startsWith("android.webkit.")) {
+            int scrcoords[] = new int[2];
+            v.getLocationOnScreen(scrcoords);
+            float x = ev.getRawX() + v.getLeft() - scrcoords[0];
+            float y = ev.getRawY() + v.getTop() - scrcoords[1];
+
+            if (x < v.getLeft() || x > v.getRight() || y < v.getTop() || y > v.getBottom())
+                hideSoftKeyboard(this);
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if(!hasFocus){
+            hideSoftKeyboard(this);
+        }
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        return false;
+    }
 }
 /*============================JOSE============================*/
