@@ -105,6 +105,7 @@ public class ViewBird extends AppCompatActivity {
                     curr.setId(currId);
                     curr.setTypeface(null, Typeface.BOLD);
                     curr.setText("Medical History");
+                    curr.setTextSize(20);
                     params.addRule(RelativeLayout.BELOW, R.id.editBird);
                     params.setMargins(0,20,0,0);
                     layout.addView(curr, params);

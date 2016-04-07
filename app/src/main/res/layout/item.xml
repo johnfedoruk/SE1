@@ -11,31 +11,46 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"/>
+        android:text="title"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:layout_marginTop="5dp" />
     <TextView
         android:id="@+id/info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/title"
-        android:layout_alignParentLeft="true"/>
+        android:text="info"
+        android:textSize="16dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignRight="@+id/title"
+        android:layout_alignEnd="@+id/title"
+        android:layout_alignLeft="@+id/title"
+        android:layout_alignStart="@+id/title"
+        android:layout_marginLeft="15dp" />
     <TextView
         android:id="@+id/statusinfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/info"
-        android:layout_toRightOf="@id/info"
-        android:gravity="right"
-        android:layout_below="@id/title"
-        android:layout_alignParentRight="true"
-        android:paddingRight="10dp"/>
+        android:gravity="left"
+        android:paddingRight="10dp"
+        android:text="Sinfo"
+        android:layout_alignTop="@+id/status"
+        android:layout_alignRight="@+id/title"
+        android:layout_alignEnd="@+id/title" />
     <TextView
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:layout_toLeftOf="@id/statusinfo"
+        android:paddingRight="59dp"
+        android:text="status"
+        android:layout_alignBottom="@+id/info"
         android:layout_alignParentRight="true"
-        android:paddingRight="59dp"/>
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

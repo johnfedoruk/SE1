@@ -1,15 +1,21 @@
 package businessLogicLayer;
 
+import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,7 +37,7 @@ import domainObjects.MedicalHistory;
  *
  */
 @SuppressWarnings("all")
-public class AddBird extends AppCompatActivity implements View.OnClickListener{
+public class AddBird extends AppCompatActivity implements View.OnClickListener,View.OnTouchListener,View.OnFocusChangeListener{
 
     //EditText txtLegBandId,txtName,txtExperiment,txtBirthDate,txtDeathDate,txtSex;
 
@@ -52,14 +58,13 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        View view = this.getCurrentFocus();
         /**
          *
          * ALL CLASSES SHOULD USE THE DATABASE MANAGER THAT IS BUILT BY THE MAIN ACTIVITY
          *
          */
         setContentView(R.layout.activity_add_bird);
-
         /*
         *Listener for the AddBird button
         *
@@ -139,7 +144,6 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
             @Override
             public void afterTextChanged(Editable s) {InputValidation.isID(txtFatherId, false);}
         });
-
         radioSex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -149,7 +153,6 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
                 }
             }
         });
-
 
         btAddBird = (Button) findViewById(R.id.btAddBird);
         btAddBird.setOnClickListener(new View.OnClickListener() {
@@ -324,5 +327,41 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener{
             ret = false;}
 
         return ret;
+    }
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        View v = getCurrentFocus();
+
+        if (v != null &&
+                (ev.getAction() == MotionEvent.ACTION_UP || ev.getAction() == MotionEvent.ACTION_MOVE) &&
+                v instanceof EditText &&
+                !v.getClass().getName().startsWith("android.webkit.")) {
+            int scrcoords[] = new int[2];
+            v.getLocationOnScreen(scrcoords);
+            float x = ev.getRawX() + v.getLeft() - scrcoords[0];
+            float y = ev.getRawY() + v.getTop() - scrcoords[1];
+
+            if (x < v.getLeft() || x > v.getRight() || y < v.getTop() || y > v.getBottom())
+                hideSoftKeyboard(this);
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+
+        if(!hasFocus){
+            hideSoftKeyboard(this);
+        }
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        return false;
     }
 }
