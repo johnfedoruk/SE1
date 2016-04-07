@@ -20,7 +20,7 @@ import databaseLayer.DatabaseStub;
  */
 public class DatabaseManager {
 
-    private boolean SQL_ON = false;
+    private boolean SQL_ON = true;
     private static DatabaseStub dbStub;
     private static DatabaseSQL dbSQL = null;
 

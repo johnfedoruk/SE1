@@ -27,14 +27,12 @@ public class DatabaseSQL{
     private Calendar cal;
     private SQLiteOpenHelper helpThisGuy;
 
-
     public DatabaseSQL(SQLiteOpenHelper helpPleaseSomebody)
     {
         birdTable = new BirdDatabase(helpPleaseSomebody);
         expTable = new ExperimentDatabase(helpPleaseSomebody);
         helpThisGuy = helpPleaseSomebody;
     }
-
 
     public void clearDatabases()
     {
@@ -51,7 +49,6 @@ public class DatabaseSQL{
     public void removeBird(String id){
         birdTable.removeBird(id);
     }
-
     /**
      * addExperiment
      * add an experiment to the experiment list
@@ -87,11 +84,9 @@ public class DatabaseSQL{
     public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate, String status)
     {
         return searchBirds(new Bird(id, name, "", birthDate, deathDate, sex, status));
-
     }
 
     public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate) {
-
         return searchBirds(new Bird(id, name, "", birthDate, deathDate, sex, ""));
     }
 
@@ -113,12 +108,8 @@ public class DatabaseSQL{
      * @return The query results
      */
     public ArrayList<Experiment> searchExperiments(String studyTitle, String studyType, String
-            groupWithinExperiment, String startDate,
-                                                          String endDate) {
-
-
+            groupWithinExperiment, String startDate,String endDate) {
         return searchExperiments(new Experiment(studyTitle,studyType,groupWithinExperiment, startDate, endDate, "", "", "true"));
-
     }
 
     public ArrayList<Experiment> searchExperiments(Experiment experiment)

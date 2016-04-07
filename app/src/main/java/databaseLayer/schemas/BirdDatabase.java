@@ -317,8 +317,9 @@ public final class BirdDatabase {
         return returnArr;
     }
 
-    public ArrayList<Bird> searchBirds(Bird params)
+    public ArrayList<Bird> searchBirds(Bird inputBird)
     {
+        /*
         Bird addThisBird;
         ArrayList<Bird> queryResult = new ArrayList<>();
         String bDayString = "";
@@ -382,8 +383,73 @@ public final class BirdDatabase {
                 } while (c.moveToNext());
             }
         }
-
+        */
+        ArrayList<Bird> queryResult = new ArrayList<>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String query = "SELECT * FROM " + BirdEntry.TABLE_LABEL + ";";
+        Cursor c = db.rawQuery(query, null);
+        if (c.getCount() > 0) {
+            c.moveToFirst();
+            do {
+                String name;
+                String id;
+                String sex;
+                String exp;
+                String bDayString;
+                String dDayString;
+                String stat;
+                Bird addThisBird;
+                name = c.getString(0);
+                id = c.getString(1);
+                sex = c.getString(2);
+                exp = c.getString(3);
+                bDayString = c.getString(4);
+                dDayString = c.getString(5);
+                stat = c.getString(6);
+                addThisBird = new Bird(id, name, exp, bDayString, dDayString, sex, stat);
+                addThisBird.setMedicalHistory(new MedicalHistory(c.getString(7)));
+                queryResult.add(addThisBird);
+            } while (c.moveToNext());
+        }
         db.close();
+        String id = (inputBird.getId()!=null)?(inputBird.getId().trim().toLowerCase()):(null);
+        String name = (inputBird.getName()!=null)?(inputBird.getName().trim().toLowerCase()):(null);
+        String sex = (inputBird.getSex()!=null)?(inputBird.getSex().trim().toLowerCase()):(null);
+        String birthDate = (inputBird.getBirthDate()!=null)?(inputBird.getDateString(inputBird.getBirthDate())):(null);
+        String deathDate = (inputBird.getDeathDate()!=null)?(inputBird.getDateString(inputBird.getDeathDate())):(null);
+
+        /**This will be replaced with a simple sql statement**/
+        for(int i=queryResult.size()-1;i>=0;i--) {
+            if(id!=null&&id.length()>0&& queryResult.get(i).getId() != null &&
+                    !queryResult.get(i).getId().trim().toLowerCase().equals(id)) {
+                queryResult.remove(i);
+                continue;
+            }
+            if(name!=null&&name.length()>0&& queryResult.get(i).getName() != null &&
+                    !queryResult.get(i).getName().trim().toLowerCase().equals(name)) {
+                queryResult.remove(i);
+                continue;
+            }
+            if(sex!=null&&sex.length()>0&& queryResult.get(i).getSex() != null &&
+                    !queryResult.get(i).getSex().trim().toLowerCase().equals(sex)) {
+                queryResult.remove(i);
+                continue;
+            }
+
+            if((birthDate!=null&&queryResult.get(i).getBirthDate()==null)||(birthDate!=null&&
+                    !queryResult.get(i).getDateString(queryResult.get(i).getBirthDate())
+                            .equals(birthDate))) {
+                queryResult.remove(i);
+                continue;
+            }
+            if((deathDate!=null&&queryResult.get(i).getDeathDate()==null)||(deathDate!=null&&
+                    !queryResult.get(i).getDateString(queryResult.get(i).getDeathDate())
+                            .equals(deathDate))) {
+                queryResult.remove(i);
+                continue;
+            }
+        }
+        queryResult.trimToSize();
         return queryResult;
     }
     public static final String DELETE_ENTRIES = "DROP TABLE IF EXISTS " + BirdEntry.TABLE_LABEL+";";
