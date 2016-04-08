@@ -12,6 +12,7 @@ import net.javacrypt.se1.R;
 
 import databaseLayer.DatabaseHelper;
 import databaseLayer.DatabaseManager;
+import presentationLayer.LoginScreen;
 
 
 @SuppressWarnings("all")
@@ -62,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
+        if (id == R.id.Login) {
+            Intent intent = new Intent(this, LoginScreen.class);
+            startActivity(intent);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -91,6 +97,11 @@ public class MainActivity extends AppCompatActivity {
      */
     public void openAddExperiment(View view) {
         Intent intent = new Intent(this,AddExperiment.class);
+        startActivity(intent);
+    }
+
+    public void openLoginScreen(View view) {
+        Intent intent = new Intent(this,LoginScreen.class);
         startActivity(intent);
     }
 
