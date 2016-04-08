@@ -112,7 +112,7 @@ public class Bird implements Serializable {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             this.deathDate = Calendar.getInstance();
             try {
-                this.birthDate.setTime(sdf.parse(deathDate));
+                this.deathDate.setTime(sdf.parse(deathDate));
             }
             catch(Exception e) {
                 this.deathDate = null;
