@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import net.javacrypt.se1.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
@@ -180,15 +181,22 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener,V
                         e.printStackTrace();
                     }
 
-                    Calendar bDate = dateParser.toCalendar(birthdate);
-                    Calendar dDate;
-                    if(deathdate.equals(""))
-                    {
-                        dDate = null;
+                    //Calendar bDate = dateParser.toCalendar(birthdate);
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                    Calendar bDate = Calendar.getInstance();
+                    try {
+
+                        bDate.setTime(sdf.parse(birthdate));
                     }
-                    else
-                    {
-                        dDate = dateParser.toCalendar(deathdate);
+                    catch(Exception e) {
+                        bDate = null;
+                    };
+                    Calendar dDate = Calendar.getInstance();
+                    try {
+                        dDate.setTime(sdf.parse(deathdate));
+                    }
+                    catch(Exception e) {
+                        dDate = null;
                     }
 
                     boolean status = true;

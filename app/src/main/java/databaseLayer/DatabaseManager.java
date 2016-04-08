@@ -20,7 +20,7 @@ import databaseLayer.DatabaseStub;
  */
 public class DatabaseManager {
 
-    private boolean SQL_ON = true;
+    private boolean SQL_ON = false;
     private static DatabaseStub dbStub;
     private static DatabaseSQL dbSQL = null;
 
@@ -197,18 +197,18 @@ public class DatabaseManager {
      * getCalendar
      * generate and return a calendar made up of the parameters
      * @param yyyy the year for the calendar
-     * @param m the month for the calendar
+     * @param MM the month for the calendar
      * @param dd the day for the calendar
      * @return the calendar generated
      */
-    public Calendar getCalendar(int yyyy,int m, int dd){
+    public Calendar getCalendar(int yyyy,int MM, int dd){
         if(SQL_ON)
         {
-            return dbSQL.getCalendar(yyyy, m, dd);
+            return dbSQL.getCalendar(yyyy, MM, dd);
         }
         else
         {
-            return dbStub.getCalendar(yyyy, m, dd);
+            return dbStub.getCalendar(yyyy, MM, dd);
         }
     }
 

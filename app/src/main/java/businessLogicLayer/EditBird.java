@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.javacrypt.se1.R;
 
@@ -33,15 +34,11 @@ import domainObjects.MedicalHistory;
  */
 @SuppressWarnings("all")
 public class EditBird extends AppCompatActivity implements View.OnClickListener{
-
-    //EditText txtLegBandId,txtName,txtExperiment,txtBirthDate,txtDeathDate,txtSex;
-
     public static TextView txtAddMedicalHistory;
     public static ImageView imgAddMedicalHistory;
     public static MedicalHistory retrieveMedicalHistory;
     public static Bird currentBird = null;
     /**
-     *
      * @param savedInstanceState savedState
      */
     @Override
@@ -53,7 +50,7 @@ public class EditBird extends AppCompatActivity implements View.OnClickListener{
          * ALL CLASSES SHOULD USE THE DATABASE MANAGER THAT IS BUILT BY THE MAIN ACTIVITY
          *
          */
-        setContentView(R.layout.activity_add_bird);
+        setContentView(R.layout.activity_edit_bird);
 
         /*
         *Listener for the AddBird button
@@ -128,6 +125,8 @@ public class EditBird extends AppCompatActivity implements View.OnClickListener{
                 Calendar deathdate = Calendar.getInstance();
                 try {
                     birthdate.setTime(sdf.parse(txtBirthDate.getText().toString()));
+                    Bird aa = new Bird(null,null,null,null,null,null,null,true);
+                    String d = aa.getDateString(birthdate);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }

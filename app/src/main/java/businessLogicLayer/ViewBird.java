@@ -83,10 +83,10 @@ public class ViewBird extends AppCompatActivity {
                 curr.append(currentBird.getId());
 
                 curr = (TextView) findViewById(R.id.birdBirthdate);
-                curr.append(currentBird.getDateString(currentBird.getBirthDate()));
+                curr.append(currentBird.getDateString(currentBird.getBirthDate(),"dd-MM-yyyy"));
 
                 curr = (TextView) findViewById(R.id.birdDeathdate);
-                curr.append(currentBird.getDateString(currentBird.getDeathDate()));
+                curr.append(currentBird.getDateString(currentBird.getDeathDate(),"dd-MM-yyyy"));
 
                 curr = (TextView) findViewById(R.id.birdSex);
                 curr.append(currentBird.getSex());
