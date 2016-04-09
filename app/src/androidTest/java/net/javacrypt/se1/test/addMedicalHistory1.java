@@ -33,8 +33,8 @@ public class addMedicalHistory1 extends ActivityInstrumentationTestCase2<SplashS
 		Timeout.setSmallTimeout(17094);
         //Click on Add Bird
 		solo.clickOnView(solo.getView(net.javacrypt.se1.R.id.btAddBird));
-        //Wait for activity: 'businessLogicLayer.AddBird'
-		assertTrue("businessLogicLayer.AddBird is not found!", solo.waitForActivity(businessLogicLayer.AddBird.class));
+        //Wait for activity: 'businessLogicLayer.AddNewBird'
+		assertTrue("businessLogicLayer.AddNewBird is not found!", solo.waitForActivity(businessLogicLayer.AddBird.class));
         //Set default small timeout to 35824 milliseconds
 		Timeout.setSmallTimeout(35824);
         //Enter the text: '0005'

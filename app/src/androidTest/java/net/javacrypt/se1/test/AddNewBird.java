@@ -5,10 +5,10 @@ import com.robotium.solo.*;
 import android.test.ActivityInstrumentationTestCase2;
 
 
-public class AddBird extends ActivityInstrumentationTestCase2<SplashScreen> {
+public class AddNewBird extends ActivityInstrumentationTestCase2<SplashScreen> {
   	private Solo solo;
   	
-  	public AddBird() {
+  	public AddNewBird() {
 		super(SplashScreen.class);
   	}
 
@@ -33,8 +33,8 @@ public class AddBird extends ActivityInstrumentationTestCase2<SplashScreen> {
 		Timeout.setSmallTimeout(427457);
         //Click on Add Bird
 		solo.clickOnView(solo.getView(net.javacrypt.se1.R.id.btAddBird));
-        //Wait for activity: 'businessLogicLayer.AddBird'
-		assertTrue("businessLogicLayer.AddBird is not found!", solo.waitForActivity(businessLogicLayer.AddBird.class));
+        //Wait for activity: 'businessLogicLayer.AddNewBird'
+		assertTrue("businessLogicLayer.AddNewBird is not found!", solo.waitForActivity(businessLogicLayer.AddBird.class));
         //Click on Empty Text View
 		solo.clickOnView(solo.getView(net.javacrypt.se1.R.id.txtLegBandId));
         //Enter the text: '111'
