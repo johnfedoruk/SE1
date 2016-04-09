@@ -29,36 +29,13 @@ public class LoginScreen extends AppCompatActivity implements View.OnFocusChange
         setContentView(R.layout.activity_login_screen);
         View view = this.getCurrentFocus();
 
-        //TextWatchers
-        txtPassword.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                InputValidation.hasText(txtPassword);
-            }
-        });
-
-        //TextWatchers
-        txtName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-            @Override
-            public void afterTextChanged(Editable s) {InputValidation.hasText(txtName);}
-        });
-
         loginBtn = (Button) findViewById(R.id.loginButton);
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                txtName = (EditText)findViewById(R.id.nameField);
+                txtPassword = (EditText)findViewById(R.id.passwordField);
 
                 if (checkValidation()) {
 
@@ -82,7 +59,6 @@ public class LoginScreen extends AppCompatActivity implements View.OnFocusChange
 
                 Intent myIntent = new Intent(LoginScreen.this, MainActivity.class);
                 startActivity(myIntent);
-
             }
         });
     }
