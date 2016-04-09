@@ -1,7 +1,6 @@
 package businessLogicLayer;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -12,7 +11,6 @@ import net.javacrypt.se1.R;
 
 import databaseLayer.DatabaseHelper;
 import databaseLayer.DatabaseManager;
-import presentationLayer.LoginScreen;
 
 
 @SuppressWarnings("all")

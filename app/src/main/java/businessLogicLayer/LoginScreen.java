@@ -1,7 +1,6 @@
-package presentationLayer;
+package businessLogicLayer;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,17 +10,9 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import net.javacrypt.se1.R;
-
-import java.util.Calendar;
-
-import businessLogicLayer.AddBirdSuccess;
-import businessLogicLayer.InputValidation;
-import businessLogicLayer.MainActivity;
-import domainObjects.Bird;
 
 /**
  * Created by pure__000 on 2016-04-07.
@@ -85,7 +76,6 @@ public class LoginScreen extends AppCompatActivity implements View.OnFocusChange
         });
 
         cancelBtn = (Button) findViewById(R.id.cancelButton);
-
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
