@@ -22,4 +22,8 @@
         android:title="@string/title_activity_add_experiment"
         android:orderInCategory="300"
         app:showAsAction="never"/>
+    <item android:id="@+id/quit_or_logout"
+        android:title="@string/title_activity_quit_or_logout"
+        android:orderInCategory="400"
+        app:showAsAction="never"/>
 </menu>

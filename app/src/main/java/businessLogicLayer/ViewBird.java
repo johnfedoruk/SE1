@@ -229,6 +229,12 @@ public class ViewBird extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
+        if (id == R.id.quit_or_logout)
+        {
+            Intent intent = new Intent(this, QuitScreen.class);
+            startActivity(intent);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
