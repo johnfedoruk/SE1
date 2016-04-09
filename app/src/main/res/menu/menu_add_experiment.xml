@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="businessLogicLayer.AddExperiment">
     <item
+        android:id="@+id/home"
+        android:title="@string/home"
+        android:orderInCategory="500"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/add_bird"
         android:title="@string/add_bird"
         android:orderInCategory="100"
