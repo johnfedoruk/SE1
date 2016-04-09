@@ -39,8 +39,8 @@ public class LoginScreen extends AppCompatActivity implements View.OnFocusChange
 
                 if (checkValidation()) {
 
-                    Toast.makeText(LoginScreen.this, "Logged in as " + txtName, Toast.LENGTH_LONG).show();
                     String name = txtName.getText().toString();
+                    Toast.makeText(LoginScreen.this, "Logged in as " + name, Toast.LENGTH_LONG).show();
 
                     Intent myIntent = new Intent(LoginScreen.this, MainActivity.class);
                     startActivity(myIntent);
