@@ -27,21 +27,10 @@ public class ViewBirds extends ActionBarActivity {
         setContentView(R.layout.activity_view_birds);
         this.context = getApplicationContext();
         Bird bird;
-        //Intent intent = getIntent();
-        /*
-        String[] searchInfo = intent.getStringArrayExtra(SearchBird.EXTRA_MESSAGE);
-        String id = searchInfo[0];
-        String name = searchInfo[1];
-        String sex = searchInfo[2];
-        String birthDate = searchInfo[3];
-        String deathDate = searchInfo[4];
-        */
         String Active;
         Intent intent = this.getIntent();
         Bundle b = intent.getExtras();
         Bird searchBird = (Bird)b.getSerializable("bird");
-
-        //ArrayList<Bird> query = db.searchBirds(new Bird(id,name,null,birthDate,deathDate,sex,null));
         ArrayList<Bird> query = db.searchBirds(searchBird);
         ListView listView = (ListView)this.findViewById(R.id.listView);
         ArrayList<ListItem> items = new ArrayList<>();
@@ -55,56 +44,11 @@ public class ViewBirds extends ActionBarActivity {
         }
         ListAdapter adapt = new ListAdapter(this, R.layout.item, items);
         for(int i=0;i<query.size();i++) {
-            //ArrayList<String> birdVals = new ArrayList<>();
-            /*
             Intent intentView = new Intent(this,ViewBird.class);
             Bundle bundle = new Bundle();
-            bird = query.get(i);
-            birdVals.add(bird.getId());
-            birdVals.add(bird.getName());
-            birdVals.add(bird.getExperiment());
-            if(bird.getBirthDate() != null)
-            {
-                birdVals.add(String.valueOf(bird.getBirthDate().getTimeInMillis()));
-            }
-            else
-            {
-                birdVals.add("");
-            }
-            if(bird.getDeathDate()!= null)
-            {
-                birdVals.add(String.valueOf(bird.getDeathDate().getTimeInMillis()));
-            }
-            else {
-                birdVals.add("");
-            }
-            birdVals.add(bird.getSex());
-            if(bird.getStatus())
-            {
-                birdVals.add("true");
-            }
-            else
-            {
-                birdVals.add("false");
-            }
-            birdVals.add(bird.getMedicalHistory().toString());
-
-            birdVals.add(bird.getMom());
-            birdVals.add(bird.getDad());
-
-            */
-            Intent intentView = new Intent(this,ViewBird.class);
-            Bundle bundle = new Bundle();
-
-
             bird = query.get(i);
             bundle.putSerializable("bird",bird);
             intentView.putExtras(bundle);
-
-            //startActivity(intent);
-
-            //intentView.putStringArrayListExtra("bird", birdVals);
-
             adapt.setIntent(intentView);
             listView.setAdapter(adapt);
         }

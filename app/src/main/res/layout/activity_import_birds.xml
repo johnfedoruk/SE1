@@ -12,8 +12,8 @@
         <RelativeLayout
             android:id="@+id/contentWrapper"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-            <TextView android:text="ID: " android:layout_width="wrap_content"
+            android:layout_height="fill_parent"><![CDATA[
+            TextView android:text="ID: " android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
                 android:id="@+id/birdID"
@@ -23,7 +23,7 @@
                 android:layout_alignParentStart="true"
                 android:textIsSelectable="true" />
 
-            <TextView
+            TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name: "
@@ -36,7 +36,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
 
-            <TextView
+            TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
@@ -47,7 +47,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
-            <TextView
+            TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
@@ -58,18 +58,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="0dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18dp"
-                android:text="Sex: "
-                android:id="@+id/birdSex"
-                android:layout_marginTop="0dp"
-                android:layout_below="@+id/birdDeathdate"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-
-        </RelativeLayout>
+            ]]></RelativeLayout>
     </ScrollView>
 
     <TextView
@@ -95,11 +84,11 @@
         android:layout_marginTop="150dp"
         android:layout_alignRight="@+id/scrollView"
         android:layout_alignEnd="@+id/scrollView"
-        android:layout_above="@+id/relativesButton"
-        android:fillViewport="false">
+        android:fillViewport="false"
+        android:layout_above="@+id/btAddBird">
 
         <RelativeLayout
-            android:id="@+id/medHistoryWrapper"
+            android:id="@+id/errorWrapper"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView"
@@ -110,40 +99,24 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/relativesButton"
-        android:text="@string/relatives"
-        android:onClick="openGetRelatives"
-        android:layout_above="@+id/retireBird"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="15dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editBird"
-        android:text="@string/editBird"
-        android:onClick="editBird"
+        android:id="@+id/btAddBird"
+        android:text="@string/importBirds"
         android:layout_alignBottom="@+id/scrollView"
         android:layout_alignRight="@+id/scrollView"
         android:layout_alignEnd="@+id/scrollView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:nestedScrollingEnabled="true" />
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/retireBird"
-        android:text="Retire"
-        android:onClick="retireBird"
-        android:layout_above="@+id/editBird"
-        android:layout_alignRight="@+id/scrollView"
-        android:layout_alignEnd="@+id/scrollView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="15dp" />
+        android:textSize="18dp"
+        android:text="Import Errors"
+        android:id="@+id/birdError"
+        android:layout_alignTop="@+id/scrollView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp" />
 
 </RelativeLayout>

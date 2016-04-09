@@ -46,4 +46,5 @@
     <string name="endDate">Experimemt End</string>
     <string name="title_activity_add_medical_history">AddMedicalHistory</string>
     <string name="medicalListDash">- </string>
+    <string name="importBirds">Import Birds</string>
 </resources>

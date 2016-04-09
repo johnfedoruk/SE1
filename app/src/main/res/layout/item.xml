@@ -16,9 +16,8 @@
         android:text="title"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:gravity="center"
-        android:textSize="25dp"
-        android:layout_marginTop="5dp" />
+        android:textSize="16dp"
+        android:layout_marginLeft="5dp" />
     <TextView
         android:id="@+id/info"
         android:layout_width="wrap_content"
@@ -27,12 +26,10 @@
         android:text="info"
         android:textSize="16dp"
         android:layout_marginTop="0dp"
-        android:layout_marginBottom="10dp"
         android:layout_alignRight="@+id/title"
         android:layout_alignEnd="@+id/title"
         android:layout_alignLeft="@+id/title"
-        android:layout_alignStart="@+id/title"
-        android:layout_marginLeft="15dp" />
+        android:layout_alignStart="@+id/title" />
     <TextView
         android:id="@+id/statusinfo"
         android:layout_width="wrap_content"
