@@ -36,7 +36,7 @@ public class QuitScreen extends AppCompatActivity
         setContentView(R.layout.activity_quit_screen);
         View view = this.getCurrentFocus();
 
-        quitButton = (Button)findViewById(R.id.QuitButtonIT );
+        quitButton = (Button)findViewById(R.id.QuitButton );
 
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
