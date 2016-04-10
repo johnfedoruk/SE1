@@ -149,8 +149,91 @@ public class ExperimentDatabase {
         return returnArr;
     }
 
-    public ArrayList<Experiment> searchBirds(Experiment params)
+    public ArrayList<Experiment> searchExperiments(Experiment params)
     {
+
+
+
+
+        ArrayList<Experiment> queryResult = new ArrayList<>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String query = "SELECT * FROM " + ExpEntry.TABLE_LABEL + ";";
+        Cursor c = db.rawQuery(query, null);
+        if (c.getCount() > 0) {
+            c.moveToFirst();
+            do {
+                String title=c.getString(0);
+                String type= c.getString(1);
+                String group=c.getString(2);
+                String start=c.getString(3);
+                String end=c.getString(4);
+                String experts=c.getString(5);
+                String notes=c.getString(6);
+                String stat=c.getString(7);
+                queryResult.add(new Experiment(title, type, group, start, end, experts, notes, stat));
+            } while (c.moveToNext());
+        }
+        db.close();
+        queryResult.trimToSize();
+        return queryResult;
+
+        /*
+        String id = (inputBird.getId()!=null)?(inputBird.getId().trim().toLowerCase()):(null);
+        String name = (inputBird.getName()!=null)?(inputBird.getName().trim().toLowerCase()):(null);
+        String sex = (inputBird.getSex()!=null)?(inputBird.getSex().trim().toLowerCase()):(null);
+        String birthDate = (inputBird.getBirthDate()!=null)?(inputBird.getDateString(inputBird.getBirthDate())):(null);
+        String deathDate = (inputBird.getDeathDate()!=null)?(inputBird.getDateString(inputBird.getDeathDate())):(null);
+
+        for(int i=queryResult.size()-1;i>=0;i--) {
+            if(id!=null&&id.length()>0&& queryResult.get(i).getId() != null &&
+                    !queryResult.get(i).getId().trim().toLowerCase().equals(id)) {
+                queryResult.remove(i);
+                continue;
+            }
+            if(name!=null&&name.length()>0&& queryResult.get(i).getName() != null &&
+                    !queryResult.get(i).getName().trim().toLowerCase().equals(name)) {
+                queryResult.remove(i);
+                continue;
+            }
+            if(sex!=null&&sex.length()>0&& queryResult.get(i).getSex() != null &&
+                    !queryResult.get(i).getSex().trim().toLowerCase().equals(sex)) {
+                queryResult.remove(i);
+                continue;
+            }
+
+            if((birthDate!=null&&queryResult.get(i).getBirthDate()==null)||(birthDate!=null&&
+                    !queryResult.get(i).getDateString(queryResult.get(i).getBirthDate())
+                            .equals(birthDate))) {
+                queryResult.remove(i);
+                continue;
+            }
+            if((deathDate!=null&&queryResult.get(i).getDeathDate()==null)||(deathDate!=null&&
+                    !queryResult.get(i).getDateString(queryResult.get(i).getDeathDate())
+                            .equals(deathDate))) {
+                queryResult.remove(i);
+                continue;
+            }
+        }
+        queryResult.trimToSize();
+        return queryResult;
+        */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
         Experiment addThisExp;
         ArrayList<Experiment> queryResult = new ArrayList<>();
         String title = "";
@@ -202,6 +285,7 @@ public class ExperimentDatabase {
 
         db.close();
         return queryResult;
+        */
     }
     
     public void insert(Experiment input) {

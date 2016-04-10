@@ -19,6 +19,8 @@ import net.javacrypt.se1.R;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import domainObjects.Experiment;
+
 
 @SuppressWarnings("all")
 public class SearchExperiment extends ActionBarActivity implements View.OnFocusChangeListener,View.OnTouchListener{
@@ -93,9 +95,10 @@ public class SearchExperiment extends ActionBarActivity implements View.OnFocusC
             EndDate =
                     dateFormat.format(new Date(dp.getYear()-1900,dp.getMonth(),dp.getDayOfMonth()));
         }
-        String[] params = {StudyTitle,StudyType,
-                GroupWithinExperiment,StartDate,EndDate};
-        intent.putExtra(EXTRA_MESSAGE,params);
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("experiment", new Experiment(StudyTitle,StudyType,GroupWithinExperiment,StartDate,EndDate,null,null,null));
+        intent.putExtras(bundle);
         startActivity(intent);
     }
     @Override

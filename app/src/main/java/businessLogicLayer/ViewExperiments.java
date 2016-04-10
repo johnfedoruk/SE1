@@ -25,18 +25,12 @@ public class ViewExperiments extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_experiments);
         this.context = getApplicationContext();
-        Experiment experiment;
-        Intent intent = getIntent();
-        String[] searchInfo = intent.getStringArrayExtra(SearchExperiment.EXTRA_MESSAGE);
-
-        String StudyTitle = searchInfo[0];
-        String StudyType = searchInfo[1];
-        String GroupWithinExperiment = searchInfo[2];
-        String StartDate = searchInfo[3];
-        String EndDate = searchInfo[4];
         String Active;
-        ArrayList<Experiment> query = db.searchExperiments(StudyTitle,StudyType,
-                GroupWithinExperiment,StartDate,EndDate);
+        Experiment experiment;
+        Intent intent = this.getIntent();
+        Bundle b = intent.getExtras();
+        Experiment searchExperiment = (Experiment)b.getSerializable("experiment");
+        ArrayList<Experiment> query = db.searchExperiments(searchExperiment);
         ListView listView = (ListView)this.findViewById(R.id.listView);
         ArrayList<ListItem> items = new ArrayList<>();
         for(int i=0;i<query.size();i++) {

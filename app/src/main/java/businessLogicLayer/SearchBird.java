@@ -99,10 +99,6 @@ public class SearchBird extends AppCompatActivity implements View.OnFocusChangeL
             birdDeath =
                     dateFormat.format(new Date(dp.getYear()-1900,dp.getMonth(),dp.getDayOfMonth()));
         }
-        /*
-        String[] searchParameters = {birdId,birdName,birdSex,birdBirth,birdDeath};
-        intent.putExtra(EXTRA_MESSAGE, searchParameters);
-        */
 
         Intent intent = new Intent(this,ViewBirds.class);
         Bundle bundle = new Bundle();
