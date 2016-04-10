@@ -39,6 +39,8 @@ public class ViewExperiments extends ActionBarActivity {
                 GroupWithinExperiment,StartDate,EndDate);
         ListView listView = (ListView)this.findViewById(R.id.listView);
         ArrayList<ListItem> items = new ArrayList<>();
+        if(searchInfo==null)
+            return;
         for(int i=0;i<query.size();i++) {
             experiment = query.get(i);
             if(experiment.getStatus()==true){Active = "active";}
