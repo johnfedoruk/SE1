@@ -53,7 +53,7 @@ public class EditBird extends AppCompatActivity implements View.OnClickListener{
          * ALL CLASSES SHOULD USE THE DATABASE MANAGER THAT IS BUILT BY THE MAIN ACTIVITY
          *
          */
-        setContentView(R.layout.activity_add_bird);
+        setContentView(R.layout.activity_edit_bird);
 
         /*
         *Listener for the AddBird button
