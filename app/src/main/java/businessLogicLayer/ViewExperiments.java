@@ -31,8 +31,11 @@ public class ViewExperiments extends ActionBarActivity {
         Bundle b = intent.getExtras();
         Experiment searchExperiment = (Experiment)b.getSerializable("experiment");
         ArrayList<Experiment> query = db.searchExperiments(searchExperiment);
+        if(query==null||query.size()<1)
+            return;
         ListView listView = (ListView)this.findViewById(R.id.listView);
         ArrayList<ListItem> items = new ArrayList<>();
+
         for(int i=0;i<query.size();i++) {
             experiment = query.get(i);
             if(experiment.getStatus()==true){Active = "active";}
@@ -41,8 +44,16 @@ public class ViewExperiments extends ActionBarActivity {
                     experiment.getStudyType(),"Status: ",Active));
         }
         ListAdapter adapt = new ListAdapter(this, R.layout.item, items);
-        adapt.setIntent(new Intent(this,ViewExperiment.class));
-        listView.setAdapter(adapt);
+        for(int i=0;i<query.size();i++) {
+            Intent intentView = new Intent(this,ViewBird.class);
+            Bundle bundle = new Bundle();
+            experiment = query.get(i);
+            bundle.putSerializable("experiment",experiment);
+            intentView.putExtras(bundle);
+            adapt.setIntent(intentView);
+            listView.setAdapter(adapt);
+        }
+
 
     }
     @Override

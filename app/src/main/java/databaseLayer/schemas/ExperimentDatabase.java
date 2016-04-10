@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import domainObjects.Experiment;
 
@@ -174,8 +175,48 @@ public class ExperimentDatabase {
             } while (c.moveToNext());
         }
         db.close();
+        String title = (params.getStudyTitle()!=null)?(params.getStudyTitle().trim().toLowerCase()):(null);
+        String type = (params.getStudyType()!=null)?(params.getStudyType().trim().toLowerCase()):(null);
+        String group = (params.getGroupWithinExperiment()!=null)?(params.getGroupWithinExperiment().trim().toLowerCase()):(null);
+        String start = (params.getStartDate()!=null)?(params.getDateString(params.getStartDate())):(null);
+        String end = (params.getEndDate()!=null)?(params.getDateString(params.getEndDate())):(null);
+        if(queryResult==null||queryResult.size()<1)
+            return null;
+        for(int i=queryResult.size()-1;i>=0;i--) {
+            if(title!=null&&title.length()>0&& queryResult.get(i).getStudyTitle() != null &&
+                    !queryResult.get(i).getStudyTitle().trim().toLowerCase().equals(title)) {
+                queryResult.remove(i);
+                continue;
+            }
+            if(type!=null&&type.length()>0&& queryResult.get(i).getStudyType() != null &&
+                    !queryResult.get(i).getStudyType().trim().toLowerCase().equals(type)) {
+                queryResult.remove(i);
+                continue;
+            }
+            if(group !=null&&group.length()>0&& queryResult.get(i).getGroupWithinExperiment() != null &&
+                    !queryResult.get(i).getGroupWithinExperiment().trim().toLowerCase().equals(group)) {
+                queryResult.remove(i);
+                continue;
+            }
+
+            if((start!= null&&queryResult.get(i).getStartDate()==null)||(start!=null&&
+                    !queryResult.get(i).getDateString(queryResult.get(i).getStartDate())
+                            .equals(start))) {
+                queryResult.remove(i);
+                continue;
+            }
+            if((end!=null&&queryResult.get(i).getEndDate()==null)||(end!=null&&
+                    !queryResult.get(i).getDateString(queryResult.get(i).getEndDate())
+                            .equals(end))) {
+                queryResult.remove(i);
+                continue;
+            }
+        }
+
         queryResult.trimToSize();
         return queryResult;
+
+
 
         /*
         String id = (inputBird.getId()!=null)?(inputBird.getId().trim().toLowerCase()):(null);

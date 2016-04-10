@@ -31,13 +31,31 @@ public class Experiment implements Serializable {
         this.GroupWithinExperiment = GroupWithinExperiment;
         this.Experimenters = Experimenters;
         this.Notes = Notes;
-
-        Calendar sDate = Calendar.getInstance();
-        Calendar eDate = Calendar.getInstance();
-        StartDate = getDateString(sDate);
-        EndDate = getDateString(eDate);
-
         this.status = true;
+        if(StartDate != null && !StartDate.equals(""))
+        {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            this.StartDate = Calendar.getInstance();
+            try {
+                this.StartDate.setTime(sdf.parse(StartDate));
+            } catch(Exception e){this.StartDate = null;}
+        }
+        else {
+            this.StartDate = null;
+        }
+
+        if(EndDate != null && !EndDate.equals(""))
+        {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            this.EndDate = Calendar.getInstance();
+            try {
+                this.EndDate.setTime(sdf.parse(EndDate));
+            } catch(Exception e){this.EndDate = null;}
+        }
+        else
+        {
+            this.EndDate = null;
+        }
     }
 
 

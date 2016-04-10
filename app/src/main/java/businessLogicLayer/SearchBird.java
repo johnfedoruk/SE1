@@ -76,7 +76,6 @@ public class SearchBird extends AppCompatActivity implements View.OnFocusChangeL
 
     @SuppressWarnings("all")
     public void openViewBirds(View view) {
-        //Intent intent = new Intent(this,ViewBirds.class);
         String birdId = ((EditText)findViewById(R.id.legBandId)).getText().toString();
         String birdName = ((EditText)findViewById(R.id.birdName)).getText().toString();
         String birdSex = "";

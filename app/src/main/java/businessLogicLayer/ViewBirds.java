@@ -34,8 +34,9 @@ public class ViewBirds extends ActionBarActivity {
         ArrayList<Bird> query = db.searchBirds(searchBird);
         ListView listView = (ListView)this.findViewById(R.id.listView);
         ArrayList<ListItem> items = new ArrayList<>();
-        if(query.size()==0)
+        if(query==null||query.size()==0)
             return;
+        query.trimToSize();
         for(int i=0;i<query.size();i++) {
             bird = query.get(i);
             if(bird.getStatus()==true){Active = "active";}
