@@ -129,6 +129,7 @@ public class EditBird extends AppCompatActivity implements View.OnClickListener{
                 try {
                     birthdate.setTime(sdf.parse(txtBirthDate.getText().toString()));
                 } catch (ParseException e) {
+                    birthdate = null;
                     e.printStackTrace();
                 }
                 try {
