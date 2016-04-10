@@ -5,10 +5,10 @@ import com.robotium.solo.*;
 import android.test.ActivityInstrumentationTestCase2;
 
 
-public class addBirdTest1 extends ActivityInstrumentationTestCase2<SplashScreen> {
+public class AddNewBird2 extends ActivityInstrumentationTestCase2<SplashScreen> {
   	private Solo solo;
   	
-  	public addBirdTest1() {
+  	public AddNewBird2() {
 		super(SplashScreen.class);
   	}
 
