@@ -99,66 +99,10 @@ public class EditExperiment extends AppCompatActivity implements View.OnClickLis
                 progressDialog.setMessage("Please wait...");
                 progressDialog.show();
 
-                /*Go to bird page*/
                 Intent myIntent = new Intent(EditExperiment.this,EditExperimentSuccess.class);
                 startActivity(myIntent);
             }
         });
-/*
-        btAddBird.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-                String id = txtLegBandId.getText().toString();
-                String name = txtName.getText().toString();
-                String exp = txtExperiment.getText().toString();
-                Calendar birthdate = Calendar.getInstance();
-                Calendar deathdate = Calendar.getInstance();
-                try {
-                    birthdate.setTime(sdf.parse(txtBirthDate.getText().toString()));
-                } catch (ParseException e) {
-                    birthdate = null;
-                    e.printStackTrace();
-                }
-                try {
-                    deathdate.setTime(sdf.parse(txtDeathDate.getText().toString()));
-                }
-                catch(ParseException e) {
-                    deathdate = null;
-                }
-                String sex = "";
-                try {
-                    sex = radioSexId.getText().toString();
-                }
-                catch(NullPointerException e){
-                    return;
-                }
-
-                Bird b = new Bird(id,name,exp,birthdate,deathdate,sex,retrieveMedicalHistory,true);
-
-
-                MainActivity.db.removeBird(EditBird.currentBird.getId());
-
-                MainActivity.db.addBird(b);
-
-                ProgressDialog progressDialog = new ProgressDialog(EditBird.this);
-                progressDialog.setTitle("Editing Bird");
-                progressDialog.setMessage("Please wait...");
-                progressDialog.show();
-
-                Intent myIntent = new Intent(EditBird.this,EditBirdSuccess.class);
-                startActivity(myIntent);
-
-            }
-        });
-*/
-
-
-
-
-
     }
 
     @Override

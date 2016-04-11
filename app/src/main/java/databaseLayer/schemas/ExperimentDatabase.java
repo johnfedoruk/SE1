@@ -211,118 +211,6 @@ public class ExperimentDatabase {
 
         queryResult.trimToSize();
         return queryResult;
-
-
-
-        /*
-        String id = (inputBird.getId()!=null)?(inputBird.getId().trim().toLowerCase()):(null);
-        String name = (inputBird.getName()!=null)?(inputBird.getName().trim().toLowerCase()):(null);
-        String sex = (inputBird.getSex()!=null)?(inputBird.getSex().trim().toLowerCase()):(null);
-        String birthDate = (inputBird.getBirthDate()!=null)?(inputBird.getDateString(inputBird.getBirthDate())):(null);
-        String deathDate = (inputBird.getDeathDate()!=null)?(inputBird.getDateString(inputBird.getDeathDate())):(null);
-
-        for(int i=queryResult.size()-1;i>=0;i--) {
-            if(id!=null&&id.length()>0&& queryResult.get(i).getId() != null &&
-                    !queryResult.get(i).getId().trim().toLowerCase().equals(id)) {
-                queryResult.remove(i);
-                continue;
-            }
-            if(name!=null&&name.length()>0&& queryResult.get(i).getName() != null &&
-                    !queryResult.get(i).getName().trim().toLowerCase().equals(name)) {
-                queryResult.remove(i);
-                continue;
-            }
-            if(sex!=null&&sex.length()>0&& queryResult.get(i).getSex() != null &&
-                    !queryResult.get(i).getSex().trim().toLowerCase().equals(sex)) {
-                queryResult.remove(i);
-                continue;
-            }
-
-            if((birthDate!=null&&queryResult.get(i).getBirthDate()==null)||(birthDate!=null&&
-                    !queryResult.get(i).getDateString(queryResult.get(i).getBirthDate())
-                            .equals(birthDate))) {
-                queryResult.remove(i);
-                continue;
-            }
-            if((deathDate!=null&&queryResult.get(i).getDeathDate()==null)||(deathDate!=null&&
-                    !queryResult.get(i).getDateString(queryResult.get(i).getDeathDate())
-                            .equals(deathDate))) {
-                queryResult.remove(i);
-                continue;
-            }
-        }
-        queryResult.trimToSize();
-        return queryResult;
-        */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*
-        Experiment addThisExp;
-        ArrayList<Experiment> queryResult = new ArrayList<>();
-        String title = "";
-        String type = "";
-        String group = "";
-        String start = "";
-        String end = "";
-        String experts = "";
-        String notes = "";
-        String stat = "";
-        params.setStatus(true);
-
-        //Queries each data elem in params: BIRD_NAME =? AND BIRD_ID =? AND...
-        ArrayList<String> whereClause  = getWhereClause(params);
-
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-
-        String [] values = getSearchPara(params);
-        String query = "SELECT * FROM " + ExpEntry.TABLE_LABEL + " WHERE ";
-
-        for(int i = 0; i < whereClause.size()-1; i++)
-        {
-            query += whereClause.get(i) + " = " + "'" + values[i]+ "'" + AND;
-        }
-        query += whereClause.get(whereClause.size()-1) + " = " + "'" + values[values.length-1] + "'" ;
-
-        String queryD = "SELECT * FROM " + ExpEntry.TABLE_LABEL + " WHERE " + whereClause.get(0) + " = " + "'" +values[0] + "'" + " AND " + whereClause.get(1) + " = '" + values[1] + "'";
-
-        //Cursor c = db.rawQuery(query, values);
-
-        Cursor c = db.rawQuery(query, null);
-        c = db.rawQuery(queryD, null);
-        if(c.getCount() > 0) {
-            c.moveToFirst();
-            do{
-                title=c.getString(0);
-                type= c.getString(1);
-                group=c.getString(2);
-                start=c.getString(3);
-                end=c.getString(4);
-                experts=c.getString(5);
-                notes=c.getString(6);
-                stat=c.getString(7);
-                addThisExp = new Experiment(title, type, group, start, end, experts, notes, stat);
-                queryResult.add(addThisExp);
-            }while(c.moveToNext());
-        }
-
-
-        db.close();
-        return queryResult;
-        */
     }
     
     public void insert(Experiment input) {
@@ -348,11 +236,6 @@ public class ExperimentDatabase {
             inputVal.put(ExpEntry.EXP_GROUP, "");
         }
 
-
-
-
-
-
         if(input.getStartDate() != null)
         {
             inputVal.put(ExpEntry.EXP_START, input.getDateString(input.getStartDate()));
@@ -375,19 +258,23 @@ public class ExperimentDatabase {
 
 
 
-        /*
-        if (input.getStartDate() != null) {
-            inputVal.put(ExpEntry.EXP_START, String.valueOf(input.getStartDate().getTimeInMillis()));
+
+        if (input.getExperimenters() != null && !input.getExperimenters().equals("")) {
+            inputVal.put(ExpEntry.EXP_TERS, input.getExperimenters());
         } else {
-             inputVal.put(ExpEntry.EXP_START, "");
+            inputVal.put(ExpEntry.EXP_TERS, "");
         }
 
-        if (input.getEndDate() != null) {
-            inputVal.put(ExpEntry.EXP_END, String.valueOf(input.getEndDate().getTimeInMillis()));
+        if (input.getNotes() != null && !input.getNotes().equals("")) {
+            inputVal.put(ExpEntry.EXP_NOTES, input.getNotes());
         } else {
-            inputVal.put(ExpEntry.EXP_END, "");
-         }
-         */
+            inputVal.put(ExpEntry.EXP_NOTES, "");
+        }
+
+
+
+
+
 
         if (input.getStatus()) {
             inputVal.put(ExpEntry.EXP_STAT, "true");
@@ -395,10 +282,10 @@ public class ExperimentDatabase {
             inputVal.put(ExpEntry.EXP_STAT, "false");
         }
 
-    long newRowId;
-    newRowId = db.insert(ExpEntry.TABLE_LABEL, null, inputVal);
+        long newRowId;
+        newRowId = db.insert(ExpEntry.TABLE_LABEL, null, inputVal);
 
-    db.close();
+        db.close();
 
     }
 

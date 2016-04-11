@@ -101,20 +101,6 @@ public class AddExperiment extends AppCompatActivity implements View.OnClickList
                     catch(Exception e) {
                         eDate = null;
                     }
-                    /*
-                    String startDate = txtStartDate.getText().toString();
-                    String endDate = txtEndDate.getText().toString();
-                    Calendar sDate = dateParser.toCalendar(startDate);
-                    Calendar eDate;
-                    if(endDate.equals(""))
-                    {
-                        eDate = null;
-                    }
-                    else
-                    {
-                        eDate = dateParser.toCalendar(endDate);
-                    }
-                    */
 
                     String experimenters = txtExperimenters.getText().toString();
                     String notes = txtNotes.getText().toString();
