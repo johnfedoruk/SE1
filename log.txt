@@ -181,5 +181,5 @@ matundjf or iskomt (Jose)		Task: Bug fixing previous user stories
 					Task: Planning Documentation
 					Expected time: 1 day	Actual time: 1 hour 
 
-
-
+kajmoroz	   (Kaj)		Task: Import Data from file
+					Expected time: 4 days	Actual time: 15 Hours
