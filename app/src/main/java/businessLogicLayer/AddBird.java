@@ -179,18 +179,6 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener,V
                     } catch (NullPointerException e) {
                         e.printStackTrace();
                     }
-                    /*
-                    Calendar bDate = dateParser.toCalendar(birthdate);
-                    Calendar dDate;
-                    if(deathdate.equals(""))
-                    {
-                        dDate = null;
-                    }
-                    else
-                    {
-                        dDate = dateParser.toCalendar(deathdate);
-                    }
-                    */
                     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                     Calendar bDate = Calendar.getInstance();
                     Calendar dDate = Calendar.getInstance();

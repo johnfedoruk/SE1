@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputType;
@@ -31,9 +32,7 @@ public class AddExperiment extends AppCompatActivity implements View.OnClickList
 
     DatabaseManager db = MainActivity.db;
     Button btCreateExperiment;
-    public static DateParser dateParser = new DateParser();
     EditText txtStudyTitle, txtStudyType, txtGroupWithinExperiment, txtStartDate, txtEndDate, txtExperimenters, txtNotes;
-    databaseLayer.ExperimentLocalStore ExperimentLocalStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,9 +104,8 @@ public class AddExperiment extends AppCompatActivity implements View.OnClickList
 
                     String experimenters = txtExperimenters.getText().toString();
                     String notes = txtNotes.getText().toString();
-                    boolean active = true;
 
-                    Experiment exp = new Experiment(title, type, group, sDate, eDate, experimenters, notes, active);
+                    Experiment exp = new Experiment(title, type, group, sDate, eDate, experimenters, notes, true);
                     db.addExperiment(exp);
                     startActivity(new Intent(AddExperiment.this, ExpAddSuccess.class));
                     ProgressDialog progressDialog = new ProgressDialog(AddExperiment.this);
@@ -237,9 +235,19 @@ public class AddExperiment extends AppCompatActivity implements View.OnClickList
         return super.dispatchTouchEvent(ev);
     }
 
-    public static void hideSoftKeyboard(Activity activity) {
+    public static void hideSoftKeyboard(Activity activity) throws NullPointerException {
         InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+        IBinder binder = null;
+        try {
+            View view = activity.getCurrentFocus();
+            if(view!=null)
+                binder = view.getWindowToken();
+        }
+        catch(NullPointerException e) {
+            e.printStackTrace();
+        }
+        if(binder!=null)
+            inputMethodManager.hideSoftInputFromWindow(binder , 0);
     }
 
     @Override
