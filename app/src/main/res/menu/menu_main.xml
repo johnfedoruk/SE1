@@ -33,6 +33,6 @@
         app:showAsAction="never"/>
     <item android:id="@+id/quit_or_logout"
         android:title="@string/title_activity_quit_or_logout"
-        android:orderInCategory="400"
+        android:orderInCategory="700"
         app:showAsAction="never"/>
 </menu>

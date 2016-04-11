@@ -176,6 +176,10 @@ xiezili       (Zili)			meeting - 6 hours
 
 -----------Time spent on tasks for iteration 3-----------------
 Account Name:
+
+ratstache (Landon)			Task: Implement basic log in/log out functionality (14 hours)
+					
+
 matundjf or iskomt (Jose)		Task: Bug fixing previous user stories
 					Expected time: 3 days	Actual time: 16 hours
 					Task: Refactor Code
