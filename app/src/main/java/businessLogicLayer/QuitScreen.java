@@ -69,34 +69,7 @@ public class QuitScreen extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.add_bird) {
-            Intent intent = new Intent(this,AddBird.class);
-            startActivity(intent);
-            return true;
-        }
-        if (id == R.id.add_experiment) {
-            Intent intent = new Intent(this,AddExperiment.class);
-            startActivity(intent);
-            return true;
-        }
-        if (id == R.id.search_bird) {
-            Intent intent = new Intent(this,SearchBird.class);
-            startActivity(intent);
-            return true;
-        }
-        if (id == R.id.search_experiment) {
-            Intent intent = new Intent(this, SearchExperiment.class);
-            startActivity(intent);
-            return true;
-        }
-        if (id == R.id.quit_or_logout)
-        {
-            Intent intent = new Intent(this, QuitScreen.class);
-            startActivity(intent);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        return MenubarMenu.handleMenu(this, id);
     }
 
 }
