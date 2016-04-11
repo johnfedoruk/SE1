@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 
 import net.javacrypt.se1.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
@@ -179,7 +181,7 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener,V
                     } catch (NullPointerException e) {
                         e.printStackTrace();
                     }
-
+                    /*
                     Calendar bDate = dateParser.toCalendar(birthdate);
                     Calendar dDate;
                     if(deathdate.equals(""))
@@ -190,7 +192,22 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener,V
                     {
                         dDate = dateParser.toCalendar(deathdate);
                     }
-
+                    */
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                    Calendar bDate = Calendar.getInstance();
+                    Calendar dDate = Calendar.getInstance();
+                    try {
+                        bDate.setTime(sdf.parse(birthdate));
+                    }
+                    catch(Exception e) {
+                        bDate = null;
+                    }
+                    try {
+                        dDate.setTime(sdf.parse(deathdate));
+                    }
+                    catch(Exception e) {
+                        dDate = null;
+                    }
                     boolean status = true;
                     Bird b = new Bird(id, name, exp, bDate, dDate, sex, retrieveMedicalHistory, status, motherId, fatherId);
                     MainActivity.db.addBird(b);
@@ -230,6 +247,11 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener,V
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        if (id == R.id.home) {
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+            return true;
+        }
         if (id == R.id.add_bird) {
             Intent intent = new Intent(this,AddBird.class);
             startActivity(intent);
@@ -265,6 +287,8 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener,V
 
         EditText txtBirthDate = (EditText) findViewById(R.id.txtBirthDate);
         EditText txtDeathDate = (EditText) findViewById(R.id.txtDeathDate);
+        txtBirthDate.setInputType(InputType.TYPE_NULL);
+        txtDeathDate.setInputType(InputType.TYPE_NULL);
         txtBirthDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

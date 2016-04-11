@@ -20,25 +20,29 @@ import domainObjects.Experiment;
 public class ViewExperiments extends ActionBarActivity {
     private DatabaseManager db = MainActivity.db;
     public Context context;
+    public static ListView listView = null;
+    public static ListAdapter adapt = null;
+    public static ArrayList<ListItem> items = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_experiments);
         this.context = getApplicationContext();
-        Experiment experiment;
-        Intent intent = getIntent();
-        String[] searchInfo = intent.getStringArrayExtra(SearchExperiment.EXTRA_MESSAGE);
-
-        String StudyTitle = searchInfo[0];
-        String StudyType = searchInfo[1];
-        String GroupWithinExperiment = searchInfo[2];
-        String StartDate = searchInfo[3];
-        String EndDate = searchInfo[4];
+        populateList();
+    }
+    public void populateList()
+    {
         String Active;
-        ArrayList<Experiment> query = db.searchExperiments(StudyTitle,StudyType,
-                GroupWithinExperiment,StartDate,EndDate);
-        ListView listView = (ListView)this.findViewById(R.id.listView);
-        ArrayList<ListItem> items = new ArrayList<>();
+        Experiment experiment;
+        Intent intent = this.getIntent();
+        Bundle b = intent.getExtras();
+        Experiment searchExperiment = (Experiment)b.getSerializable("experiment");
+        ArrayList<Experiment> query = db.searchExperiments(searchExperiment);
+        if(query==null||query.size()<1)
+            return;
+       this.listView = (ListView)this.findViewById(R.id.listView);
+       this.items = new ArrayList<>();
+
         for(int i=0;i<query.size();i++) {
             experiment = query.get(i);
             if(experiment.getStatus()==true){Active = "active";}
@@ -46,9 +50,21 @@ public class ViewExperiments extends ActionBarActivity {
             items.add(new ListItem("Title: ",experiment.getStudyTitle(),"Type: ",
                     experiment.getStudyType(),"Status: ",Active));
         }
-        ListAdapter adapt = new ListAdapter(this, R.layout.item, items);
-        adapt.setIntent(new Intent(this,ViewExperiment.class));
-        listView.setAdapter(adapt);
+        this.adapt = new ListAdapter(this, R.layout.item, items);
+        for(int i=0;i<query.size();i++) {
+            Intent intentView = new Intent(this,ViewExperiment.class);
+            Bundle bundle = new Bundle();
+            experiment = query.get(i);
+            bundle.putSerializable("experiment",experiment);
+            intentView.putExtras(bundle);
+            adapt.setIntent(intentView);
+            listView.setAdapter(adapt);
+        }
+    }
+    @Override
+    public void onRestart(){
+        populateList();
+        super.onRestart();
 
     }
     @Override
@@ -65,6 +81,11 @@ public class ViewExperiments extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        if (id == R.id.home) {
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+            return true;
+        }
         if (id == R.id.add_bird) {
             Intent intent = new Intent(this,AddBird.class);
             startActivity(intent);

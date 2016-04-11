@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,7 +54,7 @@ public class EditBird extends AppCompatActivity implements View.OnClickListener{
          * ALL CLASSES SHOULD USE THE DATABASE MANAGER THAT IS BUILT BY THE MAIN ACTIVITY
          *
          */
-        setContentView(R.layout.activity_add_bird);
+        setContentView(R.layout.activity_edit_bird);
 
         /*
         *Listener for the AddBird button
@@ -129,6 +130,7 @@ public class EditBird extends AppCompatActivity implements View.OnClickListener{
                 try {
                     birthdate.setTime(sdf.parse(txtBirthDate.getText().toString()));
                 } catch (ParseException e) {
+                    birthdate = null;
                     e.printStackTrace();
                 }
                 try {
@@ -157,7 +159,6 @@ public class EditBird extends AppCompatActivity implements View.OnClickListener{
                 progressDialog.setMessage("Please wait...");
                 progressDialog.show();
 
-                /*Go to bird page*/
                 Intent myIntent = new Intent(EditBird.this,EditBirdSuccess.class);
                 startActivity(myIntent);
 
@@ -180,6 +181,11 @@ public class EditBird extends AppCompatActivity implements View.OnClickListener{
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        if (id == R.id.home) {
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+            return true;
+        }
         if (id == R.id.add_bird) {
             Intent intent = new Intent(this,AddBird.class);
             startActivity(intent);
@@ -215,6 +221,8 @@ public class EditBird extends AppCompatActivity implements View.OnClickListener{
 
         EditText txtBirthDate = (EditText) findViewById(R.id.txtBirthDate);
         EditText txtDeathDate = (EditText) findViewById(R.id.txtDeathDate);
+        txtBirthDate.setInputType(InputType.TYPE_NULL);
+        txtDeathDate.setInputType(InputType.TYPE_NULL);
         txtBirthDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

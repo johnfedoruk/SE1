@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import net.javacrypt.se1.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import databaseLayer.DatabaseManager;
@@ -85,17 +87,20 @@ public class AddExperiment extends AppCompatActivity implements View.OnClickList
                     String title = txtStudyTitle.getText().toString();
                     String type = txtStudyType.getText().toString();
                     String group = txtGroupWithinExperiment.getText().toString();
-                    String startDate = txtStartDate.getText().toString();
-                    String endDate = txtEndDate.getText().toString();
-                    Calendar sDate = dateParser.toCalendar(startDate);
-                    Calendar eDate;
-                    if(endDate.equals(""))
-                    {
-                        eDate = null;
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                    Calendar sDate = Calendar.getInstance();
+                    Calendar eDate = Calendar.getInstance();
+                    try {
+                        sDate.setTime(sdf.parse(txtStartDate.getText().toString()));
                     }
-                    else
-                    {
-                        eDate = dateParser.toCalendar(endDate);
+                    catch(Exception e) {
+                        sDate = null;
+                    }
+                    try {
+                        eDate.setTime(sdf.parse(txtEndDate.getText().toString()));
+                    }
+                    catch(Exception e) {
+                        eDate = null;
                     }
 
                     String experimenters = txtExperimenters.getText().toString();
@@ -134,6 +139,11 @@ public class AddExperiment extends AppCompatActivity implements View.OnClickList
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        if (id == R.id.home) {
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+            return true;
+        }
         if (id == R.id.add_bird) {
             Intent intent = new Intent(this,AddBird.class);
             startActivity(intent);
@@ -176,6 +186,8 @@ public class AddExperiment extends AppCompatActivity implements View.OnClickList
 
         EditText txtStartDate = (EditText) findViewById(R.id.txtStartDate);
         EditText txtEndDate = (EditText) findViewById(R.id.txtEndDate);
+        txtStartDate.setInputType(InputType.TYPE_NULL);
+        txtEndDate.setInputType(InputType.TYPE_NULL);
         txtStartDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

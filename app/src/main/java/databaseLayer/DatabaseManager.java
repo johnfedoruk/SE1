@@ -87,6 +87,9 @@ public class DatabaseManager {
      * @param exp the experiment to be added
      */
     public void addExperiment(Experiment exp) {
+        if(SQL_ON)
+            dbSQL.addExperiment(exp);
+        else
             dbStub.addExperiment(exp);
     }
 
@@ -105,45 +108,6 @@ public class DatabaseManager {
         else
         {
             return dbStub.findBird(id);
-        }
-    }
-
-    /**
-     * searchBirds
-     *  Queries the birdList and returns all birds that match the definitions
-     * @param id The id of the bird. If not defined, has length of zero.
-     * @param name The name of the bird. If not defined, has length of zero.
-     * @param sex The sex of the bird. If male, will be "male", if female, will be "female"
-     *            if both will be "both", if undefined will have length of zero
-     * @param birthDate The birth date in string format. Has the format "yyyy-MM-dd". If not defined
-     *                 it will have a length of zero.
-     * @param deathDate The death date in string format. Has the format "yyyy-MM-dd". If not defined
-     *                  it will have a length of zero.
-     * @return The query results
-     */
-    private ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate, String status)
-    {
-        if(SQL_ON)
-        {
-            return null;
-            //return dbSQL.searchBirds(id, name, sex, birthDate, deathDate, status);
-        }
-        else
-        {
-            return null;
-            //return dbStub.searchBirds(id, name, sex, birthDate, deathDate, status);
-        }
-    }
-    private ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate)
-    {
-        if(SQL_ON)
-        {
-            return null;
-            //return dbSQL.searchBirds(id, name, sex, birthDate, deathDate);
-        }
-        else {
-            return null;
-            //return dbStub.searchBirds(id, name, sex, birthDate, deathDate);
         }
     }
     public ArrayList<Bird> searchBirds(Bird inputBird) {
@@ -177,7 +141,10 @@ public class DatabaseManager {
 
     public ArrayList<Experiment> searchExperiments(Experiment experiment)
     {
-        return dbStub.searchExperiments(experiment);
+        if(SQL_ON)
+            return dbSQL.searchExperiments(experiment);
+        else
+            return dbStub.searchExperiments(experiment);
 
     }
 
@@ -193,22 +160,30 @@ public class DatabaseManager {
 
     }
 
+    public void removeExperiment(Experiment experiment) {
+        if (SQL_ON) {
+            dbSQL.removeExperiment(experiment);
+        }
+        //else
+        //    dbStub.removeExperiment(experiment);
+    }
+
     /**
      * getCalendar
      * generate and return a calendar made up of the parameters
      * @param yyyy the year for the calendar
-     * @param m the month for the calendar
+     * @param MM the month for the calendar
      * @param dd the day for the calendar
      * @return the calendar generated
      */
-    public Calendar getCalendar(int yyyy,int m, int dd){
+    public Calendar getCalendar(int yyyy,int MM, int dd){
         if(SQL_ON)
         {
-            return dbSQL.getCalendar(yyyy, m, dd);
+            return dbSQL.getCalendar(yyyy, MM, dd);
         }
         else
         {
-            return dbStub.getCalendar(yyyy, m, dd);
+            return dbStub.getCalendar(yyyy, MM, dd);
         }
     }
 

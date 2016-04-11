@@ -70,6 +70,10 @@
             android:name="businessLogicLayer.EditBirdSuccess"
             android:label="@string/title_activity_edit_bird_success"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="businessLogicLayer.EditExperimentSuccess"
+            android:label="@string/title_activity_edit_experiment_success"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name="businessLogicLayer.AddBirdSuccess"
@@ -84,6 +88,9 @@
             android:name="businessLogicLayer.AddMedicalHistory"
             android:label="@string/title_activity_add_medical_history"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name="businessLogicLayer.ImportBirds"
+            android:label="@string/importBirds" />
     </application>
 
 </manifest>

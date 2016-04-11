@@ -16,6 +16,7 @@ import android.widget.Toast;
 import net.javacrypt.se1.R;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import databaseLayer.DatabaseManager;
@@ -39,26 +40,6 @@ public class ViewBird extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_bird);
-        DatabaseManager db = MainActivity.db;
-        /**
-         *
-         * Get the bird ID from the Database
-         *
-         */
-
-        Intent i = getIntent();
-        ArrayList<String> birdProp = i.getStringArrayListExtra("bird");
-        Bird cBird ;
-/*
-        if(birdProp.size() == 10)
-            cBird = new Bird(birdProp.get(0), birdProp.get(1), birdProp.get(2), birdProp.get(3), birdProp.get(4), birdProp.get(5), birdProp.get(6), birdProp.get(8), birdProp.get(9));
-        else
-            cBird = new Bird(birdProp.get(0), birdProp.get(1), birdProp.get(2), birdProp.get(3), birdProp.get(4), birdProp.get(5), birdProp.get(6));
-
-        cBird.setMedicalHistory(new MedicalHistory(birdProp.get(7)));
-        currentBird = cBird;
-*/
-
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         this.currentBird = (Bird)bundle.getSerializable("bird");
@@ -68,11 +49,6 @@ public class ViewBird extends AppCompatActivity {
          */
         if(currentBird != null && currentBird.getId() != null)
         {
-           /* try {
-                this.cBird =
-                       db.searchBirds(new Bird(birdId, birdName,"",null,null,"",null)).get(0); //Bird IDs are unique
-            }
-            catch(Exception e) {this.cBird=null;}*/
 
             if (currentBird != null)
             {
@@ -209,6 +185,11 @@ public class ViewBird extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        if (id == R.id.home) {
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+            return true;
+        }
         if (id == R.id.add_bird) {
             Intent intent = new Intent(this,AddBird.class);
             startActivity(intent);
@@ -263,8 +244,15 @@ public class ViewBird extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = getIntent();
                         String birdId = intent.getStringExtra(SearchBird.EXTRA_MESSAGE);
-                        currentBird = MainActivity.db.searchBirds(new Bird(birdId, "", "", "", "", "","")).get(0);
-                        currentBird.setStatus(false);
+                        Bird temp = ViewBird.this.currentBird;
+                        temp.setStatus(false);
+                        MainActivity.db.removeBird(ViewBird.this.currentBird.getId());
+                        MainActivity.db.addBird(temp);
+                        //ViewBirds.listView.clear();
+                        ViewBirds.adapt.notifyDataSetChanged();
+                        ViewBirds.adapt.clear();
+                        Toast.makeText(ViewBird.this, "Successfully retired",
+                                Toast.LENGTH_LONG).show();
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

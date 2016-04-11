@@ -45,6 +45,11 @@ public class SearchBird extends AppCompatActivity implements View.OnFocusChangeL
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        if (id == R.id.home) {
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+            return true;
+        }
         if (id == R.id.add_bird) {
             Intent intent = new Intent(this,AddBird.class);
             startActivity(intent);
@@ -77,7 +82,6 @@ public class SearchBird extends AppCompatActivity implements View.OnFocusChangeL
 
     @SuppressWarnings("all")
     public void openViewBirds(View view) {
-        //Intent intent = new Intent(this,ViewBirds.class);
         String birdId = ((EditText)findViewById(R.id.legBandId)).getText().toString();
         String birdName = ((EditText)findViewById(R.id.birdName)).getText().toString();
         String birdSex = "";
@@ -100,10 +104,6 @@ public class SearchBird extends AppCompatActivity implements View.OnFocusChangeL
             birdDeath =
                     dateFormat.format(new Date(dp.getYear()-1900,dp.getMonth(),dp.getDayOfMonth()));
         }
-        /*
-        String[] searchParameters = {birdId,birdName,birdSex,birdBirth,birdDeath};
-        intent.putExtra(EXTRA_MESSAGE, searchParameters);
-        */
 
         Intent intent = new Intent(this,ViewBirds.class);
         Bundle bundle = new Bundle();

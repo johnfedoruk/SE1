@@ -114,7 +114,7 @@ public class DatabaseSQL{
 
     public ArrayList<Experiment> searchExperiments(Experiment experiment)
     {
-        return expTable.searchBirds(experiment);
+        return expTable.searchExperiments(experiment);
     }
 
 
@@ -148,6 +148,13 @@ public class DatabaseSQL{
      */
     public ArrayList<Bird> getBird(){
         return birdTable.getBird();
+    }
+
+    public void removeExperiment(Experiment experiment) {
+        if(experiment==null)
+            return;
+        this.expTable.removeExperiment(experiment);
+        return;
     }
 
 }

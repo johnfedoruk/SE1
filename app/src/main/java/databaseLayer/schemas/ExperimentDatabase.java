@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import domainObjects.Experiment;
 
@@ -149,58 +150,66 @@ public class ExperimentDatabase {
         return returnArr;
     }
 
-    public ArrayList<Experiment> searchBirds(Experiment params)
+    public ArrayList<Experiment> searchExperiments(Experiment params)
     {
-        Experiment addThisExp;
         ArrayList<Experiment> queryResult = new ArrayList<>();
-        String title = "";
-        String type = "";
-        String group = "";
-        String start = "";
-        String end = "";
-        String experts = "";
-        String notes = "";
-        String stat = "";
-        params.setStatus(true);
-
-        //Queries each data elem in params: BIRD_NAME =? AND BIRD_ID =? AND...
-        ArrayList<String> whereClause  = getWhereClause(params);
-
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-
-        String [] values = getSearchPara(params);
-        String query = "SELECT * FROM " + ExpEntry.TABLE_LABEL + " WHERE ";
-
-        for(int i = 0; i < whereClause.size()-1; i++)
-        {
-            query += whereClause.get(i) + " = " + "'" + values[i]+ "'" + AND;
-        }
-        query += whereClause.get(whereClause.size()-1) + " = " + "'" + values[values.length-1] + "'" ;
-
-        String queryD = "SELECT * FROM " + ExpEntry.TABLE_LABEL + " WHERE " + whereClause.get(0) + " = " + "'" +values[0] + "'" + " AND " + whereClause.get(1) + " = '" + values[1] + "'";
-
-        //Cursor c = db.rawQuery(query, values);
-
+        String query = "SELECT * FROM " + ExpEntry.TABLE_LABEL + ";";
         Cursor c = db.rawQuery(query, null);
-        c = db.rawQuery(queryD, null);
-        if(c.getCount() > 0) {
+        if (c.getCount() > 0) {
             c.moveToFirst();
-            do{
-                title=c.getString(0);
-                type= c.getString(1);
-                group=c.getString(2);
-                start=c.getString(3);
-                end=c.getString(4);
-                experts=c.getString(5);
-                notes=c.getString(6);
-                stat=c.getString(7);
-                addThisExp = new Experiment(title, type, group, start, end, experts, notes, stat);
-                queryResult.add(addThisExp);
-            }while(c.moveToNext());
+            do {
+                String title=c.getString(0);
+                String type= c.getString(1);
+                String group=c.getString(2);
+                String start=c.getString(3);
+                String end=c.getString(4);
+                String experts=c.getString(5);
+                String notes=c.getString(6);
+                String stat=c.getString(7);
+                queryResult.add(new Experiment(title, type, group, start, end, experts, notes, stat));
+            } while (c.moveToNext());
+        }
+        db.close();
+        String title = (params.getStudyTitle()!=null)?(params.getStudyTitle().trim().toLowerCase()):(null);
+        String type = (params.getStudyType()!=null)?(params.getStudyType().trim().toLowerCase()):(null);
+        String group = (params.getGroupWithinExperiment()!=null)?(params.getGroupWithinExperiment().trim().toLowerCase()):(null);
+        String start = (params.getStartDate()!=null)?(params.getDateString(params.getStartDate())):(null);
+        String end = (params.getEndDate()!=null)?(params.getDateString(params.getEndDate())):(null);
+        if(queryResult==null||queryResult.size()<1)
+            return null;
+        for(int i=queryResult.size()-1;i>=0;i--) {
+            if(title!=null&&title.length()>0&& queryResult.get(i).getStudyTitle() != null &&
+                    !queryResult.get(i).getStudyTitle().trim().toLowerCase().equals(title)) {
+                queryResult.remove(i);
+                continue;
+            }
+            if(type!=null&&type.length()>0&& queryResult.get(i).getStudyType() != null &&
+                    !queryResult.get(i).getStudyType().trim().toLowerCase().equals(type)) {
+                queryResult.remove(i);
+                continue;
+            }
+            if(group !=null&&group.length()>0&& queryResult.get(i).getGroupWithinExperiment() != null &&
+                    !queryResult.get(i).getGroupWithinExperiment().trim().toLowerCase().equals(group)) {
+                queryResult.remove(i);
+                continue;
+            }
+
+            if((start!= null&&queryResult.get(i).getStartDate()==null)||(start!=null&&
+                    !queryResult.get(i).getDateString(queryResult.get(i).getStartDate())
+                            .equals(start))) {
+                queryResult.remove(i);
+                continue;
+            }
+            if((end!=null&&queryResult.get(i).getEndDate()==null)||(end!=null&&
+                    !queryResult.get(i).getDateString(queryResult.get(i).getEndDate())
+                            .equals(end))) {
+                queryResult.remove(i);
+                continue;
+            }
         }
 
-
-        db.close();
+        queryResult.trimToSize();
         return queryResult;
     }
     
@@ -227,17 +236,45 @@ public class ExperimentDatabase {
             inputVal.put(ExpEntry.EXP_GROUP, "");
         }
 
-        if (input.getStartDate() != null) {
-            inputVal.put(ExpEntry.EXP_START, String.valueOf(input.getStartDate().getTimeInMillis()));
-        } else {
-             inputVal.put(ExpEntry.EXP_START, "");
+        if(input.getStartDate() != null)
+        {
+            inputVal.put(ExpEntry.EXP_START, input.getDateString(input.getStartDate()));
+        }
+        else
+        {
+            inputVal.put(ExpEntry.EXP_START, "");
         }
 
-        if (input.getEndDate() != null) {
-            inputVal.put(ExpEntry.EXP_END, String.valueOf(input.getEndDate().getTimeInMillis()));
-        } else {
+        if(input.getEndDate() != null)
+        {
+            inputVal.put(ExpEntry.EXP_END, input.getDateString(input.getEndDate()));
+        }
+        else
+        {
             inputVal.put(ExpEntry.EXP_END, "");
-         }
+        }
+
+
+
+
+
+
+        if (input.getExperimenters() != null && !input.getExperimenters().equals("")) {
+            inputVal.put(ExpEntry.EXP_TERS, input.getExperimenters());
+        } else {
+            inputVal.put(ExpEntry.EXP_TERS, "");
+        }
+
+        if (input.getNotes() != null && !input.getNotes().equals("")) {
+            inputVal.put(ExpEntry.EXP_NOTES, input.getNotes());
+        } else {
+            inputVal.put(ExpEntry.EXP_NOTES, "");
+        }
+
+
+
+
+
 
         if (input.getStatus()) {
             inputVal.put(ExpEntry.EXP_STAT, "true");
@@ -245,10 +282,10 @@ public class ExperimentDatabase {
             inputVal.put(ExpEntry.EXP_STAT, "false");
         }
 
-    long newRowId;
-    newRowId = db.insert(ExpEntry.TABLE_LABEL, null, inputVal);
+        long newRowId;
+        newRowId = db.insert(ExpEntry.TABLE_LABEL, null, inputVal);
 
-    db.close();
+        db.close();
 
     }
 
@@ -269,5 +306,27 @@ public class ExperimentDatabase {
         }
         return queryResult;
 
+    }
+
+    public void removeExperiment(Experiment experiment) {
+        if(experiment==null)
+            return;
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.execSQL(
+                "DELETE FROM "
+                + ExpEntry.TABLE_LABEL
+                + " WHERE "
+                + ExpEntry.EXP_TITLE
+                + " = "
+                + "'"
+                + experiment.getStudyTitle()
+                + "'"
+                + " AND "
+                + ExpEntry.EXP_TYPE
+                + " = "
+                + "'"
+                + experiment.getStudyType()
+                + "'"
+        );
     }
 }

@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.javacrypt.se1.R;
 
@@ -49,34 +50,17 @@ public class ViewExperiment extends AppCompatActivity implements View.OnClickLis
         viewEndDate = (TextView) findViewById(R.id.viewEndDate);
         viewExperimenters = (TextView) findViewById(R.id.viewExperimenters);
         viewNotes = (TextView) findViewById(R.id.viewNotes);
-        DatabaseManager db = MainActivity.db;
-
         Intent intent = getIntent();
-        String experimentTitle = intent.getStringExtra(SearchExperiment.EXTRA_MESSAGE);
-
-
-
-        if(experimentTitle.length()>0) {
-
-            String studyTitle = MainActivity.db.searchExperiments(experimentTitle, "", "", "", "").get(0).getStudyTitle();
-            String studyType = MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getStudyType();
-            String groupWithinExperiment = MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getGroupWithinExperiment();
-            String startDate = MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getDateString(MainActivity.db.getExperiment().get(0).getStartDate());
-            String endDate = MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).getDateString(MainActivity.db.getExperiment().get(0).getEndDate());
-            String experimenters = MainActivity.db.searchExperiments(experimentTitle, "", "", "", "").get(0).getExperimenters();
-            String notes = MainActivity.db.searchExperiments(experimentTitle, "", "", "", "").get(0).getNotes();
-            String status = "";
-
-
-            viewStudyTitle.setText(studyTitle);
-            viewStudyType.setText(studyType);
-            viewGroupWithinExperiment.setText(groupWithinExperiment);
-            viewStartDate.setText(startDate);
-            viewEndDate.setText(endDate);
-            viewExperimenters.setText(experimenters);
-            viewNotes.setText(notes);
-
-            currentExperiment = new Experiment(studyTitle, studyType, groupWithinExperiment, startDate, endDate, experimenters, notes, status);
+        Bundle bundle = intent.getExtras();
+        this.currentExperiment = (Experiment)bundle.getSerializable("experiment");
+        if (this.currentExperiment != null) {
+            viewStudyTitle.setText(this.currentExperiment.getStudyTitle());
+            viewStudyType.setText(this.currentExperiment.getStudyType());
+            viewGroupWithinExperiment.setText(this.currentExperiment.getGroupWithinExperiment());
+            viewStartDate.setText(this.currentExperiment.getDateString(this.currentExperiment.getStartDate()));
+            viewEndDate.setText(this.currentExperiment.getDateString(this.currentExperiment.getEndDate()));
+            viewExperimenters.setText(this.currentExperiment.getExperimenters());
+            viewNotes.setText(this.currentExperiment.getNotes());
         }
         else {
             viewStudyTitle.setText("No Results");
@@ -100,6 +84,11 @@ public class ViewExperiment extends AppCompatActivity implements View.OnClickLis
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        if (id == R.id.home) {
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+            return true;
+        }
         if (id == R.id.add_bird) {
             Intent intent = new Intent(this,AddBird.class);
             startActivity(intent);
@@ -157,7 +146,15 @@ public class ViewExperiment extends AppCompatActivity implements View.OnClickLis
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = getIntent();
                         String experimentTitle = intent.getStringExtra(SearchBird.EXTRA_MESSAGE);
-                        MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).setStatus(false);
+
+                        Experiment temp = ViewExperiment.this.currentExperiment;
+                        temp.setStatus(false);
+                        MainActivity.db.removeExperiment(ViewExperiment.this.currentExperiment);
+                        MainActivity.db.addExperiment(temp);
+                        ViewExperiments.adapt.notifyDataSetChanged();
+                        ViewExperiments.adapt.clear();
+                        Toast.makeText(ViewExperiment.this, "Successfully ended Experiment",
+                                Toast.LENGTH_LONG).show();
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

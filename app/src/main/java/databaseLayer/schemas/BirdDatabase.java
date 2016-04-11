@@ -139,7 +139,7 @@ public final class BirdDatabase {
 
         if(input.getBirthDate() != null)
         {
-            inputVal.put(BirdEntry.BIRD_BDAY, String.valueOf(input.getBirthDate().getTimeInMillis()));
+            inputVal.put(BirdEntry.BIRD_BDAY, input.getDateString(input.getBirthDate(), "yyyy-MM-dd"));
         }
         else
         {
@@ -148,7 +148,7 @@ public final class BirdDatabase {
 
         if(input.getDeathDate() != null)
         {
-            inputVal.put(BirdEntry.BIRD_DDAY, String.valueOf(input.getDeathDate().getTimeInMillis()));
+            inputVal.put(BirdEntry.BIRD_DDAY, input.getDateString(input.getDeathDate(),"yyyy-MM-dd"));
         }
         else
         {
@@ -319,71 +319,6 @@ public final class BirdDatabase {
 
     public ArrayList<Bird> searchBirds(Bird inputBird)
     {
-        /*
-        Bird addThisBird;
-        ArrayList<Bird> queryResult = new ArrayList<>();
-        String bDayString = "";
-        String dDayString = "";
-        String medical = "";
-        String id = "";
-        String sex = "";
-        String name = "";
-        String exp = "";
-        String stat = "";
-        String mom = "";
-        String dad = "";
-        params.setStatus(true);
-
-
-        //Queries each data elem in params: BIRD_NAME =? AND BIRD_ID =? AND...
-        ArrayList<String> whereClause  = getWhereClause(params);
-
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-
-        String [] values = getSearchPara(params);
-        String query = "SELECT * FROM " + BirdEntry.TABLE_LABEL + " WHERE ";
-
-        for(int i = 0; i < whereClause.size()-1; i++)
-        {
-            query += whereClause.get(i) + " = " + "'" + values[i]+ "'" + AND + " ";
-        }
-
-        String queryD = "";
-
-        if(whereClause.size() > 1) {
-            query += whereClause.get(whereClause.size() - 1) + " = " + "'" + values[values.length - 1] + "'";
-
-            //queryD = "SELECT * FROM " + BirdEntry.TABLE_LABEL + " WHERE " + whereClause.get(1) + " = " + "'" + values[1] + "'" + " AND " + whereClause.get(0) + " = '" + values[0] + "'";
-        }
-        else
-        {
-            if(whereClause.size() == 1) {
-                query += whereClause.get(0) + " = " + "'" + values[0] + "'";
-
-                //queryD = "SELECT * FROM " + BirdEntry.TABLE_LABEL + " WHERE " + query + " = " + "'" + values[0] + "'";
-            }
-        }
-        //Cursor c = db.rawQuery(query, values);
-
-        if(whereClause.size() > 0 && !query.equals("SELECT * FROM " + BirdEntry.TABLE_LABEL + " WHERE ")) {
-            Cursor c = db.rawQuery(query, null);
-            if (c.getCount() > 0) {
-                c.moveToFirst();
-                do {
-                    name = c.getString(0);
-                    id = c.getString(1);
-                    sex = c.getString(2);
-                    exp = c.getString(3);
-                    bDayString = c.getString(4);
-                    dDayString = c.getString(5);
-                    stat = c.getString(6);
-                    addThisBird = new Bird(id, name, exp, bDayString, dDayString, sex, stat);
-                    addThisBird.setMedicalHistory(new MedicalHistory(c.getString(7)));
-                    queryResult.add(addThisBird);
-                } while (c.moveToNext());
-            }
-        }
-        */
         ArrayList<Bird> queryResult = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String query = "SELECT * FROM " + BirdEntry.TABLE_LABEL + ";";

@@ -19,6 +19,8 @@ import net.javacrypt.se1.R;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import domainObjects.Experiment;
+
 
 @SuppressWarnings("all")
 public class SearchExperiment extends ActionBarActivity implements View.OnFocusChangeListener,View.OnTouchListener{
@@ -39,6 +41,12 @@ public class SearchExperiment extends ActionBarActivity implements View.OnFocusC
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+
+        if (id == R.id.home) {
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+            return true;
+        }
         if (id == R.id.add_bird) {
             Intent intent = new Intent(this,AddBird.class);
             startActivity(intent);
@@ -80,22 +88,22 @@ public class SearchExperiment extends ActionBarActivity implements View.OnFocusC
         String StudyType = ((EditText)findViewById(R.id.experimentType)).getText().toString();
         String GroupWithinExperiment = ((EditText)findViewById(R.id.experimentGroup)).getText()
                 .toString();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String StartDate = "";
         if(((CheckBox)findViewById(R.id.searchStart)).isChecked()) {
             DatePicker dp = (DatePicker)findViewById(R.id.startDatePicker);
             StartDate =
-                    dateFormat.format(new Date(dp.getYear()-1900,dp.getMonth(),dp.getDayOfMonth()));
+                    sdf.format(new Date(dp.getYear()-1900,dp.getMonth(),dp.getDayOfMonth()));
         }
         String EndDate = "";
         if(((CheckBox)findViewById(R.id.searchEnd)).isChecked()) {
             DatePicker dp = (DatePicker)findViewById(R.id.endDatePicker);
             EndDate =
-                    dateFormat.format(new Date(dp.getYear()-1900,dp.getMonth(),dp.getDayOfMonth()));
+                    sdf.format(new Date(dp.getYear()-1900,dp.getMonth(),dp.getDayOfMonth()));
         }
-        String[] params = {StudyTitle,StudyType,
-                GroupWithinExperiment,StartDate,EndDate};
-        intent.putExtra(EXTRA_MESSAGE,params);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("experiment", new Experiment(StudyTitle,StudyType,GroupWithinExperiment,StartDate,EndDate,null,null,null));
+        intent.putExtras(bundle);
         startActivity(intent);
     }
     @Override

@@ -93,12 +93,11 @@ public class Bird implements Serializable {
 
         if(birthDate != null && !birthDate.equals(""))
         {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            this.birthDate = Calendar.getInstance();
             try {
-                Calendar cal =  Calendar.getInstance();
-                String[] tokens = birthDate.split("-");
-                cal.set(Integer.parseInt(tokens[0]),Integer.parseInt(tokens[1]),Integer.parseInt(tokens[2]));
-                this.birthDate = cal;
-            } catch(Exception e){this.birthDate = null;};
+                this.birthDate.setTime(sdf.parse(birthDate));
+            } catch(Exception e){this.birthDate = null;}
         }
         else {
             this.birthDate = null;
@@ -106,12 +105,11 @@ public class Bird implements Serializable {
 
         if(deathDate != null && !deathDate.equals(""))
         {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            this.deathDate = Calendar.getInstance();
             try {
-                Calendar cal =  Calendar.getInstance();
-                String[] tokens = deathDate.split("-");
-                cal.set(Integer.parseInt(tokens[0]),Integer.parseInt(tokens[1]),Integer.parseInt(tokens[2]));
-                this.deathDate = cal;
-            } catch(Exception e){this.deathDate = null;};
+                this.deathDate.setTime(sdf.parse(deathDate));
+            } catch(Exception e){this.deathDate = null;}
         }
         else
         {
