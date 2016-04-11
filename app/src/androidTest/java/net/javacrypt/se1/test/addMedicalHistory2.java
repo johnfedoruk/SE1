@@ -68,8 +68,7 @@ public class addMedicalHistory2 extends ActivityInstrumentationTestCase2<SplashS
 		solo.clickOnView(solo.getView(net.javacrypt.se1.R.id.imgAddMedicalHistory));
         //Wait for activity: 'businessLogicLayer.AddMedicalHistory'
 		assertTrue("businessLogicLayer.AddMedicalHistory is not found!", solo.waitForActivity(businessLogicLayer.AddMedicalHistory.class));
-        //Click on ImageView
-		solo.clickOnView(solo.getView(net.javacrypt.se1.R.id.prev));
+
         //Click on 确定
 		solo.clickOnView(solo.getView(android.R.id.button1));
         //Enter the text: '2-3-2016'

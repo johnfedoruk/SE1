@@ -27,4 +27,8 @@
         android:title="@string/title_activity_add_experiment"
         android:orderInCategory="300"
         app:showAsAction="never"/>
+    <item android:id="@+id/importBirds"
+        android:title="@string/importBirds"
+        android:orderInCategory="300"
+        app:showAsAction="never"/>
 </menu>

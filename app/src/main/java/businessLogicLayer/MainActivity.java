@@ -63,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.importBirds) {
+            Intent intent = new Intent(this,ImportBirds.class);
+            startActivity(intent);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

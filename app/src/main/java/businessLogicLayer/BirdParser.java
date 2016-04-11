@@ -1,9 +1,14 @@
 package businessLogicLayer;
 
+import android.content.Context;
+
+import net.javacrypt.se1.R;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import domainObjects.Bird;
@@ -16,16 +21,10 @@ import domainObjects.Bird;
  */
 public class BirdParser {
 
-    static String birdFile = "bird.txt";
     BufferedReader fileReader;
-    public BirdParser()
+    public BirdParser(BufferedReader inputFile)
     {
-        try
-        {
-            fileReader = new BufferedReader(new FileReader(birdFile));
-        } catch (IOException ioe) {
-            ioe.getStackTrace();
-        }
+        fileReader = inputFile;
     }
 
     public ArrayList<String> parseBirds()
@@ -49,6 +48,8 @@ public class BirdParser {
                 {
                     errorList.add(currLine);
                 }
+
+                currLine = fileReader.readLine();
             }
 
 
@@ -68,7 +69,7 @@ public class BirdParser {
         String bDate = "";
         String sex = "";
 
-        if(birdInfo.length == 3)
+        if(birdInfo.length == 4)
         {
             id = birdInfo[0];
             name = birdInfo[1];
@@ -86,6 +87,10 @@ public class BirdParser {
             if(splitArr.length > 1)
             {
                 bDate = splitArr[2] + "-" + splitArr[1] + "-" + splitArr[0];
+            }
+            else
+            {
+                bDate = splitArr[0] + "-" + "01" + "-" + "01";
             }
 
             temp = new Bird(id, name, "", bDate, "", sex, "true");
