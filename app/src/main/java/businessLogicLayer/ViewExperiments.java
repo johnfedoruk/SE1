@@ -20,11 +20,18 @@ import domainObjects.Experiment;
 public class ViewExperiments extends ActionBarActivity {
     private DatabaseManager db = MainActivity.db;
     public Context context;
+    public static ListView listView = null;
+    public static ListAdapter adapt = null;
+    public static ArrayList<ListItem> items = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_experiments);
         this.context = getApplicationContext();
+        populateList();
+    }
+    public void populateList()
+    {
         String Active;
         Experiment experiment;
         Intent intent = this.getIntent();
@@ -33,8 +40,8 @@ public class ViewExperiments extends ActionBarActivity {
         ArrayList<Experiment> query = db.searchExperiments(searchExperiment);
         if(query==null||query.size()<1)
             return;
-        ListView listView = (ListView)this.findViewById(R.id.listView);
-        ArrayList<ListItem> items = new ArrayList<>();
+       this.listView = (ListView)this.findViewById(R.id.listView);
+       this.items = new ArrayList<>();
 
         for(int i=0;i<query.size();i++) {
             experiment = query.get(i);
@@ -43,7 +50,7 @@ public class ViewExperiments extends ActionBarActivity {
             items.add(new ListItem("Title: ",experiment.getStudyTitle(),"Type: ",
                     experiment.getStudyType(),"Status: ",Active));
         }
-        ListAdapter adapt = new ListAdapter(this, R.layout.item, items);
+        this.adapt = new ListAdapter(this, R.layout.item, items);
         for(int i=0;i<query.size();i++) {
             Intent intentView = new Intent(this,ViewExperiment.class);
             Bundle bundle = new Bundle();
@@ -53,7 +60,11 @@ public class ViewExperiments extends ActionBarActivity {
             adapt.setIntent(intentView);
             listView.setAdapter(adapt);
         }
-
+    }
+    @Override
+    public void onRestart(){
+        populateList();
+        super.onRestart();
 
     }
     @Override

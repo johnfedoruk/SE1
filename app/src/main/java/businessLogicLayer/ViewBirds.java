@@ -20,20 +20,30 @@ import domainObjects.MedicalHistory;
 public class ViewBirds extends ActionBarActivity {
     private Bird currentBird = null;
     DatabaseManager db = MainActivity.db;
+
     public Context context;
+    public static ListView listView = null;
+    public static ListAdapter adapt = null;
+    public static ArrayList<ListItem> items = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_birds);
         this.context = getApplicationContext();
+        populateList();
+
+    }
+
+    public void populateList()
+    {
         Bird bird;
         String Active;
         Intent intent = this.getIntent();
         Bundle b = intent.getExtras();
         Bird searchBird = (Bird)b.getSerializable("bird");
         ArrayList<Bird> query = db.searchBirds(searchBird);
-        ListView listView = (ListView)this.findViewById(R.id.listView);
-        ArrayList<ListItem> items = new ArrayList<>();
+        this.listView = (ListView)ViewBirds.this.findViewById(R.id.listView);
+        this.items = new ArrayList<>();
         if(query==null||query.size()==0)
             return;
         query.trimToSize();
@@ -43,7 +53,7 @@ public class ViewBirds extends ActionBarActivity {
             else{Active="inactive";}
             items.add(new ListItem("ID: ",bird.getId(),"Name: ",bird.getName(),"Status: ", Active));
         }
-        ListAdapter adapt = new ListAdapter(this, R.layout.item, items);
+        this.adapt = new ListAdapter(this, R.layout.item, items);
         for(int i=0;i<query.size();i++) {
             Intent intentView = new Intent(this,ViewBird.class);
             Bundle bundle = new Bundle();
@@ -53,6 +63,12 @@ public class ViewBirds extends ActionBarActivity {
             adapt.setIntent(intentView);
             listView.setAdapter(adapt);
         }
+    }
+    @Override
+    public void onRestart(){
+        populateList();
+        super.onRestart();
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import net.javacrypt.se1.R;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import databaseLayer.DatabaseManager;
@@ -237,8 +238,15 @@ public class ViewBird extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = getIntent();
                         String birdId = intent.getStringExtra(SearchBird.EXTRA_MESSAGE);
-                        currentBird = MainActivity.db.searchBirds(new Bird(birdId, "", "", "", "", "","")).get(0);
-                        currentBird.setStatus(false);
+                        Bird temp = ViewBird.this.currentBird;
+                        temp.setStatus(false);
+                        MainActivity.db.removeBird(ViewBird.this.currentBird.getId());
+                        MainActivity.db.addBird(temp);
+                        //ViewBirds.listView.clear();
+                        ViewBirds.adapt.notifyDataSetChanged();
+                        ViewBirds.adapt.clear();
+                        Toast.makeText(ViewBird.this, "Successfully retired",
+                                Toast.LENGTH_LONG).show();
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

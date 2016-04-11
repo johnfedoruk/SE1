@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.javacrypt.se1.R;
 
@@ -139,7 +140,15 @@ public class ViewExperiment extends AppCompatActivity implements View.OnClickLis
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = getIntent();
                         String experimentTitle = intent.getStringExtra(SearchBird.EXTRA_MESSAGE);
-                        MainActivity.db.searchExperiments(experimentTitle,"","","","").get(0).setStatus(false);
+
+                        Experiment temp = ViewExperiment.this.currentExperiment;
+                        temp.setStatus(false);
+                        MainActivity.db.removeExperiment(ViewExperiment.this.currentExperiment);
+                        MainActivity.db.addExperiment(temp);
+                        ViewExperiments.adapt.notifyDataSetChanged();
+                        ViewExperiments.adapt.clear();
+                        Toast.makeText(ViewExperiment.this, "Successfully ended Experiment",
+                                Toast.LENGTH_LONG).show();
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

@@ -31,7 +31,6 @@ public class Experiment implements Serializable {
         this.GroupWithinExperiment = GroupWithinExperiment;
         this.Experimenters = Experimenters;
         this.Notes = Notes;
-        this.status = true;
         if(StartDate != null && !StartDate.equals(""))
         {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -55,6 +54,14 @@ public class Experiment implements Serializable {
         else
         {
             this.EndDate = null;
+        }
+        if(status!=null&&status.equals("true"))
+        {
+            this.status = true;
+        }
+        else
+        {
+            this.status = false;
         }
     }
 
