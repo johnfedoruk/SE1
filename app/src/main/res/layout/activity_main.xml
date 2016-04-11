@@ -44,6 +44,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="openSearchExperiment"/>
+
+            <Button
+                android:id="@+id/Login"
+                android:text="Login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="openLoginScreen"
+                android:layout_gravity="center_horizontal" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

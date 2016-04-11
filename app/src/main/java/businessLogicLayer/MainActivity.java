@@ -1,8 +1,10 @@
 package businessLogicLayer;
 
 import android.content.Intent;
+
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -64,6 +66,17 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
+        if (id == R.id.quit_or_logout)
+        {
+            Intent intent = new Intent(this, QuitScreen.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.Login) {
+            Intent intent = new Intent(this, LoginScreen.class);
+            startActivity(intent);
+            return true;
+        }
 
         if (id == R.id.importBirds) {
             Intent intent = new Intent(this,ImportBirds.class);
@@ -99,6 +112,11 @@ public class MainActivity extends AppCompatActivity {
      */
     public void openAddExperiment(View view) {
         Intent intent = new Intent(this,AddExperiment.class);
+        startActivity(intent);
+    }
+
+    public void openLoginScreen(View view) {
+        Intent intent = new Intent(this,LoginScreen.class);
         startActivity(intent);
     }
 

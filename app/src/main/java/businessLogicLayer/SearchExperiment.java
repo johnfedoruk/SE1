@@ -67,6 +67,12 @@ public class SearchExperiment extends ActionBarActivity implements View.OnFocusC
             startActivity(intent);
             return true;
         }
+        if (id == R.id.quit_or_logout)
+        {
+            Intent intent = new Intent(this, QuitScreen.class);
+            startActivity(intent);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
