@@ -215,3 +215,12 @@ JohnFedoruk				- Fixed bird SQL
 					- Fixed inconsistencies across date handling
 					- Cleaned dead code, redundant code, commented code
 					- Various other little fixes and tweaks
+
+Kevin Leonard
+					- Added Home button to hamburger menu (1.5 hours)
+					- Robotium tests (6 hours)
+						-Implementation
+						-Tutorial for the group
+					- Updated Architecture sketch (1 hour)
+					- Code smell and refactoring document (1 hour)
+					- Itr3 Retrospective Document (1 hour)
