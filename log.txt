@@ -194,3 +194,24 @@ xiezili         (Zili)           	Task: Change UI for viewbird and viewbird list
 					Expected time: 1 day	Actual time: 3 hours
 					Task: learn using robotium from Kevin in the meeting
 					Expected time: 4 hours	Actual time: 1 hour
+
+JohnFedoruk				- Fixed bird SQL
+						- Add bird
+						- Edit bird
+						- Search bird
+					- Added experiment SQL
+						- Add experiment
+						- Edit experiment
+						- Search experiment
+							- Added removeExperiment to DatabaseManager and ExperimentDatabase
+					- Implemented serilized object passing between the following activities
+						- SearchBird to ViewBirds
+						- ViewBirds to ViewBird
+						- ViewBird to EditBird
+						- SearchExperiment to ViewExperiments
+						- ViewExperiments to ViewExperiment
+						- ViewExperiment to EditExperiment
+					- Fixed broken bird consturctors
+					- Fixed inconsistencies across date handling
+					- Cleaned dead code, redundant code, commented code
+					- Various other little fixes and tweaks
