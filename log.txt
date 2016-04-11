@@ -172,6 +172,14 @@ ratstache (Landon)			GenerateRelatives method (DatabaseManager) -6 hours
 				
 
 
+-----------Time spent on tasks for iteration 3-----------------
+Account Name:
+matundjf or iskomt (Jose)		Task: Bug fixing previous user stories
+					Expected time: 3 days	Actual time: 16 hours
+					Task: Refactor Code
+					Expected time: 5 days	Actual time: 5 hours
+					Task: Planning Documentation
+					Expected time: 1 day	Actual time: 1 hour 
 
 
 
