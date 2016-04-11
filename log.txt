@@ -170,7 +170,9 @@ ratstache (Landon)			GenerateRelatives method (DatabaseManager) -6 hours
 					Database fixes - 3 hours
 					meetings - 6 hours
 				
-
+xiezili       (Zili)			meeting - 6 hours
+					figure how to import data form excel - 1.5 hours
+					manunally converting the excel to txt file - 12 hours
 
 -----------Time spent on tasks for iteration 3-----------------
 Account Name:
@@ -183,3 +185,8 @@ matundjf or iskomt (Jose)		Task: Bug fixing previous user stories
 
 kajmoroz	   (Kaj)		Task: Import Data from file
 					Expected time: 4 days	Actual time: 15 Hours
+
+xiezili         (Zili)           	Task: Change UI for viewbird and viewbird list
+					Expected time: 1 day	Actual time: 3 hours
+					Task: learn using robotium from Kevin in the meeting
+					Expected time: 4 hours	Actual time: 1 hour
