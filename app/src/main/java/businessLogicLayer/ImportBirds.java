@@ -69,12 +69,12 @@ public class ImportBirds extends AppCompatActivity implements View.OnClickListen
 
         TextView curr;
         int currId;
-        RelativeLayout layout = (RelativeLayout)findViewById(R.id.medHistoryWrapper);
+        RelativeLayout layout = (RelativeLayout)findViewById(R.id.errorWrapper);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT );
 
-        for(int i = 0; i+1 < errorList.size(); i++) {
+        for(int i = 0; i < errorList.size(); i++) {
             /**
              * Use the errorList to list errors
              */
@@ -93,7 +93,7 @@ public class ImportBirds extends AppCompatActivity implements View.OnClickListen
         curr = new TextView(this);
         curr.setId(currId);
         curr.setTypeface(null, Typeface.BOLD);
-        curr.setText("Birds Imported");
+        curr.setText(curr.getText() + "\nBirds Imported");
         curr.setTextSize(20);
         params.addRule(RelativeLayout.BELOW, R.id.btAddBird);
         params.setMargins(0, 20, 0, 0);
