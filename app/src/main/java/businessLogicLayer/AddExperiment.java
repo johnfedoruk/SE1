@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import net.javacrypt.se1.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import databaseLayer.DatabaseManager;
@@ -85,6 +86,22 @@ public class AddExperiment extends AppCompatActivity implements View.OnClickList
                     String title = txtStudyTitle.getText().toString();
                     String type = txtStudyType.getText().toString();
                     String group = txtGroupWithinExperiment.getText().toString();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                    Calendar sDate = Calendar.getInstance();
+                    Calendar eDate = Calendar.getInstance();
+                    try {
+                        sDate.setTime(sdf.parse(txtStartDate.getText().toString()));
+                    }
+                    catch(Exception e) {
+                        sDate = null;
+                    }
+                    try {
+                        eDate.setTime(sdf.parse(txtEndDate.getText().toString()));
+                    }
+                    catch(Exception e) {
+                        eDate = null;
+                    }
+                    /*
                     String startDate = txtStartDate.getText().toString();
                     String endDate = txtEndDate.getText().toString();
                     Calendar sDate = dateParser.toCalendar(startDate);
@@ -97,6 +114,7 @@ public class AddExperiment extends AppCompatActivity implements View.OnClickList
                     {
                         eDate = dateParser.toCalendar(endDate);
                     }
+                    */
 
                     String experimenters = txtExperimenters.getText().toString();
                     String notes = txtNotes.getText().toString();

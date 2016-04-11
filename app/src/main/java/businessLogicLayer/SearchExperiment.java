@@ -95,7 +95,6 @@ public class SearchExperiment extends ActionBarActivity implements View.OnFocusC
             EndDate =
                     sdf.format(new Date(dp.getYear()-1900,dp.getMonth(),dp.getDayOfMonth()));
         }
-
         Bundle bundle = new Bundle();
         bundle.putSerializable("experiment", new Experiment(StudyTitle,StudyType,GroupWithinExperiment,StartDate,EndDate,null,null,null));
         intent.putExtras(bundle);

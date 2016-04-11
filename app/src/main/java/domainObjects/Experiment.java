@@ -77,6 +77,8 @@ public class Experiment implements Serializable {
         return this.EndDate;
     }
     public String getDateString(Calendar cal){
+        if(cal==null)
+            return "";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return sdf.format(cal.getTime());
     }

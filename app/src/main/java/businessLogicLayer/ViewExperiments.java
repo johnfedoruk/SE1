@@ -45,7 +45,7 @@ public class ViewExperiments extends ActionBarActivity {
         }
         ListAdapter adapt = new ListAdapter(this, R.layout.item, items);
         for(int i=0;i<query.size();i++) {
-            Intent intentView = new Intent(this,ViewBird.class);
+            Intent intentView = new Intent(this,ViewExperiment.class);
             Bundle bundle = new Bundle();
             experiment = query.get(i);
             bundle.putSerializable("experiment",experiment);

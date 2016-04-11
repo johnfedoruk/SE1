@@ -352,6 +352,34 @@ public class ExperimentDatabase {
             inputVal.put(ExpEntry.EXP_GROUP, "");
         }
 
+
+
+
+
+
+        if(input.getStartDate() != null)
+        {
+            inputVal.put(ExpEntry.EXP_START, input.getDateString(input.getStartDate()));
+        }
+        else
+        {
+            inputVal.put(ExpEntry.EXP_START, "");
+        }
+
+        if(input.getEndDate() != null)
+        {
+            inputVal.put(ExpEntry.EXP_END, input.getDateString(input.getEndDate()));
+        }
+        else
+        {
+            inputVal.put(ExpEntry.EXP_END, "");
+        }
+
+
+
+
+
+        /*
         if (input.getStartDate() != null) {
             inputVal.put(ExpEntry.EXP_START, String.valueOf(input.getStartDate().getTimeInMillis()));
         } else {
@@ -363,6 +391,7 @@ public class ExperimentDatabase {
         } else {
             inputVal.put(ExpEntry.EXP_END, "");
          }
+         */
 
         if (input.getStatus()) {
             inputVal.put(ExpEntry.EXP_STAT, "true");

@@ -39,26 +39,6 @@ public class ViewBird extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_bird);
-        DatabaseManager db = MainActivity.db;
-        /**
-         *
-         * Get the bird ID from the Database
-         *
-         */
-
-        Intent i = getIntent();
-        ArrayList<String> birdProp = i.getStringArrayListExtra("bird");
-        Bird cBird ;
-/*
-        if(birdProp.size() == 10)
-            cBird = new Bird(birdProp.get(0), birdProp.get(1), birdProp.get(2), birdProp.get(3), birdProp.get(4), birdProp.get(5), birdProp.get(6), birdProp.get(8), birdProp.get(9));
-        else
-            cBird = new Bird(birdProp.get(0), birdProp.get(1), birdProp.get(2), birdProp.get(3), birdProp.get(4), birdProp.get(5), birdProp.get(6));
-
-        cBird.setMedicalHistory(new MedicalHistory(birdProp.get(7)));
-        currentBird = cBird;
-*/
-
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         this.currentBird = (Bird)bundle.getSerializable("bird");
@@ -68,11 +48,6 @@ public class ViewBird extends AppCompatActivity {
          */
         if(currentBird != null && currentBird.getId() != null)
         {
-           /* try {
-                this.cBird =
-                       db.searchBirds(new Bird(birdId, birdName,"",null,null,"",null)).get(0); //Bird IDs are unique
-            }
-            catch(Exception e) {this.cBird=null;}*/
 
             if (currentBird != null)
             {
