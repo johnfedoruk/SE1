@@ -21,8 +21,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import domainObjects.Bird;
+import domainObjects.MedicalHistory;
 
 /**
  * Created by Kaj on 4/8/2016.
@@ -37,7 +39,7 @@ public class ImportBirds extends AppCompatActivity implements View.OnClickListen
          *
          */
         setContentView(R.layout.activity_import_birds);
-
+       //MainActivity.db.clearDatabases();
     }
 
 
@@ -56,6 +58,13 @@ public class ImportBirds extends AppCompatActivity implements View.OnClickListen
 
     public void runImport(View view) {
 
+        TextView curr;
+        int currId;
+        RelativeLayout layout = (RelativeLayout)findViewById(R.id.errorWrapper);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT );
+
         BirdParser parser;
         ArrayList<String> errorList = new ArrayList<>();
         BufferedReader buffRead;
@@ -66,13 +75,6 @@ public class ImportBirds extends AppCompatActivity implements View.OnClickListen
         parser = new BirdParser(buffRead);
         errorList = parser.parseBirds();
 
-
-        TextView curr;
-        int currId;
-        RelativeLayout layout = (RelativeLayout)findViewById(R.id.errorWrapper);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT );
 
         for(int i = 0; i < errorList.size(); i++) {
             /**
@@ -104,7 +106,7 @@ public class ImportBirds extends AppCompatActivity implements View.OnClickListen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_import_bird, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 

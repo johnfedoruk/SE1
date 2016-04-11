@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import domainObjects.Bird;
+import domainObjects.MedicalHistory;
 
 /**
  * Created by Kaj on 4/8/2016.
@@ -40,6 +41,7 @@ public class BirdParser {
             {
                 birdInfo = currLine.split(",");
                 Bird temp = processBird(birdInfo);
+
                 if(temp != null)
                 {
                     MainActivity.db.addBird(temp);
@@ -93,7 +95,9 @@ public class BirdParser {
                 bDate = splitArr[0] + "-" + "01" + "-" + "01";
             }
 
-            temp = new Bird(id, name, "", bDate, "", sex, "true");
+
+
+            temp = new Bird(id, name, "Exp1", MainActivity.db.getCalendar(1993,04,33), MainActivity.db.getCalendar(1993,04,33), sex, new MedicalHistory( MainActivity.db.getCalendar(2016, 2, 22),"Chicken pox","Tylenol","did not work"),true, "123", "123");
         }
 
         return temp;
