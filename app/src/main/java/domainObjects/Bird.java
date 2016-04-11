@@ -158,9 +158,15 @@ public class Bird implements Serializable {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return sdf.format(cal.getTime());
     }
-    public String getSex(){return this.sex;}
-    public MedicalHistory getMedicalHistory(){return this.history;}
-    public boolean getStatus(){return this.status;}
+    public String getSex(){
+        return this.sex;
+    }
+    public MedicalHistory getMedicalHistory(){
+        return this.history;
+    }
+    public boolean getStatus(){
+        return this.status;
+    }
 
     public void setId(String id){
         this.id = id;
@@ -171,58 +177,11 @@ public class Bird implements Serializable {
     public void setExperiment(String experiment){
         this.experiment= experiment;
     }
-    public void setBirthDate(Calendar birthDate){this.birthDate = birthDate;}
-    public void setDeathDate(Calendar deathDate){
-        this.deathDate= deathDate;
-    }
     public void setSex(String sex){
         this.sex = sex;
     }
 
-    public void setMom(String mom) { this.mom = mom; }
-    public void setDad(String dad) { this.dad = dad; }
-
     public void setMedicalHistory(MedicalHistory history){this.history = history;}
     public void setStatus(boolean status){this.status = status;}
 
-    public Boolean equals(Bird comp)
-    {
-        Boolean check = true;
-        if(this.status != comp.getStatus())
-        {
-            check = false;
-        }
-
-        if(!this.id.equals(comp.getId()))
-        {
-            check = false;
-        }
-
-        if(!this.name.equals(comp.getName()))
-        {
-            check = false;
-        }
-
-        if( this.birthDate != null && comp.birthDate != null && this.birthDate.compareTo(comp.getBirthDate()) != 0 )
-        {
-            check = false;
-        }
-
-        if( this.deathDate != null && comp.deathDate != null && this.deathDate.compareTo(comp.getDeathDate()) != 0 )
-        {
-            check = false;
-        }
-
-        if(!comp.getMedicalHistory().toString().equals(this.history.toString()) )
-        {
-            check = false;
-        }
-
-        if(comp.getSex().equals(this.sex))
-        {
-            check = false;
-        }
-
-        return check;
-    }
 }

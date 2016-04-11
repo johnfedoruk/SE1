@@ -41,8 +41,6 @@ import domainObjects.MedicalHistory;
 @SuppressWarnings("all")
 public class AddBird extends AppCompatActivity implements View.OnClickListener,View.OnTouchListener,View.OnFocusChangeListener{
 
-    //EditText txtLegBandId,txtName,txtExperiment,txtBirthDate,txtDeathDate,txtSex;
-
     public static TextView txtAddMedicalHistory;
     public static ImageView imgAddMedicalHistory;
     public static MedicalHistory retrieveMedicalHistory;

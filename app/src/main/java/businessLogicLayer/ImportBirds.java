@@ -39,7 +39,6 @@ public class ImportBirds extends AppCompatActivity implements View.OnClickListen
          *
          */
         setContentView(R.layout.activity_import_birds);
-       //MainActivity.db.clearDatabases();
     }
 
 
@@ -66,7 +65,7 @@ public class ImportBirds extends AppCompatActivity implements View.OnClickListen
                 RelativeLayout.LayoutParams.WRAP_CONTENT );
 
         BirdParser parser;
-        ArrayList<String> errorList = new ArrayList<>();
+        ArrayList<String> errorList;
         BufferedReader buffRead;
         InputStream input;
 
@@ -75,7 +74,8 @@ public class ImportBirds extends AppCompatActivity implements View.OnClickListen
         parser = new BirdParser(buffRead);
         errorList = parser.parseBirds();
 
-
+        if(errorList==null)
+            return;
         for(int i = 0; i < errorList.size(); i++) {
             /**
              * Use the errorList to list errors

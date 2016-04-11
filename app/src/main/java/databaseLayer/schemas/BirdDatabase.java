@@ -47,9 +47,6 @@ public final class BirdDatabase {
     //Common SQL keywords
     public static final String TYPE_TEXT = " TEXT";
     public static final String COMMA = ", ";
-    public static final String KEY = "PRIMARY KEY AUTOINCREMENT";
-    public static final String AND = " AND ";
-    public static final String ISTHERE = " = ?";
 
 
     /*
@@ -92,9 +89,7 @@ public final class BirdDatabase {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.execSQL("DELETE FROM " + BirdEntry.TABLE_LABEL + " WHERE " + BirdEntry.BIRD_ID + " = " + "'" + id + "'");
     }
-    /*
-     *
-     */
+
     public void insert(Bird input)
     {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -176,8 +171,7 @@ public final class BirdDatabase {
             inputVal.put(BirdEntry.BIRD_MED, "");
         }
 
-        long newRowId;
-        newRowId = db.insert(BirdEntry.TABLE_LABEL, null, inputVal);
+        db.insert(BirdEntry.TABLE_LABEL, null, inputVal);
 
         db.close();
     }
@@ -200,121 +194,6 @@ public final class BirdDatabase {
         db.close();
 
         return result;
-    }
-
-    private ArrayList<String> getWhereClause(Bird params)
-    {
-        String clause = "";
-        ArrayList<String> clauseElements = new ArrayList<>();
-
-        if(params.getId() != null && !params.getId().equals(""))
-        {
-            clauseElements.add(BirdEntry.BIRD_ID);
-        }
-        if(params.getName() != null && !params.getName().equals(""))
-        {
-            clauseElements.add(BirdEntry.BIRD_NAME);
-        }
-
-        if(params.getSex() != null && !params.getSex().equals(""))
-        {
-            clauseElements.add(BirdEntry.BIRD_SEX);
-        }
-
-        if(params.getExperiment() != null && !params.getExperiment().equals(""))
-        {
-            clauseElements.add(BirdEntry.BIRD_EXP);
-        }
-
-        if(params.getMedicalHistory() != null && !params.getMedicalHistory().toString().equals(""))
-        {
-            clauseElements.add(BirdEntry.BIRD_MED);
-        }
-
-        if(params.getBirthDate() != null && !params.getBirthDate().toString().equals(""))
-        {
-            clauseElements.add(BirdEntry.BIRD_BDAY);
-        }
-
-        if(params.getDeathDate() != null && !params.getDeathDate().toString().equals(""))
-        {
-            clauseElements.add(BirdEntry.BIRD_DDAY);
-        }
-
-        if(params.getDad() != null && !params.getDad().toString().equals(""))
-        {
-            clauseElements.add(BirdEntry.BIRD_DAD);
-        }
-
-        if(params.getMom() != null && !params.getDad().toString().equals(""))
-        {
-            clauseElements.add(BirdEntry.BIRD_MOM);
-        }
-
-        return clauseElements;
-    }
-
-    private String [] getSearchPara(Bird params)
-    {
-        ArrayList<String> tempArray = new ArrayList<>();
-
-        if(params.getId() != null && !params.getId().equals(""))
-        {
-            tempArray.add(params.getId());
-        }
-        if(params.getName() != null && !params.getName().equals(""))
-        {
-            tempArray.add(params.getName());
-        }
-
-        if(params.getSex() != null && !params.getSex().equals(""))
-        {
-            tempArray.add(params.getSex());
-        }
-
-        if(params.getExperiment() != null && !params.getExperiment().equals(""))
-        {
-            tempArray.add(params.getExperiment());
-        }
-
-        if(params.getMedicalHistory() != null && !params.getMedicalHistory().toString().equals(""))
-        {
-            tempArray.add(params.getMedicalHistory().toString());
-        }
-
-        if(params.getBirthDate() != null)
-        {
-            tempArray.add(String.valueOf(params.getBirthDate().getTimeInMillis()));
-        }
-
-        if(params.getDeathDate() != null)
-        {
-            tempArray.add(String.valueOf(params.getDeathDate().getTimeInMillis()));
-        }
-
-        if(params.getDad() != null)
-        {
-            tempArray.add(String.valueOf(params.getDad()));
-        }
-
-        if (params.getMom() != null)
-        {
-            tempArray.add(String.valueOf(params.getMom()));
-        }
-
-       /* if(params.getStatus())
-        {
-            tempArray.add("true");
-        }
-        else
-        {
-            tempArray.add("false");
-        }*/
-
-        String [] returnArr = new String[tempArray.size()];
-        returnArr = tempArray.toArray(returnArr);
-
-        return returnArr;
     }
 
     public ArrayList<Bird> searchBirds(Bird inputBird)
@@ -388,7 +267,6 @@ public final class BirdDatabase {
         return queryResult;
     }
     public static final String DELETE_ENTRIES = "DROP TABLE IF EXISTS " + BirdEntry.TABLE_LABEL+";";
-    public static final String ADD_ENTRIES = "INSERT INTO " + BirdEntry.TABLE_LABEL + " VALUES (";
     public static final String[] BIRD_ROW = {
             BirdEntry.BIRD_NAME,
             BirdEntry.BIRD_ID,

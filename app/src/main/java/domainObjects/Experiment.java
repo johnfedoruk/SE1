@@ -96,26 +96,6 @@ public class Experiment implements Serializable {
         return this.Notes;
     }
     public boolean getStatus() {return this.status;}
-
-    //setters
-    public void setStudyTitle(String StudyTitle){
-        this.StudyTitle = StudyTitle;
-    }
-    public void setStudyType(String StudyType){
-        this.StudyType = StudyType;
-    }
-    public void setGroupWithinExperiment(String GroupWithinExperiment) {
-        this.GroupWithinExperiment = GroupWithinExperiment;
-    }
-    public void setStartDate(Calendar StartDate){
-        this.StartDate = StartDate;
-    }
-    public void setEndDate(Calendar EndDate){
-        this.EndDate = EndDate;
-    }
-    public void setExperimenters(String Experimenters){
-        this.Experimenters = Experimenters;
-    }
     public void setNotes(String Notes){
         this.Notes = Notes;
     }

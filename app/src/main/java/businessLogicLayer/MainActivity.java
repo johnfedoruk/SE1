@@ -26,11 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         this.db = new DatabaseManager(dbHelper);
-        //this.db.switchDatabases();
-        //SQLiteDatabase dbase = dbHelper.getReadableDatabase();
-        //this.dbHelper.onCreate(dbase);
-        //this.db.generateDatabase(dbHelper);
-        //this.db.clearDatabases();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }

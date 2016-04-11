@@ -68,27 +68,7 @@ public class DatabaseSQL{
     {
         return birdTable.findBird(id);
     }
-    /**
-     * searchBirds
-     *  Queries the birdList and returns all birds that match the definitions
-     * @param id The id of the bird. If not defined, has length of zero.
-     * @param name The name of the bird. If not defined, has length of zero.
-     * @param sex The sex of the bird. If male, will be "male", if female, will be "female"
-     *            if both will be "both", if undefined will have length of zero
-     * @param birthDate The birth date in string format. Has the format "yyyy-MM-dd". If not defined
-     *                 it will have a length of zero.
-     * @param deathDate The death date in string format. Has the format "yyyy-MM-dd". If not defined
-     *                  it will have a length of zero.
-     * @return The query results
-     */
-    public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate, String status)
-    {
-        return searchBirds(new Bird(id, name, "", birthDate, deathDate, sex, status));
-    }
 
-    public ArrayList<Bird> searchBirds(String id, String name, String sex, String birthDate, String deathDate) {
-        return searchBirds(new Bird(id, name, "", birthDate, deathDate, sex, ""));
-    }
 
     public ArrayList<Bird> searchBirds(Bird inputBird) {
         return birdTable.searchBirds(inputBird);

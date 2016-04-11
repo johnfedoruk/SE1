@@ -36,15 +36,6 @@ public class DatabaseManager {
             this.dbStub = new DatabaseStub();
     }
 
-    public void generateDatabase(SQLiteOpenHelper helpMe)
-    {
-        this.dbSQL = new DatabaseSQL(helpMe);
-    }
-
-    public void switchDatabases()
-    {
-        SQL_ON = !SQL_ON;
-    }
     /**
      * clearDatabases
      * clears the array lists, for testing purposes only

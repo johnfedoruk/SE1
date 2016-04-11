@@ -32,13 +32,4 @@ public class DateParser
         return this.cal;
     }
 
-    public String setDateString(String date)
-    {
-        String buffer[] = date.split("-");
-        this.cal.set(Integer.parseInt(buffer[2]),Integer.parseInt(buffer[1]),Integer.parseInt(buffer[0]));
-        return sdf.format(this.cal);
-    }
-
-
-
 }

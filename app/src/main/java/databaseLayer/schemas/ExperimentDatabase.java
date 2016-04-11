@@ -37,9 +37,6 @@ public class ExperimentDatabase {
     //Common SQL keywords
     public static final String TYPE_TEXT = " TEXT";
     public static final String COMMA = ", ";
-    public static final String KEY = "PRIMARY KEY AUTOINCREMENT";
-    public static final String AND = " AND ";
-    public static final String ISTHERE = " = ?";
 
     public static final String DELETE_ENTRIES = "DROP TABLE IF EXISTS " + ExpEntry.TABLE_LABEL+";";
 
@@ -53,102 +50,7 @@ public class ExperimentDatabase {
             ExpEntry.EXP_NOTES + TYPE_TEXT + COMMA +
             ExpEntry.EXP_STAT + TYPE_TEXT +
             " );";
-    
-    private ArrayList<String> getWhereClause(Experiment params)
-    {
-        ArrayList<String> clauseElements = new ArrayList<>();
 
-        if(params.getStudyTitle() != null && !params.getStudyTitle().equals(""))
-        {
-            clauseElements.add(ExpEntry.EXP_TITLE);
-        }
-        if(params.getStudyType() != null && !params.getStudyType().equals(""))
-        {
-            clauseElements.add(ExpEntry.EXP_TYPE);
-        }
-
-        if(params.getGroupWithinExperiment() != null && !params.getGroupWithinExperiment().equals(""))
-        {
-            clauseElements.add(ExpEntry.EXP_GROUP);
-        }
-
-        if(params.getStartDate() != null)
-        {
-            clauseElements.add(ExpEntry.EXP_START);
-        }
-
-        if(params.getEndDate() != null)
-        {
-            clauseElements.add(ExpEntry.EXP_END);
-        }
-
-        if(params.getExperimenters() != null && !params.getExperimenters().equals(""))
-        {
-            clauseElements.add(ExpEntry.EXP_TERS);
-        }
-
-        if(params.getNotes() != null && !params.getNotes().equals(""))
-        {
-            clauseElements.add(ExpEntry.EXP_NOTES);
-        }
-
-        clauseElements.add(ExpEntry.EXP_STAT);
-        return clauseElements;
-    }
-
-    private String [] getSearchPara(Experiment params)
-    {
-        ArrayList<String> tempArray = new ArrayList<>();
-
-
-        if(params.getStudyTitle() != null && !params.getStudyTitle().equals(""))
-        {
-            tempArray.add(params.getStudyTitle());
-        }
-        if(params.getStudyType() != null && !params.getStudyType().equals(""))
-        {
-            tempArray.add(params.getStudyType());
-        }
-
-        if(params.getGroupWithinExperiment() != null && !params.getGroupWithinExperiment().equals(""))
-        {
-            tempArray.add(params.getGroupWithinExperiment());
-        }
-
-        if(params.getStartDate() != null)
-        {
-            tempArray.add(String.valueOf(params.getStartDate().getTimeInMillis()));
-        }
-
-        if(params.getEndDate() != null)
-        {
-            tempArray.add(String.valueOf(params.getEndDate().getTimeInMillis()));
-        }
-
-        if(params.getExperimenters() != null && !params.getExperimenters().equals(""))
-        {
-            tempArray.add(params.getExperimenters());
-        }
-
-        if(params.getNotes() != null && !params.getNotes().equals(""))
-        {
-            tempArray.add(params.getNotes());
-        }
-
-        if(params.getStatus())
-        {
-            tempArray.add("true");
-        }
-        else
-        {
-            tempArray.add("false");
-        }
-
-        String [] returnArr = new String[tempArray.size()];
-        returnArr = tempArray.toArray(returnArr);
-
-        return returnArr;
-    }
 
     public ArrayList<Experiment> searchExperiments(Experiment params)
     {
@@ -216,7 +118,6 @@ public class ExperimentDatabase {
     public void insert(Experiment input) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        String stat = "";   
         ContentValues inputVal = new ContentValues();
         if (input.getStudyTitle() != null && !input.getStudyTitle().equals("")) {
             inputVal.put(ExpEntry.EXP_TITLE, input.getStudyTitle());
@@ -254,11 +155,6 @@ public class ExperimentDatabase {
             inputVal.put(ExpEntry.EXP_END, "");
         }
 
-
-
-
-
-
         if (input.getExperimenters() != null && !input.getExperimenters().equals("")) {
             inputVal.put(ExpEntry.EXP_TERS, input.getExperimenters());
         } else {
@@ -271,19 +167,13 @@ public class ExperimentDatabase {
             inputVal.put(ExpEntry.EXP_NOTES, "");
         }
 
-
-
-
-
-
         if (input.getStatus()) {
             inputVal.put(ExpEntry.EXP_STAT, "true");
         } else {
             inputVal.put(ExpEntry.EXP_STAT, "false");
         }
 
-        long newRowId;
-        newRowId = db.insert(ExpEntry.TABLE_LABEL, null, inputVal);
+        db.insert(ExpEntry.TABLE_LABEL, null, inputVal);
 
         db.close();
 
