@@ -150,4 +150,11 @@ public class DatabaseSQL{
         return birdTable.getBird();
     }
 
+    public void removeExperiment(Experiment experiment) {
+        if(experiment==null)
+            return;
+        this.expTable.removeExperiment(experiment);
+        return;
+    }
+
 }

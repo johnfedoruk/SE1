@@ -160,6 +160,14 @@ public class DatabaseManager {
 
     }
 
+    public void removeExperiment(Experiment experiment) {
+        if (SQL_ON) {
+            dbSQL.removeExperiment(experiment);
+        }
+        //else
+        //    dbStub.removeExperiment(experiment);
+    }
+
     /**
      * getCalendar
      * generate and return a calendar made up of the parameters

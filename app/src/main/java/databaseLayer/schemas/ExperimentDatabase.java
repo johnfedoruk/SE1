@@ -152,10 +152,6 @@ public class ExperimentDatabase {
 
     public ArrayList<Experiment> searchExperiments(Experiment params)
     {
-
-
-
-
         ArrayList<Experiment> queryResult = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String query = "SELECT * FROM " + ExpEntry.TABLE_LABEL + ";";
@@ -423,5 +419,27 @@ public class ExperimentDatabase {
         }
         return queryResult;
 
+    }
+
+    public void removeExperiment(Experiment experiment) {
+        if(experiment==null)
+            return;
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.execSQL(
+                "DELETE FROM "
+                + ExpEntry.TABLE_LABEL
+                + " WHERE "
+                + ExpEntry.EXP_TITLE
+                + " = "
+                + "'"
+                + experiment.getStudyTitle()
+                + "'"
+                + " AND "
+                + ExpEntry.EXP_TYPE
+                + " = "
+                + "'"
+                + experiment.getStudyType()
+                + "'"
+        );
     }
 }

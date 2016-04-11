@@ -158,7 +158,6 @@ public class EditBird extends AppCompatActivity implements View.OnClickListener{
                 progressDialog.setMessage("Please wait...");
                 progressDialog.show();
 
-                /*Go to bird page*/
                 Intent myIntent = new Intent(EditBird.this,EditBirdSuccess.class);
                 startActivity(myIntent);
 
