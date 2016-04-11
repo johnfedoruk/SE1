@@ -178,7 +178,7 @@ xiezili       (Zili)			meeting - 6 hours
 Account Name:
 
 ratstache (Landon)			Task: Implement basic log in/log out functionality (14 hours)
-					
+					Task: Refactor MenuBar code (2 hours)
 
 matundjf or iskomt (Jose)		Task: Bug fixing previous user stories
 					Expected time: 3 days	Actual time: 16 hours
