@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -280,6 +281,8 @@ public class AddBird extends AppCompatActivity implements View.OnClickListener,V
 
         EditText txtBirthDate = (EditText) findViewById(R.id.txtBirthDate);
         EditText txtDeathDate = (EditText) findViewById(R.id.txtDeathDate);
+        txtBirthDate.setInputType(InputType.TYPE_NULL);
+        txtDeathDate.setInputType(InputType.TYPE_NULL);
         txtBirthDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -179,6 +180,8 @@ public class AddExperiment extends AppCompatActivity implements View.OnClickList
 
         EditText txtStartDate = (EditText) findViewById(R.id.txtStartDate);
         EditText txtEndDate = (EditText) findViewById(R.id.txtEndDate);
+        txtStartDate.setInputType(InputType.TYPE_NULL);
+        txtEndDate.setInputType(InputType.TYPE_NULL);
         txtStartDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

@@ -4,6 +4,7 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -46,6 +47,8 @@ public class AddMedicalHistory extends AppCompatActivity implements View.OnClick
         super.onStart();
 
         EditText txtDateOfReport = (EditText) findViewById(R.id.txtDateOfReport);
+        txtDateOfReport.setInputType(InputType.TYPE_NULL);
+
         txtDateOfReport.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {

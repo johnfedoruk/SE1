@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -214,6 +215,8 @@ public class EditBird extends AppCompatActivity implements View.OnClickListener{
 
         EditText txtBirthDate = (EditText) findViewById(R.id.txtBirthDate);
         EditText txtDeathDate = (EditText) findViewById(R.id.txtDeathDate);
+        txtBirthDate.setInputType(InputType.TYPE_NULL);
+        txtDeathDate.setInputType(InputType.TYPE_NULL);
         txtBirthDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
